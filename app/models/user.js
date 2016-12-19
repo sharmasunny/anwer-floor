@@ -10,9 +10,10 @@ module.exports = function(sequelize, DataTypes) {
 
 	var User = sequelize.define('User', 
 		{
-			name: DataTypes.STRING,
+			firstname: DataTypes.STRING,
+			lastname: DataTypes.STRING,
+			phone:DataTypes.STRING,
 			email: DataTypes.STRING,
-			username: DataTypes.STRING,
 			hashedPassword: DataTypes.STRING,
 			provider: DataTypes.STRING,
 			salt: DataTypes.STRING, 
@@ -21,7 +22,25 @@ module.exports = function(sequelize, DataTypes) {
 			twitterKey: DataTypes.STRING,
 			twitterSecret: DataTypes.STRING,
 			github: DataTypes.STRING,
-			openId: DataTypes.STRING
+			openId: DataTypes.STRING,
+			role: {
+          		type: DataTypes.ENUM,
+        		values: ['USER', 'ADMIN', 'ANON'],
+          		defaultValue:'USER'
+     		},
+     		
+		    otp: DataTypes.STRING,
+		    token: DataTypes.STRING,
+		    status: {
+		        type: DataTypes.BOOLEAN,
+		        values : [true, false],
+		        defaultValue:false
+		    },
+		    isDeleted: {
+		        type: DataTypes.BOOLEAN,
+		        values : [true, false],
+		        defaultValue: false
+		    },
 		},
 		{
 			instanceMethods: {

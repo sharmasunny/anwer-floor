@@ -1,6 +1,7 @@
-extends layouts/default
+extends layouts/indexlayout
 
 block content
-  section(ui-view)
-  script(type="text/javascript").
-    window.user = !{user};
+  section(ui-view="header"  autoscroll="true")
+  section(ui-view="content")
+  section(ui-view="footer")
+  

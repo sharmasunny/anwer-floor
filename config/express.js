@@ -35,7 +35,8 @@ module.exports = function(app, passport) {
     }));
 
     //Setting the fav icon and static folder
-    app.use(favicon(config.root + '/public/img/icons/favicon.ico'));
+    //app.use(favicon(config.root + '/public/img/icons/favicon.ico'));
+    app.use(favicon(config.root + '/public/favicon.ico'));
     app.use(express.static(config.root + '/public'));
 
     //Don't use logger for test env
@@ -76,8 +77,10 @@ module.exports = function(app, passport) {
       require(path.resolve(routePath))(app);
     });
 
-    app.get('*',  function (req, res, next) {
-            res.render('index');
+    app.get('/*',  function (req, res, next) {        
+        res.render('index', {
+            user: req.user ? JSON.stringify(req.user) : "null"
+        });
     });
 
     app.use(function(err, req, res, next) {

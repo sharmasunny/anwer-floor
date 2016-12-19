@@ -70,14 +70,11 @@ exports.create = function (req, res, next) {
             if (err) {
                 return next(err);
             }
-            return res.send({status: 'success', message: 'User signup successfully.'})
+            return res.send({status: 'success', message: 'User signup successfully.',user:user});
             // res.redirect('/');
         });
     }).catch(function (err) {
-        res.render('users/signup', {
-            message: message,
-            user: user
-        });
+        res.send({tatus:'error',err:err});
     });
 };
 

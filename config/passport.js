@@ -33,6 +33,7 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
   },
   function(email, password, done) {
+    
     db.User.find({ where: { email: email }}).then(function(user) {
       if (!user) {
         done(null, false, { message: 'Unknown user' });
