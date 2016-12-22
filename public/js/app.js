@@ -1,4 +1,4 @@
-angular.module('mean', ['ngCookies', 'ngResource', 'ui.router','uiRouterStyles', 'ui.bootstrap', 'ui.route', 'mean.system', 'mean.articles', 'mean.auth','satellizer','angularFblogin'])
+angular.module('mean', ['ngCookies', 'ngMessages' ,'ngResource', 'ui.router','uiRouterStyles','ui.bootstrap', 'ui.route','ngStorage', 'mean.system', 'mean.articles', 'mean.auth','satellizer','angularFblogin'])
 .config(function ($authProvider) {
 
     $authProvider.twitter({
@@ -15,8 +15,35 @@ angular.module('mean', ['ngCookies', 'ngResource', 'ui.router','uiRouterStyles',
         redirectUri: 'http://localhost:3000/auth/google/callback'
     });
 
-});
+})
+.run(['$rootScope', '$state', '$localStorage', '$AuthService', '$SessionService','SITE_CONSTANTS','$anchorScroll','$anchorScroll','$templateCache', function($rootScope, $state, $localStorage, $AuthService, $SessionService, SITE_CONSTANTS, $anchorScroll, $templateCache) {
+
+          $rootScope.SITEURL = SITE_CONSTANTS.LOCALURl;
+          $rootScope.$on('UpdateSession', function(event, args) {
+               $rootScope.$broadcast('ReceiveSessionMessage', args);
+          });
+
+        
+          $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams) {
+               $anchorScroll();
+               if (!$AuthService.authorize(toState.data.access)) {
+                    event.preventDefault();
+                    $state.go('anon.login');
+               }
+
+               if(Object.keys($SessionService.user()).length > 0) {
+                    if(toState.name == "anon.login") {
+                         event.preventDefault();
+                         $state.go("user.dashboard");
+                    }
+               }
+          });
+
+}]);
+
 
 angular.module('mean.system', []);
 angular.module('mean.articles', []);
 angular.module('mean.auth', []);
+
+

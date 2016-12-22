@@ -6,19 +6,12 @@
 
 const jwt = require('jsonwebtoken');
 const tokenSecret = "KGKGKJG&*575765VGJHGJ";
-const UserModel = require(APP_PATH + '/api/models/UserModel.js');
+const db = require('../../config/sequelize')
+
 module.exports = {
 
      // Generates a token from supplied payload
      issueToken : function(payload, platform, deviceToken) {
-          //   return jwt.sign(
-          //       payload,
-          //       tokenSecret,// Token Secret that we sign it with
-          //       '2 days'
-          //   //     {
-          //   //       expiresIn : '1d' // Token Expire time
-          //   //     }
-          //   );
           let token = jwt.sign(
                               {
                                    auth:  payload,
@@ -30,17 +23,9 @@ module.exports = {
                deviceToken = payload;
           }
 
-          UserModel
-               .update(
-                    { _id : payload },
-                    { isOnline : 'Y', 'fcm.platform' : platform, 'fcm.deviceToken' : deviceToken },
-                    { upsert : false }
-               )
-               .exec (
-                         function(err, updateStatus) {
-                              console.log("User logged into the application");
-                         }
-               );
+          db.User.update({'platform' : platform, 'deviceToken' : deviceToken ,isOnline : 'Y'}, { where: { id: payload } }).then(function() {
+                console.log("User logged into the application");
+          });
 
           return token;
      },

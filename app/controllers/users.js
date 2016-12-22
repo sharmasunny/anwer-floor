@@ -63,8 +63,7 @@ exports.create = function (req, res, next) {
     user.provider = 'local';
     user.salt = user.makeSalt();
     user.hashedPassword = user.encryptPassword(req.body.password, user.salt);
-    console.log('New User (local) : { id: ' + user.id + ' username: ' + user.username + ' }');
-
+    
     user.save().then(function () {
         req.login(user, function (err) {
             if (err) {

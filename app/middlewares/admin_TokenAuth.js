@@ -1,10 +1,5 @@
-/*
-* Author : Sunny Chauhan
-* Module : AdminAuthToken
-* Description : Use to authenticate admin User
-*/
-const jwToken = require(APP_PATH + "/api/services/JwTokenService.js");
-const UserModel = require(APP_PATH + '/api/models/UserModel.js');
+const jwToken = require('../services/JwTokenService');
+const db = require('../../config/sequelize');
 
 module.exports = function(req, res, next) {
      let token;
@@ -32,15 +27,19 @@ module.exports = function(req, res, next) {
      }
 
      jwToken.verify(token, function(err, token) {
-          //if err return res.json(401, {err: 'ACCESS DENIED !! You are not authorize to access this Resource'});
-          if (err) return res.json(401, {err: 'The token is not valid'});
-          UserModel.findOne({_id : token.auth}, {_id : 1, name : 1}, function (err, resData) {
-               if(resData) {
-                    req.token = token;
-                    next();
-               } else {
-                    return res.json(403, {err:'Your session has been expired, please login.'});
-               }
-          });
+          if(token && token.auth) {
+               db.User.findOne({ where: {id : token.auth}}).then(function(resData) {
+                    if(resData) {
+                         req.token = token;
+                         next();
+                    } else {
+                         return res.status(403).json({resStatus : "error", msg:'Your session has been expired, please login.'});
+                    }
+               }).catch(function (err) {
+                    return res.json({resStatus:'error', msg :AppMessages.SERVER_ERR});
+               }); 
+          } else {
+               return res.status(401).json({resStatus : "error", msg: '400 Bad Request",'});
+          }
      });
 };

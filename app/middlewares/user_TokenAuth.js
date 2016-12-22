@@ -1,10 +1,12 @@
 /*
-* Author : Sunny Chauhan
+* Author : Sunny 
 * Module : UserAuthToken
 * Description : Use to authenticate User
 */
-const UserModel = require(APP_PATH + '/api/models/UserModel.js');
-let jwToken = require(APP_PATH + "/api/services/JwTokenService.js");
+const jwToken = require('../services/JwTokenService');
+const db = require('../../config/sequelize');
+const AppMessages = require('../../config/Message');
+
 module.exports = function(req, res, next) {
      let token;
      if (req.headers && req.headers.authorization) {
@@ -18,7 +20,6 @@ module.exports = function(req, res, next) {
                }
           } else {
                return res.status(401).json({resStatus : "error", msg: '400 Bad Request",'});
-               //res.status(403).send({err: 'ACCESS DENIED !! You are not authorize to access this Resource'});
           }
      } else if (req.param('token')) {
           token = req.param('token');
@@ -33,16 +34,17 @@ module.exports = function(req, res, next) {
      }
 
      jwToken.verify(token, function(err, token) {
-          //if (err) return res.status(401).json({resStatus : "error", msg: 'The token is not valid'});
           if(token && token.auth) {
-               UserModel.findOne({_id : token.auth}, {_id : 1, name : 1}, function (err, resData) {
+               db.User.findOne({ where: {id : token.auth}}).then(function(resData) {
                     if(resData) {
                          req.token = token;
                          next();
                     } else {
                          return res.status(403).json({resStatus : "error", msg:'Your session has been expired, please login.'});
                     }
-               });
+               }).catch(function (err) {
+                    return res.json({resStatus:'error', msg :AppMessages.SERVER_ERR});
+               }); 
           } else {
                return res.status(401).json({resStatus : "error", msg: '400 Bad Request",'});
           }

@@ -11,32 +11,11 @@ var serviceObj = module.exports = {
      },
 
      getTemplate : function (referenceId, callback) {
-          //console.log(referenceId);
-          TemplateModel
-          .findOne(
-               {
-                    "title" : referenceId
-               },
-               {
-                    "status" : 0,
-                    "isDeleted" : 0,
-                    "createdDate" : 0,
-                    "modifiedDate" : 0
-               }
-          )
-          .exec(
-               function (err, template) {
-                    if(err) {
-                         callback (true, null);
-                    } else {
-                         if(template) {
-                              callback (null, template);
-                         } else {
-                              callback (true, null);
-                         }
-                    }
-               }
-          )
+          if(referenceId=='VERIFY-EMAIL'){
+               subject = 'VERIFY EMAIL';
+               TEMPLATE = "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%\"><tbody><tr><td style=\"background-color:#fff\">&nbsp;<table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:600px\"><tbody><tr><td style=\"background-color:#EBF8A4\"><table align=\"center\" border=\"0\" cellpadding=\"15\" cellspacing=\"0\" style=\"width:100%\"><tbody><tr><td>New Account</td></tr></tbody></table></td></tr><tr><td><table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" style=\"width:100%\"><tbody><tr><td style=\"background-color:#fff\"><table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" style=\"width:100%\"><tbody><tr><td><p>Dear&nbsp; {{USERNAME}},</p><p>Please confirm your registration here <a  target=_blank href='{{URL}}'>Confirm your email</a></p></td></tr></tbody></table><table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" style=\"width:100%\"><tbody><tr><td><pre>Thanks and Regards:<br><strong> Answer floor </strong></pre><p></p></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td style=\"background-color:#EBF8A4\">&nbsp;</td></tr></tbody></table></td></tr></tbody></table>";
+          }
+          callback(null,{subject:subject,description:TEMPLATE});
      },
 
      generateRandom:function(num){
@@ -47,16 +26,16 @@ var serviceObj = module.exports = {
           return text;
      },
 
-     isEmailExist : function(newEmail, UserModel, cb) {
+     isEmailExist : function(newEmail, cb) {
           let status = "ERR";
-          UserModel.findOne ({email : newEmail}, function (err, res) {
-               if(res != null) {
+          db.User.findOne({ where: { email: newEmail }}).then(function(user) {
+               if(user != null) {
                     status =  true;
                } else {
                     status = false;
                }
                cb(status);
-          });
+          });    
      },
 
      isGoogleIdExist : function(googleId, UserModel, cb) {

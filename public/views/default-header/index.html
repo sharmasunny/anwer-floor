@@ -20,14 +20,14 @@
           </a>
         </li>
 
-        <li data-ng-hide="global.authenticated">
+        <li data-ng-hide="isAuthenticated">
           <button class="btn" ng-click="signIn('sm')">Sign In</button>
           <button class="btn" ng-click="signUp('sm')">Sign Up</a>
         </li>
 
-        <li class="dropdown" data-ng-show="global.authenticated">
+        <li class="dropdown" data-ng-show="isAuthenticated">
           <a href="#" class="dropdown-toggle user-picture" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <img src="images/user.png">{{global.user.firstname}} {{global.user.lastname}} <span class="caret"></span>
+            <img src="images/user.png">test <span class="caret"></span>
           </a>
           <ul class="dropdown-menu dropdown-menu-rarrow">
             <li><a href="/multiple-short-profile">Profile</a></li>
@@ -35,7 +35,7 @@
             <li><a href="/account">Account</a></li>
             <li><a href="/setting">Setting</a></li>
             <!-- <li><a href="#">Sign Up</a></li> -->
-            <li><a href="#" ng-click="SignOut()">Logout</a></li>
+            <li><a href="#" ng-click="logout()">Logout</a></li>
           </ul>
         </li>
 

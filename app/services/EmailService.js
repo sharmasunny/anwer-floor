@@ -4,12 +4,11 @@ Purpose :- Service used to send email throughout the application
 */
 
 let nodemailer = require('nodemailer');
-//let smtpConfig = 'smtps://bigdata@gmail.com:myAttitude@28@smtp.gmail.com';
 let smtpConfig = {
      service : "gmail",
      auth    : {
-          user:"bigdata.sdd@gmail.com",
-          pass:"myAttitude@28",
+          user:"ss40383@gmail.com",
+          pass:"sunnyis007",
      }
 };
 let transporter = nodemailer.createTransport(smtpConfig);

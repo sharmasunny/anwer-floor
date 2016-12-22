@@ -78,8 +78,10 @@ module.exports = function(grunt) {
                     {cwd: 'bower_components/satellizer/dist',                            src: ['**/*.js'],    dest: 'public/lib/satellizer', expand: true},
                     {cwd: 'bower_components/angular-fblogin/dist',                       src: ['**/*.js'],    dest: 'public/lib/social', expand: true},
                     {cwd: 'bower_components/jquery',                                     src: ['jquery*'], dest: 'public/lib/jquery', expand: true},
-                    {cwd: 'bower_components/angular-ui-router',                          src: ['release/*.js'], dest: 'public/lib/angular-ui-router', expand: true}
-
+                    {cwd: 'bower_components/angular-ui-router',                          src: ['release/*.js'], dest: 'public/lib/angular-ui-router', expand: true},
+                    {cwd: 'bower_components/angular-ui-router-styles',                   src: ['**/*.js'], dest: 'public/lib/angular-ui-router-styles', expand: true},
+                    {cwd: 'bower_components/angular-messages',                           src: ['**/*.js'], dest: 'public/lib/angular-messages', expand: true},
+                    {cwd: 'bower_components/ngstorage',                                  src: ['**/*.js'], dest: 'public/lib/ngstorage', expand: true}
                 ]
             }
         },

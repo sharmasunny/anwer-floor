@@ -2,15 +2,14 @@ module.exports = function (app) {
 
 	var authroute = require('../../app/controllers/AuthController.js');
 
-	app.post('/register', authroute.register);
-	app.post('/confirmAccount', authroute.confirmOtp);
-	app.post('/varifyEmail', authroute.varifyEmail);
-	app.post('/confirmAccountForgot', authroute.confirmOtpForgot);
-	app.post('/reSendOtp', authroute.reSendOtp);
-	app.post('/login', authroute.login);
-	app.post('/logOut', authroute.logOut);
-	app.post('/forgot-password', authroute.forgot);
-	app.post('/resetPassword', authroute.resetPassword);
-	app.post('/checkUniqueEmail', authroute.checkUniqueEmail);
-
+	app.post('/auth/register', authroute.register);
+	app.post('/auth/confirmAccount', authroute.confirmOtp);
+	app.post('/auth/varifyEmail', authroute.varifyEmail);
+	//app.post('/confirmAccountForgot', authroute.confirmOtpForgot);
+	//app.post('/reSendOtp', authroute.reSendOtp);
+	app.post('/auth/login', authroute.login);
+	app.post('/auth/logOut', authroute.logOut);
+	//app.post('/forgot-password', authroute.forgot);
+	app.post('/auth/resetPassword', authroute.resetPassword);
+	app.post('/auth/checkUniqueEmail', authroute.checkUniqueEmail);
 }
