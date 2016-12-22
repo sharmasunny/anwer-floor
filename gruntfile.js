@@ -81,7 +81,9 @@ module.exports = function(grunt) {
                     {cwd: 'bower_components/angular-ui-router',                          src: ['release/*.js'], dest: 'public/lib/angular-ui-router', expand: true},
                     {cwd: 'bower_components/angular-ui-router-styles',                   src: ['**/*.js'], dest: 'public/lib/angular-ui-router-styles', expand: true},
                     {cwd: 'bower_components/angular-messages',                           src: ['**/*.js'], dest: 'public/lib/angular-messages', expand: true},
-                    {cwd: 'bower_components/ngstorage',                                  src: ['**/*.js'], dest: 'public/lib/ngstorage', expand: true}
+                    {cwd: 'bower_components/ngstorage',                                  src: ['**/*.js'], dest: 'public/lib/ngstorage', expand: true},
+                    {cwd: 'bower_components/rdash-ui',                                   src: ['rdash-ui*'], dest: 'public/lib/rdash-ui', expand: true},
+                    {cwd: 'bower_components/font-awesome',                               src: ['font-awesome*'], dest: 'public/lib/font-awesome', expand: true}
                 ]
             }
         },

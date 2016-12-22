@@ -17,6 +17,8 @@
     "angular-fblogin": "*",
     "angular-ui-router-styles": "^1.1.0",
     "angular-messages": "^1.6.0",
-    "ngstorage": "^0.3.11"
+    "ngstorage": "^0.3.11",
+    "rdash-ui": "^1.0.1",
+    "font-awesome": "^4.7.0"
   }
 }
