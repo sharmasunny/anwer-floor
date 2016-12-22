@@ -1,15 +1,18 @@
-module.exports = function (app) {
+module.exports = function (app,express) {
+	let router = express.Router();
+	let authroute = require('../../app/controllers/AuthController.js');
 
-	var authroute = require('../../app/controllers/AuthController.js');
-
-	app.post('/auth/register', authroute.register);
-	app.post('/auth/confirmAccount', authroute.confirmOtp);
-	app.post('/auth/varifyEmail', authroute.varifyEmail);
+	router.post('/register', authroute.register);
+	router.post('/confirmAccount', authroute.confirmOtp);
+	router.post('/varifyEmail', authroute.varifyEmail);
 	//app.post('/confirmAccountForgot', authroute.confirmOtpForgot);
 	//app.post('/reSendOtp', authroute.reSendOtp);
-	app.post('/auth/login', authroute.login);
-	app.post('/auth/logOut', authroute.logOut);
+	router.post('/login', authroute.login);
+	router.post('/logOut', authroute.logOut);
 	//app.post('/forgot-password', authroute.forgot);
-	app.post('/auth/resetPassword', authroute.resetPassword);
-	app.post('/auth/checkUniqueEmail', authroute.checkUniqueEmail);
+	router.post('/resetPassword', authroute.resetPassword);
+	router.post('/checkUniqueEmail', authroute.checkUniqueEmail);
+
+	router.post('/admin/login',authroute.admin_login);
+	app.use('/auth', router);
 }

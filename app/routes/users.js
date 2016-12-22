@@ -5,7 +5,7 @@
  */
 var passport = require('passport');
 
-module.exports = function (app) {
+module.exports = function (app,express) {
 // User Routes
     var users = require('../../app/controllers/users');
 

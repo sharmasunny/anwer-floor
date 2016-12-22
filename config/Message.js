@@ -19,7 +19,8 @@ const MESSAGES = {
     DUPLICATE_MOBILE : "This mobile number has been already registered, try another one",
     MOBILE_AVAILABLE : "This mobile is available",
     INFRACTION_ADD : "Report sent. Thanks for helping out!",
-    PAYMENT_REIDT_URL : "Succefully Redirect To Paypal Sanbox"
+    PAYMENT_REIDT_URL : "Succefully Redirect To Paypal Sanbox",
+    VERIFICATION_EMAIL: "Please verify your Email Address"
 }
 
 module.exports = MESSAGES;

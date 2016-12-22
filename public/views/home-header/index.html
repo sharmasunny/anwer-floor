@@ -11,12 +11,11 @@
       <div class="col-xs-5 col-sm-6 logsing-box" data-ng-show="isAuthenticated">
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle user-picture" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              test user <span class="caret"></span>
+            <a href="#" class="dropdown-toggle user-picture" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ authUser.email }}<span class="caret"></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-rarrow">
-              <li><a href="/multiple-short-profile">Profile</a></li>
-              <li><a href="#">Membership</a></li>
+              <li><a href="/student-profile">Profile</a></li>
+              <li><a href="/membership-plan">Membership</a></li>
               <li><a href="/account">Account</a></li>
               <li><a href="/setting">Setting</a></li>
               <!-- <li><a href="#">Sign Up</a></li> -->

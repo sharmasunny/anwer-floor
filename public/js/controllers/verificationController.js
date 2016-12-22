@@ -19,13 +19,14 @@ angular.module('mean.system').controller('VerificationController', ['$scope', 'G
           console.log(response,'response');
            if(response == true) {
                 $scope.isAuthenticated = false;
-                  //$state.go('anon.home');
+                $state.go('anon.home');
            }
       });
     }
 
     // login
     $scope.signIn = function (size){
+      
       
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
@@ -43,7 +44,8 @@ angular.module('mean.system').controller('VerificationController', ['$scope', 'G
 
       modalInstance.result.then(function (serverMsg) {
         $scope.selected = serverMsg;
-         $scope.session();
+        $state.go("user.studentProfile");
+        $scope.session();
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
@@ -144,6 +146,6 @@ angular.module('mean.system').controller('SignUpController', ['$scope','$window'
                }
                FlashService.hide();
         });
-    };
+  };
 
 }]);

@@ -28,13 +28,13 @@ angular.module('mean', ['ngCookies', 'ngMessages' ,'ngResource', 'ui.router','ui
                $anchorScroll();
                if (!$AuthService.authorize(toState.data.access)) {
                     event.preventDefault();
-                    $state.go('anon.login');
+                    $state.go('anon.home');
                }
 
                if(Object.keys($SessionService.user()).length > 0) {
-                    if(toState.name == "anon.login") {
+                    if(toState.name == "anon.home") {
                          event.preventDefault();
-                         $state.go("user.dashboard");
+                         $state.go("user.account");
                     }
                }
           });

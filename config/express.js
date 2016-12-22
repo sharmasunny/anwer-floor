@@ -74,8 +74,9 @@ module.exports = function(app, passport) {
 
     // Globbing routing files
     config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
-      require(path.resolve(routePath))(app);
+      require(path.resolve(routePath))(app, express );
     });
+
 
     app.get('/*',  function (req, res, next) {        
         res.render('index', {

@@ -84,7 +84,7 @@ module.exports = {
           let reqId = req.body.id;
 
           db.User.findOne({ where: { "id" : reqId, "otp" : otp}}).then(function(user) {
-              if(user) {
+               if(user) {
                     db.User.update({"status" : true, "otp" : null }, { where: { id: user.id } }).then(function(resData) {
                          return res.json({resStatus:'success', msg :AppMessages.ACCOUNT_CREATION,  token: JwtService.issueToken(resData.id),result: resData});
                     }).catch(function (err) {
@@ -254,7 +254,11 @@ module.exports = {
                }else if (!user.authenticate(password)) {
                     return res.json( {resStatus:'error', msg :'Invalid Email or Password', fieldEmpty:"password"});
                } else {
-                    return res.json({resStatus:'success', msg :AppMessages.LOGIN,  token: JwtService.issueToken(user.id, req.body.platform, req.body.deviceToken),result: user});
+                    if(user.verificationEmail){
+                         return res.json({resStatus:'success', msg :AppMessages.LOGIN,  token: JwtService.issueToken(user.id, req.body.platform, req.body.deviceToken),result: user});
+                    }else{
+                         return res.json({resStatus:'error', msg :AppMessages.VERIFICATION_EMAIL});
+                    }
                }
           }).catch(function (err) {
                return res.json({resStatus:'error', msg :AppMessages.SERVER_ERR});

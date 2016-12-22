@@ -308,6 +308,27 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 css: 'css/default-style.css'
             }
         })
+        .state('anon.membership-plan',{
+            url : '/membership-plan',
+            views: {
+                'header': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-header/index.html'
+                },
+                'content': {
+                    controller:'membershipPlanController',
+                    templateUrl: 'views/membership-plan/index.html'
+                },
+                'footer': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-footer/index.html'
+                }
+            },
+            data: {
+                css: 'css/default-style.css'
+            }
+        })
+
         .state('anon.conactUs',{
             url : '/contact-us',
             views: {
