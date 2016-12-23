@@ -1731,3 +1731,105 @@ textarea.text-heigth190{
 	opacity: 0.8;
 	color: #ffffff;
 }
+
+
+/* CSS used here will be applied after bootstrap.css */
+
+.dropdown {
+    display:inline-block;
+    margin-left:20px;
+    padding:10px;
+  }
+
+
+.glyphicon-bell {
+   
+    font-size:1.5rem;
+  }
+
+.notifications {
+   min-width:234px; 
+  }
+  
+  .notifications-wrapper {
+     overflow:auto;
+      max-height:250px;
+    }
+    
+ .menu-title {
+     color:#3a5656;
+     font-size:1.5rem;
+      display:inline-block;
+      }
+ 
+.glyphicon-circle-arrow-right {
+      margin-left:10px;     
+   }
+  
+   
+ .notification-heading, .notification-footer  {
+ 	padding:2px 10px;
+       }
+      
+        
+.dropdown-menu.divider {
+  margin:5px 0;          
+  }
+
+.item-title {
+  
+ font-size:1.3rem;
+ color:#000;
+    
+}
+
+.notifications a.content {
+ text-decoration:none;
+ background:#ccc;
+
+ }
+    
+.notification-item {
+ padding:10px;
+ margin:5px;
+ background:#ccc;
+ border-radius:4px;
+ }
+
+
+.fa.fa-bell-o.font18 {
+    color: #ffffff !important;
+    margin-right: 17px !important;
+    margin-top: 14px !important;
+}
+
+.badge.notify {
+    margin-left: -8px;
+    margin-top: -25px;
+}
+
+.add-text{
+    color: #ffffff !important;
+    margin-left: -550px !important;
+    margin-top: 14px !important;
+}
+
+.fa-info-circle{
+	color: #ffffff !important;
+    margin-left: -20px !important;
+    margin-top: 14px !important;
+}
+
+.badge.address {
+    margin-left: -8px;
+    margin-top: -25px;
+}
+
+.badge.messages {
+    margin-left: -8px;
+    margin-top: -25px;
+}
+.notify-contacts {
+    margin-right: 504px;
+    min-width: 234px;
+}
