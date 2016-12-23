@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    |   
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    |   
+    title Answer Floor Admin
+    |   
+    link(rel="stylesheet", type="text/css", href="/css/bootstrap.min.css")
+    |   
+    link(rel="stylesheet", type="text/css", href="/lib/font-awesome/css/font-awesome.min.css")
+    |   
+    link(rel="stylesheet", type="text/css", href="/lib/rdash-ui/dist/css/rdash.min.css")
+  body
+    #page-wrapper(ng-class="{'open': toggle}", ng-cloak="", ng-controller="masterController")
+      // Sidebar
+      div(data-ng-include="'element/adminSidebar.html'")
+      // End Sidebar
+      #content-wrapper
+        .page-content
+          div(data-ng-include="'element/adminHeader.html'")
+          div(ui-view)
+    include ./includes/scripts

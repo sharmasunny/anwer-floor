@@ -19,92 +19,15 @@ html(lang="en")
 		|   
 		title Answer Floor
 		|   
-		link(href="css/bootstrap.min.css", rel="stylesheet")
+		link(href="/css/bootstrap.min.css", rel="stylesheet")
 		|   
-		link(href="css/style.css", rel="stylesheet")
+		link(href="/css/style.css", rel="stylesheet")
 		|  
-		link(href="css/common.css", rel="stylesheet")
+		link(href="/css/common.css", rel="stylesheet")
 		//if lt IE 9
 			script(src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js")
-			|     
+			|
 			script(src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js")
 	body(ui-router-styles)
 		block content
-
-		script(src="javascript/jquery.1.12.4.min.js")
-		script(src="javascript/jquery-ui.min.js")
-		script(src="javascript/jquery.smoothwheel.js")
-		script(src="javascript/jquery.smoove.js")
-		script(src="javascript/bootstrap.min.js")
-		script(src="javascript/common.js")
-		
-		//AngularJS
-		script(type='text/javascript', src='/lib/angular/angular.js')
-		script(type='text/javascript', src='/lib/angular-cookies/angular-cookies.js')
-		script(type='text/javascript', src='/lib/angular-resource/angular-resource.js')
-		script(type='text/javascript', src='/lib/angular-ui-router/release/angular-ui-router.min.js')
-		script(type='text/javascript', src='/lib/angular-ui-router-styles/ui-router-styles.js')
-		script(type='text/javascript', src='/lib/angular-messages/angular-messages.js')
-		script(type='text/javascript', src='/lib/ngstorage/ngStorage.min.js')
-
-		//Angular UI
-		script(type='text/javascript', src='/lib/angular-bootstrap/ui-bootstrap.js')
-		script(type='text/javascript', src='/lib/angular-bootstrap/ui-bootstrap-tpls.js')
-		script(type='text/javascript', src='/lib/angular-ui-utils/modules/route/route.js')
-		script(type='text/javascript', src='/lib/satellizer/satellizer.min.js')
-		script(type='text/javascript', src='/js/FbSdk.js')
-		script(type='text/javascript', src='/lib/social/angular-fblogin.js')
-
-
-		//Application Init
-		script(type='text/javascript', src='/js/app.js')
-		script(type='text/javascript', src='/js/config.js')
-		script(type='text/javascript', src='/js/directives.js')
-		script(type='text/javascript', src='/js/filters.js')
-
-		//Application Services
-		script(type='text/javascript', src='/js/services/global.js')
-		script(type='text/javascript', src='/js/services/articles.js')
-		script(type='text/javascript', src='/js/services/authenticate.js')
-		script(type='text/javascript', src='/js/services/AuthService.js')
-		script(type='text/javascript', src='/js/services/LocalService.js')
-		script(type='text/javascript', src='/js/services/SessionService.js')
-		script(type='text/javascript', src='/js/services/FlashService.js')
-		script(type='text/javascript', src='/js/services/RememberMeService.js')
-
-
-		//Application Controllers
-		script(type='text/javascript', src='/js/controllers/articles.js')
-		script(type='text/javascript', src='/js/controllers/index.js')
-		script(type='text/javascript', src='/js/controllers/about.js')
-		script(type='text/javascript', src='/js/controllers/header.js')
-		script(type='text/javascript', src='/js/controllers/account.js')
-		script(type='text/javascript', src='/js/controllers/addressbook.js')
-		script(type='text/javascript', src='/js/controllers/businesscardcreate.js')
-		script(type='text/javascript', src='/js/controllers/contactus.js')
-		script(type='text/javascript', src='/js/controllers/earnings.js')
-		script(type='text/javascript', src='/js/controllers/enguiries.js')
-		script(type='text/javascript', src='/js/controllers/freecards.js')
-		script(type='text/javascript', src='/js/controllers/messagedisplay.js')
-		script(type='text/javascript', src='/js/controllers/multiple-short-profile.js')
-		script(type='text/javascript', src='/js/controllers/nquire-invite.js')
-		script(type='text/javascript', src='/js/controllers/packaged-cards.js')
-		script(type='text/javascript', src='/js/controllers/post-your-enquiry.js')
-		script(type='text/javascript', src='/js/controllers/setting.js')
-		script(type='text/javascript', src='/js/controllers/student-profile.js')
-		script(type='text/javascript', src='/js/controllers/earn-points.js')
-		script(type='text/javascript', src='/js/controllers/verificationController.js')
-		script(type='text/javascript', src='/js/controllers/verificationEmailController.js')
-		script(type='text/javascript'. src='/js/controllers/membershipPlan.js')
-
-
-		
-		script(type='text/javascript', src='/js/init.js')
-
-
-		if (process.env.NODE_ENV == 'development')
-			script(type='text/javascript', src='http://localhost:35729/livereload.js')
-		script.
-			$(document).ready(function(){
-				$('.block').smoove({offset:'25%'});
-			});
+		include ../includes/scripts

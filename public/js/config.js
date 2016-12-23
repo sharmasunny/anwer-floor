@@ -9,6 +9,28 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
 
 
     $stateProvider
+        .state('admin', {
+            abstract: true,
+            template: '<div ui-view="admindashboard"></div>',
+            data: {
+               access: AccessLevels.admin
+            }
+        })
+        .state('admin.dashboard',{
+            url : '/admin/dashboard',
+            views: {
+                'admindashboard': {
+                    controller:'dashboardController',
+                    templateUrl: 'adminViews/dashboard.html'
+                }
+            }
+        })
+
+
+
+
+
+    $stateProvider
         .state('user', {
             abstract: true,
             template: '<section ui-view="header"  autoscroll="true"></section> <section ui-view="content"></section> <section ui-view="footer"></section>',
@@ -16,7 +38,7 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                access: AccessLevels.user
             }
         })
-         .state('user.account',{
+        .state('user.account',{
             url : '/account',
             views: {
                 'header': {
@@ -545,7 +567,8 @@ angular.module('mean').config(['$locationProvider', function ($locationProvider)
 
 angular.module('mean').constant('AccessLevels', {
     anon: 0,
-    user: 1
+    user: 1,
+    admin: 2
 });
 
 angular.module('mean').constant('SITE_CONSTANTS', {
