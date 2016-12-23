@@ -270,7 +270,7 @@ module.exports = {
      | Description : use to login user
      |--------------------------------------------------------------------------*/
      logOut: function (req, res) {
-          db.User.update({isOnline : 'N', 'platform' :  '', 'deviceToken' : '' }, { where: { id: req.body.id } }).then(function(resData) {
+          db.User.update({isOnline : 'N', 'deviceToken' : '' }, { where: { id: req.body.id } }).then(function(resData) {
                res.json({resStatus:'success', msg : "User has been logged Out successfully"});
           }).catch(function (err) {
                return res.json({resStatus:'error', msg :AppMessages.SERVER_ERR});
