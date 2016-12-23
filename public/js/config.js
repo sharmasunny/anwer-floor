@@ -17,7 +17,7 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
             }
         })
         .state('admin.dashboard',{
-            url : '/admin',
+            url : '/admin/',
             views: {
                 'admindashboard': {
                     controller:'dashboardController',
@@ -108,26 +108,6 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 'content': {
                     controller:'EarningsController',
                     templateUrl: 'views/earnings/index.html'
-                },
-                'footer': {
-                    controller: 'VerificationController',
-                    templateUrl: 'views/default-footer/index.html'
-                }
-            },
-            data: {
-                css: 'css/default-style.css'
-            }
-        })
-        .state('user.earnPoints',{
-            url : '/earn-points',
-            views: {
-                'header': {
-                    controller: 'VerificationController',
-                    templateUrl: 'views/default-header/index.html'
-                },
-                'content': {
-                    controller:'EarnPointsController',
-                    templateUrl: 'views/earn-points/index.html'
                 },
                 'footer': {
                     controller: 'VerificationController',
@@ -350,6 +330,26 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 css: 'css/style.css'
             }
         })
+        .state('anon.earnPoints',{
+            url : '/earn-points',
+            views: {
+                'header': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-header/index.html'
+                },
+                'content': {
+                    controller:'EarnPointsController',
+                    templateUrl: 'views/earn-points/index.html'
+                },
+                'footer': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-footer/index.html'
+                }
+            },
+            data: {
+                css: 'css/default-style.css'
+            }
+        })
         .state('anon.about',{
             url : '/about-us',
             views: {
@@ -360,6 +360,86 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 'content': {
                     controller:'AboutController',
                     templateUrl: 'views/about/index.html'
+                },
+                'footer': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-footer/index.html'
+                }
+            },
+            data: {
+                css: 'css/default-style.css'
+            }
+        })
+        .state('anon.api',{
+            url : '/api',
+            views: {
+                'header': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-header/index.html'
+                },
+                'content': {
+                    controller:'AboutController',
+                    templateUrl: 'views/api/index.html'
+                },
+                'footer': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-footer/index.html'
+                }
+            },
+            data: {
+                css: 'css/default-style.css'
+            }
+        })
+        .state('anon.career',{
+            url : '/career',
+            views: {
+                'header': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-header/index.html'
+                },
+                'content': {
+                    controller:'AboutController',
+                    templateUrl: 'views/career/index.html'
+                },
+                'footer': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-footer/index.html'
+                }
+            },
+            data: {
+                css: 'css/default-style.css'
+            }
+        })
+        .state('anon.terms',{
+            url : '/terms-of-use',
+            views: {
+                'header': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-header/index.html'
+                },
+                'content': {
+                    controller:'AboutController',
+                    templateUrl: 'views/terms/index.html'
+                },
+                'footer': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-footer/index.html'
+                }
+            },
+            data: {
+                css: 'css/default-style.css'
+            }
+        })
+         .state('anon.privacy',{
+            url : '/privacy',
+            views: {
+                'header': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-header/index.html'
+                },
+                'content': {
+                    controller:'AboutController',
+                    templateUrl: 'views/privacy/index.html'
                 },
                 'footer': {
                     controller: 'VerificationController',
