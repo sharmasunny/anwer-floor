@@ -58,13 +58,13 @@
                       <div ng-messages-include="/element/notifyMessages.html"></div>
                   </div>
               </div>
-              <div class="input-container">
+              <!--div class="input-container">
                   <input type="tel" ng-minlength="10" 
                    ng-maxlength="10" id="phone" name="phone" ng-pattern="/^[0-9]{10,10}$/" class="form-control" ng-model="user.phone" placeholder="Phone Number" required>
                   <div ng-messages="form.phone.$error" ng-if="form.phone.$touched ||form.phone.$error.pattern ||form.$submitted">
                       <div ng-messages-include="/element/notifyMessages.html"></div>
                   </div>
-              </div>
+              </div-->
               <div class="input-container">
                   <input type="password" id="password" name="password" class="form-control" ng-model="user.password" placeholder="Password" required>
                   <div ng-messages="form.password.$error" ng-if="form.password.$touched || form.$submitted">
