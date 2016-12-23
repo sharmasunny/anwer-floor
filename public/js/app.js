@@ -31,12 +31,12 @@ angular.module('mean', ['ngCookies', 'ngMessages' ,'ngResource', 'ui.router','ui
                     $state.go('anon.home');
                }
 
-               if(Object.keys($SessionService.user()).length > 0) {
-                    if(toState.name == "anon.home") {
-                         event.preventDefault();
-                         $state.go("user.account");
-                    }
-               }
+               // if(Object.keys($SessionService.user()).length > 0) {
+               //      if(toState.name == "anon.home") {
+               //           event.preventDefault();
+               //           $state.go("user.account");
+               //      }
+               // }
           });
 
 }]);

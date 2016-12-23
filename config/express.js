@@ -78,10 +78,12 @@ module.exports = function(app, passport) {
     });
 
 
+    app.get('/admin/*', function (req, res, next) {        
+        res.render('adminlayout');
+    });
+
     app.get('/*',  function (req, res, next) {        
-        res.render('index', {
-            user: req.user ? JSON.stringify(req.user) : "null"
-        });
+        res.render('index');
     });
 
     app.use(function(err, req, res, next) {
