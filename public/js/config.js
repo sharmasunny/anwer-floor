@@ -17,7 +17,7 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
             }
         })
         .state('admin.dashboard',{
-            url : '/admin',
+            url : '/admin/',
             views: {
                 'admindashboard': {
                     controller:'dashboardController',
@@ -297,27 +297,7 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
             data: {
                 css: 'css/default-style.css'
             }
-        })
-        .state('user.notifications',{
-            url : '/notifications',
-            views: {
-                'header': {
-                    controller: 'VerificationController',
-                    templateUrl: 'views/default-header/index.html'
-                },
-                'content': {
-                    controller:'StudentProfileController',
-                    templateUrl: 'views/notifications/index.html'
-                },
-                'footer': {
-                    controller: 'VerificationController',
-                    templateUrl: 'views/default-footer/index.html'
-                }
-            },
-            data: {
-                css: 'css/default-style.css'
-            }
-        })      
+        })   
 
 
 
