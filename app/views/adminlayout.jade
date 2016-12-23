@@ -7,7 +7,7 @@ html(lang="en")
     |   
     title Answer Floor Admin
     |   
-    link(rel="stylesheet", type="text/css", href="/lib/bootstrap/docs/assets/css/bootstrap.css")
+    link(rel="stylesheet", type="text/css", href="/css/bootstrap.min.css")
     |   
     link(rel="stylesheet", type="text/css", href="/lib/font-awesome/css/font-awesome.min.css")
     |   
@@ -15,10 +15,10 @@ html(lang="en")
   body
     #page-wrapper(ng-class="{'open': toggle}", ng-cloak="", ng-controller="masterController")
       // Sidebar
-      div(data-ng-include="'element/adminHeader.html'")
+      div(data-ng-include="'element/adminSidebar.html'")
       // End Sidebar
       #content-wrapper
         .page-content
-      div(data-ng-include="'element/adminSidebar.html'")
-            div(ui-view)
+          div(data-ng-include="'element/adminHeader.html'")
+          div(ui-view)
     include ./includes/scripts
