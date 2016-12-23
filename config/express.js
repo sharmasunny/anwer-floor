@@ -78,6 +78,7 @@ module.exports = function(app, passport) {
     });
 
 
+
     app.get('/admin/*', function (req, res, next) {        
         res.render('adminlayout');
     });
