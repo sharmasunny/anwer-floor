@@ -17,7 +17,7 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
             }
         })
         .state('admin.dashboard',{
-            url : '/admin/dashboard',
+            url : '/admin',
             views: {
                 'admindashboard': {
                     controller:'dashboardController',
@@ -431,7 +431,20 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 css: 'css/default-style.css'
             }
         })
-        
+        .state('anon.adminLogin',{
+            url : '/admin-login',
+             views: {
+                'content': {
+                    controller:'VerificationController',
+                    templateUrl: 'views/adminLogin.html'
+                }
+            },
+            data: {
+                css: 'css/ad-login.css'
+            }
+        })
+
+
 
 
         .state('articles',{
