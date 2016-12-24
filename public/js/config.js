@@ -1,5 +1,5 @@
 //Setting up route
-angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLevels', function($stateProvider,$urlRouterProvider,AccessLevels) {
+angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterProvider','AccessLevels', function($stateProvider,ngMetaProvider,$urlRouterProvider,AccessLevels) {
 
     $urlRouterProvider.otherwise(function($injector, $location){
         $injector.invoke(['$state', function($state) {
@@ -55,7 +55,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Account',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('user.addressBook',{
@@ -75,7 +80,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Address Book',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('user.businessCardCreate',{
@@ -95,7 +105,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Business Card Create',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('user.earnings',{
@@ -115,7 +130,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Earnings',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('user.messageDisplay',{
@@ -135,7 +155,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Message Display',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('user.multipleShortProfile',{
@@ -155,7 +180,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Multiple Short Profile',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('user.nquireInvite',{
@@ -175,7 +205,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Nquire Invite',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('user.packagedCards',{
@@ -195,7 +230,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Packaged Cards',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('user.postYourEnquiry',{
@@ -215,7 +255,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Enquiry',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('user.setting',{
@@ -235,7 +280,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Settings',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('user.studentProfile',{
@@ -255,7 +305,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Student Profile',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('user.privateMessage',{
@@ -275,7 +330,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Private Message',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('user.notifications',{
@@ -295,7 +355,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Notifications',
+                    'description': '',
+                    'author': ''
+                }
             }
         })      
 
@@ -327,7 +392,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/style.css'
+                css: 'css/style.css',
+                'meta': {
+                    'title': 'Home',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('anon.earnPoints',{
@@ -347,7 +417,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Earn Points',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('anon.about',{
@@ -367,7 +442,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'About Us',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('anon.api',{
@@ -387,7 +467,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'API',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('anon.career',{
@@ -407,7 +492,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Career',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('anon.terms',{
@@ -427,7 +517,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Terms Of Use',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
          .state('anon.privacy',{
@@ -447,7 +542,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Privacy',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('anon.membership-plan',{
@@ -467,11 +567,16 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Membership Plan',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
 
-        .state('anon.conactUs',{
+        .state('anon.contactUs',{
             url : '/contact-us',
             views: {
                 'header': {
@@ -488,7 +593,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Contact Us',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('anon.enguiries',{
@@ -508,7 +618,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Enguiries',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('anon.freeCards',{
@@ -528,7 +643,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Free Cards',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('anon.verifyEmail',{
@@ -548,7 +668,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Verify Email',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('anon.adminLogin',{
@@ -560,7 +685,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/ad-login.css'
+                css: 'css/ad-login.css',
+                'meta': {
+                    'title': 'Admin Login',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
 
@@ -584,7 +714,12 @@ angular.module('mean').config(['$stateProvider','$urlRouterProvider','AccessLeve
                 }
             },
             data: {
-                css: 'css/default-style.css'
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Article',
+                    'description': '',
+                    'author': ''
+                }
             }
         })
         .state('createArticle',{

@@ -1,5 +1,5 @@
-angular.module('mean', ['ngCookies', 'ngMessages' ,'ngResource', 'ui.router','uiRouterStyles','ui.bootstrap', 'ui.route','ngStorage', 'mean.system', 'mean.articles', 'mean.auth','satellizer','angularFblogin'])
-.config(function ($authProvider) {
+angular.module('mean', ["xeditable", "ui.select",'ngCookies', 'ngMessages', 'ngMeta','ngResource', 'ui.router','uiRouterStyles','ui.bootstrap', 'ui.route','ngStorage', 'mean.system', 'mean.articles', 'mean.auth','satellizer','angularFblogin'])
+.config(function ($authProvider,ngMetaProvider) {
 
     $authProvider.twitter({
         url: '/auth/twitter',
@@ -39,6 +39,9 @@ angular.module('mean', ['ngCookies', 'ngMessages' ,'ngResource', 'ui.router','ui
                // }
           });
 
+}])
+.run(['ngMeta', function(ngMeta) { 
+  ngMeta.init();
 }]);
 
 
