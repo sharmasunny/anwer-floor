@@ -1,6 +1,6 @@
 module.exports = function (app,express) {
 	let router = express.Router();
-	let authroute = require('../../app/controllers/AuthController.js');
+	let authroute = require('../../app/controllers/AuthController');
 
 	router.post('/register', authroute.register);
 	router.post('/confirmAccount', authroute.confirmOtp);

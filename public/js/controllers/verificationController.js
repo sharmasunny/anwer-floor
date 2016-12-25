@@ -1,6 +1,9 @@
 angular.module('mean.system').controller('VerificationController', ['$scope', 'Global','$rootScope', '$stateParams', '$state', '$AuthService', '$localStorage', '$SessionService', '$LocalService','FlashService','$uibModal','$log','SignOut', function ($scope, Global, $rootScope, $stateParams, $state, $AuthService, $localStorage, $SessionService, $LocalService,FlashService,$uibModal , $log, SignOut) {
     $scope.global = Global;
 
+    
+
+
     $scope.session = function(){
       var authUser = $SessionService.user();
       if(Object.keys(authUser).length) {
