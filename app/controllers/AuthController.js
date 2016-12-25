@@ -1,9 +1,11 @@
-
 const AppMessages = require('../../config/Message');
 const CommonService = require('../services/CommonService');
 const EmailService = require('../services/EmailService');
 const JwtService = require('../services/JwTokenService');
 const db = require('../../config/sequelize');
+const Config = require('../../config/config');
+
+
 module.exports = {
 
      /**--------------------------------------------------------------------------
@@ -40,7 +42,7 @@ module.exports = {
                          CommonService.getTemplate("VERIFY-EMAIL",function(err,data){
                               data.description = data.description.replace("{{USERNAME}}", resData.firstname+' '+resData.lastname);
                               
-                              let URL = 'http://localhost:3000/verifyEmail?token='+resData.token;
+                              let URL = Config.URL+'/verifyEmail?token='+resData.token;
                               
                               data.description = data.description.replace("{{URL}}", URL);
 

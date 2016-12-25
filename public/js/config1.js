@@ -337,6 +337,7 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                     'author': ''
                 }
             }
+<<<<<<< HEAD
         })
         .state('user.notifications',{
             url : '/notifications',
@@ -363,7 +364,9 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })      
-
+=======
+        })   
+>>>>>>> 8cfeff6c63959131029acdae6e63cf3a9edb59e2
 
 
 
