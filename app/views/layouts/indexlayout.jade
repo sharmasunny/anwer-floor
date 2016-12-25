@@ -6,24 +6,28 @@ html(lang="en")
 		meta(http-equiv="X-UA-Compatible", content="IE=edge")
 		|   
 		meta(name="viewport", content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no")
-		|   
+		| 
+		title( ng-bind="ngMeta.title" )
+		|  
 		meta(name="apple-mobile-web-app-capable", content="yes")
 		|   
 		meta(name="apple-mobile-web-app-status-bar-style", content="black-translucent")
 		|   
-		meta(name="description", content="")
+		meta(name="description", content="{{ngMeta['description']}}")
 		|   
-		meta(name="author", content="")
+		meta(name="author", content="{{ngMeta['author']}}")
 		|   
 		link(rel="icon", href="favicon.ico?v=2")
-		|   
-		title Answer Floor
-		|   
+		|      
 		link(href="/css/bootstrap.min.css", rel="stylesheet")
 		|   
 		link(href="/css/style.css", rel="stylesheet")
 		|  
 		link(href="/css/common.css", rel="stylesheet")
+		| 
+		link(href="bower_components/angular-xeditable/dist/css/xeditable.css", rel="stylesheet")
+		|  
+		link(href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.16.1/select.min.css", rel="stylesheet")
 		//if lt IE 9
 			script(src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js")
 			|
