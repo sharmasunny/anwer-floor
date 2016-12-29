@@ -49,8 +49,8 @@ module.exports = function(grunt) {
                     {cwd: 'bower_components/angular-mocks',     src: ['**/*.js'], dest: 'public/lib/angular-mocks',     expand: true},
                     {cwd: 'bower_components/angular-resource',  src: ['angular-resource*'], dest: 'public/lib/angular-resource',  expand: true},
                     {cwd: 'bower_components/angular-route',     src: ['angular-route*'], dest: 'public/lib/angular-route',     expand: true},                    
-                    {cwd: 'bower_components/angular',   src: ['angular*'], dest: 'public/lib/angular',           expand: true},
-                    {cwd: 'bower_components/ngMeta',   src: ['**/*.js'], dest: 'public/lib/ngMeta',           expand: true},
+                    {cwd: 'bower_components/angular',           src: ['angular*'], dest: 'public/lib/angular',           expand: true},
+                    {cwd: 'bower_components/ngMeta',            src: ['**/*.js'], dest: 'public/lib/ngMeta',           expand: true},
                     {cwd: 'bower_components/angular-ui-utils/demo',                      src: ['**/*.js'], dest: 'public/lib/angular-ui-utils/demo',                         expand: true},
                     {cwd: 'bower_components/angular-ui-utils/test',                      src: ['**/*.js'], dest: 'public/lib/angular-ui-utils/test',                         expand: true},
                     {cwd: 'bower_components/angular-ui-utils/modules',                   src: ['**/*.js'], dest: 'public/lib/angular-ui-utils/modules',                      expand: true},
@@ -83,8 +83,9 @@ module.exports = function(grunt) {
                     {cwd: 'bower_components/angular-ui-router-styles',                   src: ['**/*.js'], dest: 'public/lib/angular-ui-router-styles', expand: true},
                     {cwd: 'bower_components/angular-messages',                           src: ['**/*.js'], dest: 'public/lib/angular-messages', expand: true},
                     {cwd: 'bower_components/ngstorage',                                  src: ['**/*.js'], dest: 'public/lib/ngstorage', expand: true},
-                    {cwd: 'bower_components/rdash-ui',                                   src: ['rdash-ui*'], dest: 'public/lib/rdash-ui', expand: true},
-                    {cwd: 'bower_components/font-awesome',                               src: ['font-awesome*'], dest: 'public/lib/font-awesome', expand: true}
+                    {cwd: 'bower_components/rdash-ui',                                   src: ['*.*'], dest: 'public/lib/rdash-ui', expand: true},
+                    {cwd: 'bower_components/font-awesome',                               src: ['*.*'], dest: 'public/lib/font-awesome', expand: true},
+                    {cwd: 'bower_components/ng-lodash',                                  src: ['**/*.js'], dest: 'public/lib/ng-lodash', expand: true}
                 ]
             }
         },
