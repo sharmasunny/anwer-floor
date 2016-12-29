@@ -78,6 +78,7 @@ module.exports = function(sequelize, DataTypes) {
 			},
 			associate: function(models) {
 				User.hasMany(models.Profile);
+				User.hasMany(models.Addressbook);
 			}
 		}
 	);

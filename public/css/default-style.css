@@ -97,6 +97,15 @@ a:hover{text-decoration: none;}
   background-color: transparent;
 }
 
+.impt-cl-em{
+	cursor: pointer;
+	text-align: center;
+	margin-bottom: 30px;
+}
+.col-sm-12.impt-cl-em > span {
+    font-size: 20px;
+}
+
 .dropdown-menu{
 	border-radius: 0px;
 	border-color: #e6b100;
@@ -1420,6 +1429,7 @@ textarea.text-heigth190{
 	background-color :#c6dcf7;
 	font-size: 14px;
 	box-shadow: none;
+	color: #fff;
 }
 
 .bussiness-card-box{
@@ -1737,9 +1747,26 @@ textarea.text-heigth190{
 
 .dropdown {
     display:inline-block;
+}
+
+.navbar-nav > li > .dropdown {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    display: block;
     margin-left:20px;
     padding:10px;
-  }
+}
+
+.navbar-nav > li > a {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    display: block;
+    margin-left:20px;
+    padding:10px;
+}
+
+
+/**/
 
 
 .glyphicon-bell {
@@ -1810,7 +1837,6 @@ textarea.text-heigth190{
 
 .add-text{
     color: #ffffff !important;
-    margin-left: -550px !important;
     margin-top: 14px !important;
 }
 
@@ -1829,7 +1855,20 @@ textarea.text-heigth190{
     margin-left: -8px;
     margin-top: -25px;
 }
-.notify-contacts {
-    margin-right: 504px;
-    min-width: 234px;
+.mg-rgt-bt{
+	margin-right: 10px;
+}
+
+.m-pinter{
+	cursor: pointer;
+}
+
+.modal-content{
+	border-color: #3b6b4c !important;
+}
+
+.colNotebx{
+	height:24px;
+	width:46%;
+	 cursor: pointer;
 }
