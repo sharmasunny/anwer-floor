@@ -9,9 +9,10 @@ angular.module('mean.system').controller('AddressBookController', ['$scope', '$u
     ];
 
     $scope.firstToUpperCase = function(str) {
-    	return str.substr(0, 1).toUpperCase() + str.substr(1);
-	}
+        return str.substr(0, 1).toUpperCase() + str.substr(1);
+    }
 
+    $scope.authUser = $SessionService.user();
 
 
     $scope.getAllcontacts = function() {
@@ -23,17 +24,31 @@ angular.module('mean.system').controller('AddressBookController', ['$scope', '$u
             angular.forEach($scope.AllContacts, function(value, key) {
                 var name = value.name;
                 var category = value.category;
-                var nameOrderChar = name.charAt(0).toUpperCase();
-                value.categoryLetter = category.charAt(0).toUpperCase();
-                value.nameOrderChar = nameOrderChar;
-                value.name = $scope.firstToUpperCase(value.name);
-                value.category = $scope.firstToUpperCase(value.category);
-                var dob = new Date(value.dob);
-                var day = dob.getDate();
-                var monthIndex = dob.getMonth();
-                var year = dob.getFullYear();
-                value.dobShow = day + '-' + $scope.monthNames[monthIndex] + '-' + year;
 
+                if (value.name != null) {
+                    var nameOrderChar = name.charAt(0).toUpperCase();
+                    value.nameOrderChar = nameOrderChar;
+                    value.name = $scope.firstToUpperCase(value.name);
+                } else {
+                    var nameOrderChar = '-';
+                    value.nameOrderChar = '-';
+                }
+
+                if (value.category != null) {
+                    value.category = $scope.firstToUpperCase(value.category);
+                    value.categoryLetter = category.charAt(0).toUpperCase();
+                } else {
+                    value.categoryLetter = '';
+                }
+                if (value.dob != null) {
+                    var dob = new Date(value.dob);
+                    var day = dob.getDate();
+                    var monthIndex = dob.getMonth();
+                    var year = dob.getFullYear();
+                    value.dobShow = day + '-' + $scope.monthNames[monthIndex] + '-' + year;
+                } else {
+                    value.dobShow = '';
+                }
                 var itemIn = true;
                 var itemArray = {};
                 itemArray.contactlist = [];
@@ -110,9 +125,9 @@ angular.module('mean.system').controller('AddressBookController', ['$scope', '$u
         });
     }
 
-    $scope.updateConatct = function(size){
+    $scope.updateConatct = function(size) {
 
-    	var modalInstance = $uibModal.open({
+        var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
@@ -136,8 +151,8 @@ angular.module('mean.system').controller('AddressBookController', ['$scope', '$u
 
     }
 
-    $scope.deleteContact = function(size){
-    	var modalInstance = $uibModal.open({
+    $scope.deleteContact = function(size) {
+        var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
@@ -155,14 +170,14 @@ angular.module('mean.system').controller('AddressBookController', ['$scope', '$u
             $scope.selected = serverMsg;
             $scope.getAllcontacts();
         }, function() {
-        	$scope.getAllcontacts();
+            $scope.getAllcontacts();
             $log.info('Modal dismissed at: ' + new Date());
         });
     }
-    
 
-    $scope.importEmailContact = function(size){
-    	var modalInstance = $uibModal.open({
+
+    $scope.importEmailContact = function(size) {
+        var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
@@ -180,21 +195,54 @@ angular.module('mean.system').controller('AddressBookController', ['$scope', '$u
             $scope.selected = serverMsg;
             $scope.getAllcontacts();
         }, function() {
-        	$scope.getAllcontacts();
+            $scope.getAllcontacts();
             $log.info('Modal dismissed at: ' + new Date());
         });
     }
+
+    $scope.messageModal = function(msg, cls) {
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'messageModal.html',
+            controller: 'AddAddressBookController',
+            size: 'sm',
+            resolve: {
+                items: function() {
+                    return { message: msg, messageClass: cls };
+                }
+            }
+        });
+
+        modalInstance.result.then(function(serverMsg) {
+            $scope.selected = serverMsg;
+        }, function() {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    }
+
+    $scope.userAtivitysend = function(activity, content) {
+        if ($scope.seletedContact == null) {
+            $scope.messageModal('Select Contact', 'alert alert-danger');
+        } else if ($scope.seletedContact.email == undefined || $scope.seletedContact.email == null || $scope.seletedContact.email == '') {
+            $scope.messageModal('Add Email Details in Contact', 'alert alert-danger');
+        } else {
+            console.log(activity, content);
+        }
+    }
+
 
 }]);
 
 
 
-angular.module('mean.system').controller('AddAddressBookController', ['$scope', '$window', '$uibModalInstance', 'items', '$AuthService', 'FlashService', '$timeout', '$AddressBookService', '$SessionService','$auth', function($scope, $window, $uibModalInstance, items, $AuthService, FlashService, $timeout, $AddressBookService, $SessionService,$auth) {
+angular.module('mean.system').controller('AddAddressBookController', ['$scope', '$window', '$uibModalInstance', 'items', '$AuthService', 'FlashService', '$timeout', '$AddressBookService', '$SessionService', '$auth', function($scope, $window, $uibModalInstance, items, $AuthService, FlashService, $timeout, $AddressBookService, $SessionService, $auth) {
 
     $scope.item = items;
 
-    if($scope.item.dob!=undefined){
-    	$scope.item.dob = new Date($scope.item.dob);
+    if ($scope.item.dob != undefined) {
+        $scope.item.dob = new Date($scope.item.dob);
     }
 
     $scope.today = function() {
@@ -315,9 +363,9 @@ angular.module('mean.system').controller('AddAddressBookController', ['$scope', 
     };
 
 
-    $scope.updateContact = function(item){
-    	$AddressBookService.updateAddressBook(item.id, item, function(response){
-    		FlashService.show();
+    $scope.updateContact = function(item) {
+        $AddressBookService.updateAddressBook(item.id, item, function(response) {
+            FlashService.show();
             var serverMsg = { resStatus: response.resStatus, msg: response.msg };
             if (response.resStatus == "error") {
                 $scope.serverMsg = serverMsg;
@@ -329,30 +377,30 @@ angular.module('mean.system').controller('AddAddressBookController', ['$scope', 
                 }, 1000);
             }
             FlashService.hide();
-    	});
+        });
     }
 
-    $scope.deleteContact = function(item){
-    	$AddressBookService.deleteAddressBook(item.id,function(response){
-    		FlashService.show();
+    $scope.deleteContact = function(item) {
+        $AddressBookService.deleteAddressBook(item.id, function(response) {
+            FlashService.show();
             var serverMsg = { resStatus: response.resStatus, msg: response.msg };
             if (response.resStatus == "error") {
                 $scope.serverMsg = serverMsg;
             } else if (response.resStatus == "success") {
                 serverMsg = { resStatus: response.resStatus, msg: 'Contact Successfully Delete', verifyId: response.result };
                 $scope.serverMsg = serverMsg;
-               
-                    $uibModalInstance.close(serverMsg);
-                
+
+                $uibModalInstance.close(serverMsg);
+
             }
             FlashService.hide();
-    	});
+        });
     }
 
 
-     $scope.authenticate = function(provider) {
-       $auth.authenticate(provider);
-       console.log($auth.authenticate(provider));
+    $scope.authenticate = function(provider) {
+        var authUser = $SessionService.user();
+        $auth.authenticate(provider, { userIDdata: authUser.id });
     };
 
 }]);
