@@ -1,77 +1,202 @@
-    <script type="text/ng-template"  id="loginform.html">
-      <div class="modal-header">
-          <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel">Login</h4>
-      </div>
-      <div class="modal-body" id="modal-body">
-          <div ng-include = "'/element/flashMessage.html'"></div>
-          <form class="form-signin" name="form" ng-submit="form.$submitted && form.$valid &&   signIn(user)" novalidate>
-              <div class="input-container">
+<script type="text/ng-template" id="loginform.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Login</h4>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div ng-include="'/element/flashMessage.html'"></div>
+        <form class="form-signin" name="form" ng-submit="form.$submitted && form.$valid &&   signIn(user)" novalidate>
+            <div class="input-container">
                 <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" ng-model="user.email" required>
                 <div ng-messages="form.email.$error" ng-if="form.email.$touched || form.$submitted">
-                  <div ng-messages-include="/element/notifyMessages.html"></div>
+                    <div ng-messages-include="/element/notifyMessages.html"></div>
                 </div>
-              </div>
-              <div class="input-container">
+            </div>
+            <div class="input-container">
                 <input type="password" id="password" name="password" class="form-control" placeholder="Password" ng-model="user.password" required>
                 <div ng-messages="form.password.$error" ng-if="form.password.$touched || form.$submitted">
-                  <div ng-messages-include="/element/notifyMessages.html"></div>
+                    <div ng-messages-include="/element/notifyMessages.html"></div>
                 </div>
-              </div>
-              <div class="checkbox">
-                  <label>
-                      <input type="checkbox" name="remember_me" ng-model="user.remember_me"  value="remember_me"> Remember me
-                  </label>
-              </div>
-              <button class="btn btn-lg btn-primary btn-block btn-common" type="submit">Log in</button>
-          </form>
-          <hr>
-          <a href="#">Forgot Password?</a>
-      </div>
-    </script>
-
-    <script type="text/ng-template" id="signform.html">
-      <div class="modal-header">
-          <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel">Sign Up Form</h4>
-      </div>
-      <div class="modal-body" id="modal-body">
-          <div ng-include = "'/element/flashMessage.html'"></div>
-          <form class="form-signup" name="form" ng-submit="form.$submitted && form.$valid &&  signUp(user)" novalidate>
-              <div class="input-container">
-                  <input type="text" id="firstname" name="firstname"  class="form-control" autocapitalize="off" tabindex="1" ng-model="user.firstname" placeholder="First Name *" required>
-                  <div ng-messages="form.firstname.$error" ng-if="form.firstname.$touched ||form.firstname.$error.pattern ||form.$submitted">
-                      <div ng-messages-include="/element/notifyMessages.html"></div>
-                  </div>
-              </div>
-              <div class="input-container">
-                  <input type="text" id="lastname" name="lastname" class="form-control" ng-model="user.lastname" ng-pattern="/^[a-zA-Z ]{1,25}$/" placeholder="Last Name *" required>
-                  <div ng-messages="form.lastname.$error" ng-if="form.lastname.$touched || form.lastname.$error.pattern || form.$submitted">
-                         <div ng-messages-include="/element/notifyMessages.html"></div>
-                  </div>
-              </div>
-              <div class="input-container">
-                  <input type="email" id="email" name="email" class="form-control" ng-model="user.email" placeholder="Email Address *" required>
-                  <div ng-messages="form.email.$error" ng-if="form.email.$touched || form.$submitted">
-                      <div ng-messages-include="/element/notifyMessages.html"></div>
-                  </div>
-              </div>
-              <!--div class="input-container">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="remember_me" ng-model="user.remember_me" value="remember_me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block btn-common" type="submit">Log in</button>
+        </form>
+        <hr>
+        <a href="#">Forgot Password?</a>
+    </div>
+</script>
+<script type="text/ng-template" id="signform.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Sign Up Form</h4>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div ng-include="'/element/flashMessage.html'"></div>
+        <form class="form-signup" name="form" ng-submit="form.$submitted && form.$valid &&  signUp(user)" novalidate>
+            <div class="input-container">
+                <input type="text" id="firstname" name="firstname" class="form-control" autocapitalize="off" tabindex="1" ng-model="user.firstname" placeholder="First Name *" required>
+                <div ng-messages="form.firstname.$error" ng-if="form.firstname.$touched ||form.firstname.$error.pattern ||form.$submitted">
+                    <div ng-messages-include="/element/notifyMessages.html"></div>
+                </div>
+            </div>
+            <div class="input-container">
+                <input type="text" id="lastname" name="lastname" class="form-control" ng-model="user.lastname" ng-pattern="/^[a-zA-Z ]{1,25}$/" placeholder="Last Name *" required>
+                <div ng-messages="form.lastname.$error" ng-if="form.lastname.$touched || form.lastname.$error.pattern || form.$submitted">
+                    <div ng-messages-include="/element/notifyMessages.html"></div>
+                </div>
+            </div>
+            <div class="input-container">
+                <input type="email" id="email" name="email" class="form-control" ng-model="user.email" placeholder="Email Address *" required>
+                <div ng-messages="form.email.$error" ng-if="form.email.$touched || form.$submitted">
+                    <div ng-messages-include="/element/notifyMessages.html"></div>
+                </div>
+            </div>
+            <!--div class="input-container">
                   <input type="tel" ng-minlength="10" 
                    ng-maxlength="10" id="phone" name="phone" ng-pattern="/^[0-9]{10,10}$/" class="form-control" ng-model="user.phone" placeholder="Phone Number" required>
                   <div ng-messages="form.phone.$error" ng-if="form.phone.$touched ||form.phone.$error.pattern ||form.$submitted">
                       <div ng-messages-include="/element/notifyMessages.html"></div>
                   </div>
               </div-->
-              <div class="input-container">
-                  <input type="password" id="password" name="password" class="form-control" ng-model="user.password" placeholder="Password" required>
-                  <div ng-messages="form.password.$error" ng-if="form.password.$touched || form.$submitted">
-                      <div ng-messages-include="/element/notifyMessages.html"></div>
-                  </div>
-              </div>
-              <button class="btn btn-lg btn-primary btn-block btn-common" type="submit">Registration</button>
-          </form>
-      </div>
-    </script>
+            <div class="input-container">
+                <input type="password" id="password" name="password" class="form-control" ng-model="user.password" placeholder="Password" required>
+                <div ng-messages="form.password.$error" ng-if="form.password.$touched || form.$submitted">
+                    <div ng-messages-include="/element/notifyMessages.html"></div>
+                </div>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block btn-common" type="submit">Registration</button>
+        </form>
+    </div>
+</script>
+<script type="text/ng-template" id="addressBookCreate.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Add Contact</h4>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div ng-include="'/element/flashMessage.html'"></div>
+        <form class="form-signin" name="form" ng-submit="form.$submitted && form.$valid &&  Create(item)" novalidate>
+            <div class="input-container form-group">
+                <input type="text" id="name" name="name" class="form-control" autocapitalize="off" tabindex="1" ng-model="item.name" placeholder="Name " required>
+                <div ng-messages="form.firstname.$error" ng-if="form.name.$touched ||form.name.$error.pattern ||form.$submitted">
+                    <div ng-messages-include="/element/notifyMessages.html"></div>
+                </div>
+            </div>
+            <div class="input-container form-group">
+                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" ng-model="item.email" required>
+                <div ng-messages="form.email.$error" ng-if="form.email.$touched || form.$submitted">
+                    <div ng-messages-include="/element/notifyMessages.html"></div>
+                </div>
+            </div>
+            <div class="input-container form-group">
+                <input type="tel" id="phone" name="phone" class="form-control" ng-model="item.phone" placeholder="Phone Number" required>
+            </div>
+            <div class="input-container form-group">
+                <input type="text" ng-click="open1()" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="item.dob" placeholder="Date of Birth" />
+            </div>
+            <div class="input-container form-group">
+                <input type="text" id="category" name="category" class="form-control" ng-model="item.category" placeholder="Category" required>
+                <div ng-messages="form.category.$error" ng-if="form.category.$touched ||form.category.$error.pattern ||form.$submitted">
+                    <div ng-messages-include="/element/notifyMessages.html"></div>
+                </div>
+            </div>
+            <div class="input-container form-group">
+                <textarea id="address" name="address" class="form-control" ng-model="item.address" placeholder="Address"> </textarea>
+            </div>
+            <div class="btn-toolbar form-group">
+                <button class="btn btn-success" type="submit">Save</button>
+                <button class="btn btn-warning" type="button" ng-click="close()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</script>
+<script type="text/ng-template" id="addressBookEdit.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Edit Contact</h4>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div ng-include="'/element/flashMessage.html'"></div>
+        <form class="form-signin" name="form" ng-submit="form.$submitted && form.$valid &&  updateContact(item)" novalidate>
+            <div class="input-container form-group">
+                <input type="text" id="name" name="name" class="form-control" autocapitalize="off" tabindex="1" ng-model="item.name" placeholder="Name " required>
+                <div ng-messages="form.firstname.$error" ng-if="form.name.$touched ||form.name.$error.pattern ||form.$submitted">
+                    <div ng-messages-include="/element/notifyMessages.html"></div>
+                </div>
+            </div>
+            <div class="input-container form-group">
+                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" ng-model="item.email" required>
+                <div ng-messages="form.email.$error" ng-if="form.email.$touched || form.$submitted">
+                    <div ng-messages-include="/element/notifyMessages.html"></div>
+                </div>
+            </div>
+            <div class="input-container form-group">
+                <input type="tel" id="phone" name="phone" class="form-control" ng-model="item.phone" placeholder="Phone Number" required>
+            </div>
+            <div class="input-container form-group">
+                <input type="text" ng-click="open1()" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="item.dob" placeholder="Date of Birth" />
+            </div>
+            <div class="input-container form-group">
+                <input type="text" id="category" name="category" class="form-control" ng-model="item.category" placeholder="Category" required>
+                <div ng-messages="form.category.$error" ng-if="form.category.$touched ||form.category.$error.pattern ||form.$submitted">
+                    <div ng-messages-include="/element/notifyMessages.html"></div>
+                </div>
+            </div>
+            <div class="input-container form-group">
+                <textarea id="address" name="address" class="form-control" ng-model="item.address" placeholder="Address"> </textarea>
+            </div>
+            <div class="btn-toolbar form-group">
+                <button class="btn btn-success" type="submit">Save</button>
+                <button class="btn btn-warning" type="button" ng-click="close()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</script>
+<script type="text/ng-template" id="addressBookDelete.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Delete Contact</h4>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <h4>Are you sure you want to delete this Contact ?</h4>
+    </div>
+    <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="deleteContact(item)">YES</button>
+            <button class="btn btn-warning" type="button" ng-click="close()">No</button>
+    </div>
+</script>
+<script type="text/ng-template" id="importEmailContact.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Import Email Contacts</h4>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div class="row">
+            <div class="col-sm-12 impt-cl-em" ng-click="authenticate('google')">
+                <img src="/images/gmail.png" alt="gmail" height="100" width="100" />
+                <span>Gmail</span>
+            </div>
+            <div class="col-sm-12 impt-cl-em" ng-click="authenticate('yahoo')">
+                <img src="/images/Email-Yahoo.png" alt="yahoo"  height="100" width="100"/>
+                <span>Yahoo</span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="close()">Close</button>
+    </div>
+</script>

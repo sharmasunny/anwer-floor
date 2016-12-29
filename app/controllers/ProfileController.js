@@ -25,4 +25,5 @@ module.exports = {
 	       return res.json({resStatus:'error', msg :AppMessages.SERVER_ERR ,err:err});
 		}); 
     }
+
 }
