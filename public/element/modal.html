@@ -186,7 +186,7 @@
     </div>
     <div class="modal-body" id="modal-body">
         <div class="row">
-            <div class="col-sm-12 impt-cl-em" ng-click="authenticate('google')">
+            <div class="col-sm-12 impt-cl-em" ng-click="authenticate('google',)">
                 <img src="/images/gmail.png" alt="gmail" height="100" width="100" />
                 <span>Gmail</span>
             </div>
@@ -195,6 +195,22 @@
                 <span>Yahoo</span>
             </div>
         </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="close()">Close</button>
+    </div>
+</script>
+
+
+<script type="text/ng-template" id="messageModal.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Message</h4>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <h4 ng-class="item.messageClass">{{item.message}}</h4>
     </div>
     <div class="modal-footer">
         <button class="btn btn-warning" type="button" ng-click="close()">Close</button>

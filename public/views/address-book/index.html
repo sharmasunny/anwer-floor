@@ -53,7 +53,7 @@
                             <div class="left-listing-letter scroll-content mhieght600" ng-repeat="(key, value) in list">
                                 <h2>{{value.alphabet}}</h2>
                                 <ul ng-repeat="(keyContactlist, valueContactlist) in value.contactlist">
-                                    <li><a href="#" ng-click="getContactDetails($parent.$index,$index)">{{valueContactlist.name}}<span>{{valueContactlist.categoryLetter}}</span></a></li>
+                                    <li><a href="#" ng-click="getContactDetails($parent.$index,$index)">{{valueContactlist.name}}<span data-ng-show="valueContactlist.categoryLetter">{{valueContactlist.categoryLetter}}</span></a></li>
                                 </ul>
                             </div>
                             <!-- ///add and import button -->
@@ -70,29 +70,29 @@
                                     <div class="alpha-name">
                                         <figure>{{seletedContact.nameOrderChar}}</figure>{{seletedContact.name}}</div>
                                 </div>
-                                <div class="col-sm-5 text-right">
+                                <div class="col-sm-5 text-right" data-ng-show="seletedContact.category">
                                     <button class="btn btn-yellow borderR0" type="submit">&nbsp; {{seletedContact.category}} &nbsp;</button>
                                 </div>
                             </div>
                             <div class="student-details" data-ng-show="seletedContact">
                                 <ul>
                                     <li>
-                                        <figure>
+                                        <figure data-ng-show="seletedContact.email">
                                             <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                                         </figure>{{seletedContact.email}}
                                     </li>
                                     <li>
-                                        <figure>
+                                        <figure data-ng-show="seletedContact.phone">
                                             <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
                                         </figure>{{seletedContact.phone}}
                                     </li>
                                     <li>
-                                        <figure>
+                                        <figure data-ng-show="seletedContact.address">
                                             <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                                         </figure>{{seletedContact.address}}
                                     </li>
                                     <li>
-                                        <figure>
+                                        <figure data-ng-show="seletedContact.dobShow">
                                             <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                                         </figure>{{seletedContact.dobShow}}
 
@@ -116,7 +116,7 @@
                                 <div role="tabpanel" class="tab-pane fade in active" id="note">
                                     <div class="row">
                                         <div class="col-xs-10">
-                                            <textarea class="form-control text-heigth190" ng-style="{'background-color':noteColor}"></textarea>
+                                            <textarea class="form-control text-heigth190" ng-style="{'background-color':noteColor}" ng-model="notesText"></textarea>
                                         </div>
                                         <div class="col-xs-2">
                                             <div style="background-color:#F781BF;" ng-click="colorsel('#F781BF')" class="colNotebx"></div>
@@ -130,7 +130,7 @@
                                         </div>
                                     </div>
                                     <div class="clearfix mt20">
-                                        <button class="btn btn-success btn-sm borderR0 mWidth100" type="submit">Send</button>
+                                        <button class="btn btn-success btn-sm borderR0 mWidth100" ng-click="userAtivitysend('notes',notesText)" type="button">Send</button>
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade mt20" id="profile">
@@ -141,7 +141,7 @@
                                             </a>
                                         </div>
                                         <div class="media-body text-muted">
-                                            <h4 class="media-heading">Alex Burn</h4>
+                                            <h4 class="media-heading">{{authUser.firstname}} {{authUser.lastname}}</h4>
                                             <p>
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                             </p>
@@ -149,9 +149,9 @@
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="feedback">
-                                    <textarea class="form-control text-heigth190" placeholder="Feedback"></textarea>
+                                    <textarea class="form-control text-heigth190" placeholder="Feedback" ng-modal="feedbackText"></textarea>
                                     <div class="clearfix mt20">
-                                        <button class="btn btn-success btn-sm borderR0 mWidth100" type="submit">Send</button>
+                                        <button class="btn btn-success btn-sm borderR0 mWidth100" ng-click="userAtivitysend('feedback',feedbackText)" type="button">Send</button>
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade active" id="skillcard">
@@ -175,6 +175,9 @@
                                         <a class="right carousel-control" href="#skillSlider" role="button" data-slide="next">
                                             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                         </a>
+                                    </div>
+                                    <div class="clearfix mt20">
+                                        <button class="btn btn-success btn-sm borderR0 mWidth100" ng-click="userAtivitysend('cards','slider1.jpg')" type="button">Send</button>
                                     </div>
                                 </div>
                             </div>

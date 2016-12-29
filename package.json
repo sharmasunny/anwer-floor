@@ -19,7 +19,7 @@
     "postinstall": "bower install && cp config/env/development.json5.sample config/env/development.json5 && cp config/env/production.json5.sample config/env/production.json5 && node node_modules/grunt-cli/bin/grunt copy"
   },
   "dependencies": {
-    "async": "latest",
+    "async": "^2.1.4",
     "body-parser": "^1.14.1",
     "bower": "latest",
     "compression": "^1.6.0",
