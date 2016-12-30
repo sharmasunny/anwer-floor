@@ -15,6 +15,12 @@ var serviceObj = module.exports = {
                subject = 'VERIFY EMAIL';
                TEMPLATE = "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%\"><tbody><tr><td style=\"background-color:#fff\">&nbsp;<table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:600px\"><tbody><tr><td style=\"background-color:#EBF8A4\"><table align=\"center\" border=\"0\" cellpadding=\"15\" cellspacing=\"0\" style=\"width:100%\"><tbody><tr><td>New Account</td></tr></tbody></table></td></tr><tr><td><table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" style=\"width:100%\"><tbody><tr><td style=\"background-color:#fff\"><table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" style=\"width:100%\"><tbody><tr><td><p>Dear&nbsp; {{USERNAME}},</p><p>Please confirm your registration here <a  target=_blank href='{{URL}}'>Confirm your email</a></p></td></tr></tbody></table><table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" style=\"width:100%\"><tbody><tr><td><pre>Thanks and Regards:<br><strong> Answer floor </strong></pre><p></p></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td style=\"background-color:#EBF8A4\">&nbsp;</td></tr></tbody></table></td></tr></tbody></table>";
           }
+
+          if(referenceId=='ADDRESSBOOK-EMAIL'){
+               subject = 'ADDRESS BOOK';
+               TEMPLATE = "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%\"><tbody><tr><td style=\"background-color:#fff\">&nbsp;<table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:600px\"><tbody><tr><td style=\"background-color:#EBF8A4\"><table align=\"center\" border=\"0\" cellpadding=\"15\" cellspacing=\"0\" style=\"width:100%\"><tbody><tr><td>{{ACTIVITY}}</td></tr></tbody></table></td></tr><tr><td><table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" style=\"width:100%\"><tbody><tr><td style=\"background-color:#fff\"><table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" style=\"width:100%\"><tbody><tr><td><p>Dear&nbsp; {{USERNAME}},</p><p>{{CONTENT}}</p></td></tr></tbody></table><table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" style=\"width:100%\"><tbody><tr><td><pre>Thanks and Regards:<br><strong> Answer floor </strong></pre><p></p></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td style=\"background-color:#EBF8A4\">&nbsp;</td></tr></tbody></table></td></tr></tbody></table>";
+          }
+
           callback(null,{subject:subject,description:TEMPLATE});
      },
 

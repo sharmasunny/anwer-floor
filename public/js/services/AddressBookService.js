@@ -9,39 +9,46 @@ angular.module('mean.auth').factory("$AddressBookService", ['$http', '$LocalServ
                     cb(response.data);
                 });
         },
-        getOneAddressBook: function(id,cb){
-        	$http.get('/address-book/'+id)
+        getOneAddressBook: function(id, cb) {
+            $http.get('/address-book/' + id)
                 .then(function successCallback(response) {
                     cb(response.data);
                 }, function errorCallback(response) {
                     cb(response.data);
                 });
         },
-        getAllAddressBook: function(userid,cb){
-        	$http.get('/address-book/all/'+userid)
+        getAllAddressBook: function(userid, cb) {
+            $http.get('/address-book/all/' + userid)
                 .then(function successCallback(response) {
                     cb(response.data);
                 }, function errorCallback(response) {
                     cb(response.data);
                 });
         },
-        updateAddressBook: function(id,data,cb){
-        	$http.post('/address-book/update/'+id,data)
-        		.then(function successCallback(response) {
+        updateAddressBook: function(id, data, cb) {
+            $http.post('/address-book/update/' + id, data)
+                .then(function successCallback(response) {
                     cb(response.data);
                 }, function errorCallback(response) {
                     cb(response.data);
                 });
         },
-        deleteAddressBook: function(id,cb){
-        	$http.get('/address-book/delete/'+id)
-        		.then(function successCallback(response) {
+        deleteAddressBook: function(id, cb) {
+            $http.get('/address-book/delete/' + id)
+                .then(function successCallback(response) {
+                    cb(response.data);
+                }, function errorCallback(response) {
+                    cb(response.data);
+                });
+        },
+        saveActivity: function(data, cb) {
+            $http.post('/address-book/activity',data)
+                .then(function successCallback(response) {
                     cb(response.data);
                 }, function errorCallback(response) {
                     cb(response.data);
                 });
         }
-
     }
 
 }]);

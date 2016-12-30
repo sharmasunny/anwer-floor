@@ -13,6 +13,8 @@ module.exports = function (app,express) {
 	router.post('/update/:id',authorization,addressBookController.updateAddressBook);
 	router.get('/delete/:id',authorization,addressBookController.deleteAddressBook);
 
+	router.get('/activity/all/:id',addressBookController.getAllActivity);
+
     router.post('/activity',authorization,addressBookController.saveActivity);
 
 
