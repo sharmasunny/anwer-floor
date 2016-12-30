@@ -3,7 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
 
 	var AddressbookActivity = sequelize.define('AddressbookActivity', {
-		name : DataTypes.STRING,
+		activity : DataTypes.STRING,
 		content : DataTypes.TEXT
 	},
 	{

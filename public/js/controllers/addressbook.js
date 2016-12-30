@@ -19,6 +19,7 @@ angular.module('mean.system').controller('AddressBookController', ['$scope', '$u
         var authUser = $SessionService.user();
         $AddressBookService.getAllAddressBook(authUser.id, function(response) {
             $scope.list = [];
+            $scope.ActivityList = [];
             $scope.AllContacts = response.result;
             $scope.AllContactsCount = Object.keys($scope.AllContacts).length;
             angular.forEach($scope.AllContacts, function(value, key) {
@@ -72,7 +73,51 @@ angular.module('mean.system').controller('AddressBookController', ['$scope', '$u
                     itemArray.contactlist.push(value);
                     $scope.list.push(itemArray);
                 }
+
+
+
+
+                if (Object.keys(value.AddressbookActivities).length) {
+                    angular.forEach(value.AddressbookActivities, function(valueActivites, keyActivites) {
+                        var activity = {};
+                        activity.data = [];
+                        var statusBollen = true;
+                        var activitydata = valueActivites;
+
+                        activity.date = new Date(valueActivites.createdAt);
+                        var day = activity.date.getDate();
+                        var monthIndex = activity.date.getMonth();
+                        var year = activity.date.getFullYear();
+                        activitydata.id = value.id;
+                        activitydata.name = value.name;
+                        activity.ShowDate = day + '-' + $scope.monthNames[monthIndex] + '-' + year;
+
+                        if (Object.keys($scope.ActivityList).length) {
+                            angular.forEach($scope.ActivityList, function(valAct, keyAct) {
+                                if (valAct.ShowDate == activity.ShowDate) {
+                                    statusBollen = false;
+                                    valAct.data.push(activitydata);
+                                }
+                            });
+                            if (statusBollen) {
+                                activity.data.push(activitydata);
+                                $scope.ActivityList.push(activity);
+                            }
+                        } else {
+                            activity.data.push(activitydata);
+                            $scope.ActivityList.push(activity);
+                        }
+
+
+
+
+
+                    });
+                }
             });
+
+
+            $scope.ActivityList = lodash.orderBy($scope.ActivityList, ['date'], ['desc']);
 
         });
     }
@@ -227,8 +272,22 @@ angular.module('mean.system').controller('AddressBookController', ['$scope', '$u
             $scope.messageModal('Select Contact', 'alert alert-danger');
         } else if ($scope.seletedContact.email == undefined || $scope.seletedContact.email == null || $scope.seletedContact.email == '') {
             $scope.messageModal('Add Email Details in Contact', 'alert alert-danger');
+        } else if (content == undefined) {
+            $scope.messageModal('Add ' + activity, 'alert alert-danger');
         } else {
-            console.log(activity, content);
+
+            var data = {};
+            $scope.notesText = null;
+            $scope.feedbackText = null;
+
+            data.activity = activity;
+            data.content = content;
+            data.AddressbookId = $scope.seletedContact.id;
+            data.email = $scope.seletedContact.email;
+            data.name = $scope.seletedContact.name;
+            $AddressBookService.saveActivity(data, function(response) {
+                $scope.getAllcontacts();
+            });
         }
     }
 
@@ -240,6 +299,12 @@ angular.module('mean.system').controller('AddressBookController', ['$scope', '$u
 angular.module('mean.system').controller('AddAddressBookController', ['$scope', '$window', '$uibModalInstance', 'items', '$AuthService', 'FlashService', '$timeout', '$AddressBookService', '$SessionService', '$auth', function($scope, $window, $uibModalInstance, items, $AuthService, FlashService, $timeout, $AddressBookService, $SessionService, $auth) {
 
     $scope.item = items;
+
+    if ($scope.item.message != undefined) {
+        $timeout(function() {
+            $uibModalInstance.close('close');
+        }, 5000);
+    }
 
     if ($scope.item.dob != undefined) {
         $scope.item.dob = new Date($scope.item.dob);
