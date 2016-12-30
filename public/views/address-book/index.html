@@ -95,14 +95,11 @@
                                         <figure data-ng-show="seletedContact.dobShow">
                                             <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                                         </figure>{{seletedContact.dobShow}}
-
-                                          <span class="glyphicon glyphicon-trash pull-right m-pinter" ng-click="deleteContact('sm')" aria-hidden="true"> </span>
-                                          <span class="glyphicon glyphicon-pencil pull-right m-pinter mg-rgt-bt" aria-hidden="true" ng-click="updateConatct('sm')"> </span>
-                                          
+                                        <span class="glyphicon glyphicon-trash pull-right m-pinter" ng-click="deleteContact('sm')" aria-hidden="true"> </span>
+                                        <span class="glyphicon glyphicon-pencil pull-right m-pinter mg-rgt-bt" aria-hidden="true" ng-click="updateConatct('sm')"> </span>
                                     </li>
                                 </ul>
                             </div>
-
                             <!-- //tabing skill select and write -->
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
@@ -130,7 +127,7 @@
                                         </div>
                                     </div>
                                     <div class="clearfix mt20">
-                                        <button class="btn btn-success btn-sm borderR0 mWidth100" ng-click="userAtivitysend('notes',notesText)" type="button">Send</button>
+                                        <button class="btn btn-success btn-sm borderR0 mWidth100" ng-click="userAtivitysend('note',notesText)" type="button">Send</button>
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade mt20" id="profile">
@@ -149,7 +146,7 @@
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="feedback">
-                                    <textarea class="form-control text-heigth190" placeholder="Feedback" ng-modal="feedbackText"></textarea>
+                                    <textarea class="form-control text-heigth190" placeholder="Feedback" ng-model="feedbackText"></textarea>
                                     <div class="clearfix mt20">
                                         <button class="btn btn-success btn-sm borderR0 mWidth100" ng-click="userAtivitysend('feedback',feedbackText)" type="button">Send</button>
                                     </div>
@@ -191,7 +188,13 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Activity</h3>
                 </div>
-                <div class="date-bg">24 Aug 16</div>
+                <div ng-repeat="(key, value) in ActivityList">
+                    <div class="date-bg">{{value.ShowDate}}</div>
+                    <ul class="feed-listing" ng-repeat="(dKey , dValue)  in value.data">
+                        <li><a href="#"><strong>{{dValue.name}}</strong> <span ng-class="{'card-text': dValue.activity == 'note'}">{{dValue.activity}}</span></a></li>
+                    </ul>
+                </div>
+                <!-- <div class="date-bg">24 Aug 16</div>
                 <ul class="feed-listing">
                     <li><a href="#"><strong>Alex Burn</strong> <span class="card-text">Cards</span></a></li>
                     <li><a href="#"><strong>Alex Burn</strong> <span class="feedback-text">Feedback</span></a></li>
@@ -218,7 +221,7 @@
                     <li><a href="#"><strong>Alex Burn</strong> <span class="feedback-text">Feedback</span></a></li>
                     <li><a href="#"><strong>Alex Burn</strong> <span class="card-text">Cards</span></a></li>
                     <li><a href="#"><strong>Alex Burn</strong> <span class="feedback-text">Feedback</span></a></li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </div>
