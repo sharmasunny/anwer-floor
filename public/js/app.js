@@ -1,9 +1,10 @@
 angular.module('mean', ["xeditable", "ui.select", 'ngCookies', 'ngMessages', 'ngMeta', 'ngResource', 'ui.router', 'uiRouterStyles', 'ui.bootstrap', 'ui.route', 'ngStorage', 'mean.system', 'mean.articles', 'mean.auth', 'satellizer', 'angularFblogin', 'ngLodash'])
     .config(function($authProvider, ngMetaProvider) {
 
+
         $authProvider.google({
             clientId: '679573960512-p0125ptjv3pqid6j51ji1u1g3ene9m41.apps.googleusercontent.com',
-            url: '/address-book',
+            url: '/address-book/google',
             authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
             redirectUri: window.location.origin + '/address-book',
             requiredUrlParams: ['scope'],
@@ -15,6 +16,8 @@ angular.module('mean', ["xeditable", "ui.select", 'ngCookies', 'ngMessages', 'ng
             oauthType: '2.0',
             popupOptions: { width: 452, height: 633 }
         });
+
+
 
         $authProvider.yahoo({
             clientId:'dj0yJmk9enJES1hibFR0WXFkJmQ9WVdrOWRuTlRlRUZ6TjJjbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD0xNw--',
