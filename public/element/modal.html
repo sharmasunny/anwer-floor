@@ -97,16 +97,14 @@
                 </div>
             </div>
             <div class="input-container form-group">
-                <input type="tel" id="phone" name="phone" class="form-control" ng-model="item.phone" placeholder="Phone Number" required>
+                <input type="tel" id="phone" name="phone" class="form-control" ng-model="item.phone" placeholder="Phone Number">
             </div>
             <div class="input-container form-group">
-                <input type="text" ng-click="open1()" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="item.dob" placeholder="Date of Birth" />
+                <input type="text" ng-click="open1()" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" ng-model="item.dob" placeholder="Date of Birth" />
             </div>
             <div class="input-container form-group">
-                <input type="text" id="category" name="category" class="form-control" ng-model="item.category" placeholder="Category" required>
-                <div ng-messages="form.category.$error" ng-if="form.category.$touched ||form.category.$error.pattern ||form.$submitted">
-                    <div ng-messages-include="/element/notifyMessages.html"></div>
-                </div>
+                <input type="text" id="category" name="category" class="form-control" ng-model="item.category" placeholder="Category">
+               
             </div>
             <div class="input-container form-group">
                 <textarea id="address" name="address" class="form-control" ng-model="item.address" placeholder="Address"> </textarea>
@@ -135,7 +133,10 @@
                 </div>
             </div>
             <div class="input-container form-group">
-                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" ng-model="item.email">
+                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" ng-model="item.email" required>
+                <div ng-messages="form.email.$error" ng-if="form.email.$touched || form.$submitted">
+                    <div ng-messages-include="/element/notifyMessages.html"></div>
+                </div>
             </div>
             <div class="input-container form-group">
                 <input type="tel" id="phone" name="phone" class="form-control" ng-model="item.phone" placeholder="Phone Number">
