@@ -1,0 +1,97 @@
+<div class="container mt15">
+  <div class="row">
+    <div class="col-sm-8 col-md-9 personal-info">
+      <div class="panel-custom">
+        <div class="panel-heading">
+          <h3 class="panel-title"> Add Profile</h3>
+        </div>
+
+        <div class="panel-body">
+            <div class="row">
+                <!-- edit form column -->
+                <div class="col-md-9 personal-info">
+                  <div class="text-center">
+                  <div class="row user_image">
+                          <label for="img-file">
+                            <i *ngIf="!myCroppedImage" class="fa fa-camera" aria-hidden="true"></i>
+                            <img *ngIf="myCroppedImage" src="{{myCroppedImage}}" height="50" width="50">
+                          </label>
+                          <input type="file"  ng-model="file_name" ng-change="fileChange()" id="img-file"   style="display:none" />
+                  </div>
+                    <!--img src="images/user.png" class="avatar img-circle" alt="avatar"/-->
+                  </div>
+                  <!--div>Select an image file: <input type="file" id="fileInput"/></div-->
+                    <!--div class="cropArea">
+                      <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                    </div>
+                    <div>Cropped Image:</div>
+                    <div><img ng-src="{{myCroppedImage}}" />
+                  </div-->
+                  <h3>Personal info</h3>
+                  
+                  <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                      <label class="col-lg-3 control-label">Category:</label>
+                      <div class="col-lg-8">
+                        <input class="form-control" value=" " type="text" placeholder="Enter Category" ng-model="user_category">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-lg-3 control-label">Education:</label>
+                      <div class="col-lg-8">
+                        <input class="form-control" value=" " type="text" placeholder="Enter Your Education" ng-model="user_education">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-lg-3 control-label">Languages Known:</label>
+                      <div class="col-lg-8">
+                        <input class="form-control" value="" type="text" placeholder="Enter languages you know about" ng-model="user_languages">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-lg-3 control-label">Skills:</label>
+                      <div class="col-lg-8">
+                        <input class="form-control" value=" " type="text" placeholder="Enter you skills" ng-model="user_skills">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-lg-3 control-label">Interests:</label>
+                      <div class="col-lg-8">
+                        <input class="form-control" value=" " type="text" placeholder="Enter you interests" ng-model="user_interests">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-lg-3 control-label">Location:</label>
+                      <div class="col-lg-8">
+                        <input class="form-control" value=" " type="text" placeholder="Enter you location" ng-model="user_location">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-lg-3 control-label">Panel Title:</label>
+                      <div class="col-lg-8">
+                        <textarea class="form-control" value=" " type="text" placeholder="Enter some information about yourself" ng-model="user_info"></textarea>
+                      </div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label class="col-md-3 control-label"></label>
+                      <div class="col-md-8">
+                        <input class="btn btn-primary" value="Save Changes" type="button">
+                        <span></span>
+                        <input class="btn btn-default" value="Cancel" type="reset">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
