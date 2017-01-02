@@ -8,6 +8,66 @@ angular.module('mean.system').controller('AddressBookController', ['$scope', '$u
         "November", "December"
     ];
 
+    $scope.slidersImage = ['images/slider1.jpg', 'images/slider2.jpg', 'images/slider3.jpg'];
+
+    $scope.cardsCount = 0;
+    $scope.feedbackCount = 0;
+    $scope.notesCount = 0;
+
+    $scope.noWrapSlides = false;
+    $scope.active = 0;
+    var slides = $scope.slides = [];
+    var currIndex = 0;
+
+    $scope.addSlide = function() {
+        slides.push({
+            image: $scope.slidersImage[slides.length % 3],
+            id: currIndex++
+        });
+    };
+
+    $scope.randomize = function() {
+        var indexes = generateIndexesArray();
+        assignNewIndexesToSlides(indexes);
+    };
+
+    for (var i = 0; i < 3; i++) {
+        $scope.addSlide();
+    }
+
+    // Randomize logic below
+
+    function assignNewIndexesToSlides(indexes) {
+        for (var i = 0, l = slides.length; i < l; i++) {
+            slides[i].id = indexes.pop();
+        }
+    }
+
+    function generateIndexesArray() {
+        var indexes = [];
+        for (var i = 0; i < currIndex; ++i) {
+            indexes[i] = i;
+        }
+        return shuffle(indexes);
+    }
+
+
+    function shuffle(array) {
+        var tmp, current, top = array.length;
+
+        if (top) {
+            while (--top) {
+                current = Math.floor(Math.random() * (top + 1));
+                tmp = array[current];
+                array[current] = array[top];
+                array[top] = tmp;
+            }
+        }
+
+        return array;
+    }
+
+
     $scope.firstToUpperCase = function(str) {
         return str.substr(0, 1).toUpperCase() + str.substr(1);
     }
@@ -117,9 +177,24 @@ angular.module('mean.system').controller('AddressBookController', ['$scope', '$u
             });
 
 
-            $scope.ActivityList = lodash.orderBy($scope.ActivityList, ['date'], ['desc']);
 
+            angular.forEach($scope.ActivityList, function(value) {
+                var data = value.data;
+
+                angular.forEach(data, function(valDate) {
+                    if (valDate.activity == 'note') {
+                        $scope.notesCount++;
+                    } else if (valDate.activity == 'feedback') {
+                        $scope.feedbackCount++;
+                    } else if (valDate.activity == 'cards') {
+                        $scope.cardsCount++;
+                    }
+
+                });
+            });
+            $scope.ActivityList = lodash.orderBy($scope.ActivityList, ['date'], ['desc']);
         });
+
     }
 
     $scope.getAllcontacts();
@@ -275,20 +350,30 @@ angular.module('mean.system').controller('AddressBookController', ['$scope', '$u
         } else if (content == undefined) {
             $scope.messageModal('Add ' + activity, 'alert alert-danger');
         } else {
-
             var data = {};
             $scope.notesText = null;
             $scope.feedbackText = null;
 
+
             data.activity = activity;
-            data.content = content;
+
+
+            if (activity == 'cards') {
+                data.content = '<img src="' + window.location.origin + '/' + content + '"/>';
+            } else {
+                data.content = content;
+            }
             data.AddressbookId = $scope.seletedContact.id;
             data.email = $scope.seletedContact.email;
             data.name = $scope.seletedContact.name;
             $AddressBookService.saveActivity(data, function(response) {
-                $scope.getAllcontacts();
+                $scope.ge.tAllcontacts();
             });
         }
+    }
+
+    $scope.searchConatct =function(){
+        $scope.searchContact = $scope.search;
     }
 
 

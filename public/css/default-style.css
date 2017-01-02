@@ -86,6 +86,9 @@ a:hover{text-decoration: none;}
 	border-radius: 50%;
 	box-shadow: 0px 0px 3px #ffffff;
 }
+.searchbar {
+	cursor: pointer;
+}
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:focus,
 .navbar-default .navbar-nav > .open > a:hover {
