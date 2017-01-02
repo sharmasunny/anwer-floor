@@ -13,10 +13,10 @@
                   <div class="text-center">
                   <div class="row user_image">
                           <label for="img-file">
-                            <i *ngIf="!myCroppedImage" class="fa fa-camera" aria-hidden="true"></i>
-                            <img *ngIf="myCroppedImage" src="{{myCroppedImage}}" height="50" width="50">
+                            <i ng-show="!myCroppedImage" class="fa fa-camera" aria-hidden="true"></i>
+                            <img ng-show="myCroppedImage" src="{{myCroppedImage}}" height="50" width="50">
                           </label>
-                          <input type="file"  ng-model="file_name" data-ng-click="cropImageFunction('lg')" id="img-file"   style="display:none" />
+                          <input type="file"  ng-model="file_name"  id="img-file"   style="display:none" />
                   </div>
                     <!--img src="images/user.png" class="avatar img-circle" alt="avatar"/-->
                   </div>

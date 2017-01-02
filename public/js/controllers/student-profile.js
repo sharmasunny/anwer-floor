@@ -1,11 +1,10 @@
-angular.module('mean.system').controller('StudentProfileController', ['$scope', '$uibModal', 'Global','$ProfileService', function ($scope, $uibModal, Global, $ProfileService) {
+angular.module('mean.system').controller('StudentProfileController', ['$scope', '$uibModal', '$log', 'Global','$ProfileService', function ($scope, $uibModal, $log, Global, $ProfileService) {
     $scope.global = Global;
 
     $scope.myImage='';
     $scope.myCroppedImage='';
 
     var handleFileSelect=function(evt) {
-      $('#myModal').show();
       var file=evt.currentTarget.files[0];
       var reader = new FileReader();
       reader.onload = function (evt) {
@@ -15,6 +14,7 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
       };
       reader.readAsDataURL(file);
     };
+    
     angular.element(document.querySelector('#img-file')).on('change',handleFileSelect);
 
     $ProfileService.get(1, function (response) {
@@ -34,7 +34,7 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
             templateUrl: 'imageCropModal.html',
-            controller: 'StudentProfileController',
+            controller: 'ProfileModalController',
             size: size,
             resolve: {
                 items: function() {
@@ -51,12 +51,17 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
 
     }
 
-    $scope.cancel = function () {
-    	$uibModalInstance.dismiss('cancel');
-  	};
-
+    
 
 }]);
 
+angular.module('mean.system').controller('ProfileModalController', ['$scope', '$window', '$uibModalInstance' , function($scope, $window, $uibModalInstance ) {
+	$scope.cancel = function () {
+	    $uibModalInstance.dismiss('cancel');
+	};
+
+    
+
+}]);
 
   
