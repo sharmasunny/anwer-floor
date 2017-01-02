@@ -247,7 +247,15 @@ a:hover{text-decoration: none;}
 	font-size: 15px;
 }
 
-
+.personal-info{
+	width: 100%;
+}
+.cropArea {
+  background: #E4E4E4;
+  overflow: hidden;
+  width:500px;
+  height:350px;
+}
 /*css for features section*/
 .features-section{
 	background: #f6f8f9;
