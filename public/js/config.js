@@ -313,6 +313,31 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
+        .state('user.addProfile',{
+            url : '/add-profile',
+            views: {
+                'header': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-header/index.html'
+                },
+                'content': {
+                    controller:'StudentProfileController',
+                    templateUrl: 'views/student-profile/add_profile.html'
+                },
+                'footer': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-footer/index.html'
+                }
+            },
+            data: {
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Add Profile',
+                    'description': '',
+                    'author': ''
+                }
+            }
+        })
         .state('user.privateMessage',{
             url : '/private-message',
             views: {
