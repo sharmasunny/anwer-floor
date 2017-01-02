@@ -22,6 +22,7 @@
     "ngMeta": "^1.0.0",
     "angular-xeditable": "^0.5.0",
     "ng-lodash": "^0.5.0",
-    "angular-bootstrap": "^2.3.1"
+    "angular-bootstrap": "^2.3.1",
+    "ng-img-crop": "ngImgCrop#^0.3.2"
   }
 }

@@ -175,7 +175,7 @@ module.exports = {
         db.AddressbookActivity.create(item)
             .then(function(addressBook) {
                 CommonService.getTemplate("ADDRESSBOOK-EMAIL", function(err, data) {
-                    
+
                     data.description = data.description.replace("{{ACTIVITY}}", req.body.activity);
                     data.description = data.description.replace("{{USERNAME}}", req.body.name);
 
