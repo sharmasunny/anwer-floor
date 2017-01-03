@@ -38,7 +38,6 @@ module.exports = {
         db.Profile.create(item)
             .then(function(profile) {
                 return res.json({ resStatus: 'success', msg: "Profile Created", result: profile });
-
             }).catch(function(err) {
                 return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR });
             });
@@ -51,7 +50,18 @@ module.exports = {
 
 
     uploadImage: function(req, res) {
-        res.json({ filename: req.file.filename });
+        let id = req.body.id
+        console.log('asdasdasd', id);
+        let image = req.file.filename;
+        db.User.update({image:image}, { where: { id: id } }).then(function(resData) {
+            if (!resData) {
+                return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR });
+            } else {
+                return res.json({ resStatus: 'success', msg: 'User Image updated', filename: image});
+            }
+        }).catch(function(err) {
+            return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR, err: err });
+        });
     },
 
 

@@ -1875,3 +1875,7 @@ textarea.text-heigth190{
 	width:46%;
 	 cursor: pointer;
 }
+.row.ft-form {
+    margin: 40px auto 0;
+    width: 450px;
+}
