@@ -39,7 +39,7 @@ module.exports = {
             .then(function(profile) {
                 return res.json({ resStatus: 'success', msg: "Profile Created", result: profile });
             }).catch(function(err) {
-                return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR });
+                return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR ,err:err});
             });
     },
 

@@ -1,8 +1,8 @@
-angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$uibModal', '$log', 'Global', '$ProfileService','$SessionService', function($scope, $http, $uibModal, $log, Global, $ProfileService,$SessionService) {
+angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService', function($scope, $http, $uibModal, $log, Global, $ProfileService, $SessionService) {
     $scope.global = Global;
     $scope.animationsEnabled = true;
     $scope.tags = [];
-    $scope.user ={};
+    $scope.user = {};
 
     $scope.UploadImage = function(event) {
 
@@ -27,7 +27,7 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
             });
 
             modalInstance.result.then(function(image) {
-                $scope.user.image = image;
+                $scope.image = image;
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());
             });
@@ -45,10 +45,13 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
 
     $scope.Create = function(user) {
         var authUser = $SessionService.user();
-        $scope.user.UserId = authUser.id;
-        $ProfileService.createProfile($scope.user,function(response){
+        user.UserId = authUser.id;
+        user.interests = JSON.stringify(user.interests);
+        user.Languages_known = JSON.stringify(user.languages);
+        user.skill = JSON.stringify(user.skills);
+        $ProfileService.createProfile(user, function(response) {
             console.log(response);
-        }); 
+        });
     }
 
 
@@ -56,7 +59,7 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
 }]);
 
 
-angular.module('mean.system').controller('ProfileModalController', ['$scope', '$window', '$uibModalInstance', 'items', '$ProfileService','$SessionService', function($scope, $window, $uibModalInstance, items, $ProfileService,$SessionService) {
+angular.module('mean.system').controller('ProfileModalController', ['$scope', '$window', '$uibModalInstance', 'items', '$ProfileService', '$SessionService', function($scope, $window, $uibModalInstance, items, $ProfileService, $SessionService) {
     $scope.myImage = items;
     $scope.myCroppedImage = '';
 
@@ -77,9 +80,11 @@ angular.module('mean.system').controller('ProfileModalController', ['$scope', '$
         var formData = new FormData();
         var image = $scope.dataURItoBlob($scope.myCroppedImage);
         formData.append("image", image);
-        formData.append("id",authUser.id);
+        formData.append("id", authUser.id);
         $ProfileService.imageUpload(formData, function(response) {
-            $uibModalInstance.close(response.filename);
+            // authUser.image = response.filename;
+            // $scope.$emit('UpdateSession', { message: authUser });
+            // $uibModalInstance.close(response.filename);
         });
 
     };
