@@ -86,7 +86,9 @@ module.exports = function(grunt) {
                     {cwd: 'bower_components/rdash-ui',                                   src: ['*.*'], dest: 'public/lib/rdash-ui', expand: true},
                     {cwd: 'bower_components/font-awesome',                               src: ['*.*'], dest: 'public/lib/font-awesome', expand: true},
                     {cwd: 'bower_components/ng-lodash',                                  src: ['**/*.js'], dest: 'public/lib/ng-lodash', expand: true},
-                    {cwd: 'bower_components/ng-img-crop/compile/minified',               src: ['*.*'], dest: 'public/lib/ng-img-crop', expand: true}
+                    {cwd: 'bower_components/ng-img-crop/compile/minified',               src: ['*.*'], dest: 'public/lib/ng-img-crop', expand: true},
+                    {cwd: 'bower_components/ng-tags-input',                              src: ['*.*'], dest: 'public/lib/ng-tags-input', expand: true}
+
                 ]
             }
         },

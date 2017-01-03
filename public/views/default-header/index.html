@@ -48,7 +48,7 @@
                 <li>
                     <div class="dropdown">
                         <a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
-                            <i class="fa fa-bell-o font18"><span class = "badge notify">2</span></i>
+                            <i class="fa fa-bell-o font18"><span class ="badge notify">2</span></i>
                         </a>
                         <ul class="dropdown-menu notifications dropdown-menu-rarrow" role="menu" aria-labelledby="dLabel">
                             <div class="notification-heading">
@@ -128,7 +128,10 @@
                 </li>
                 <li class="dropdown" data-ng-show="isAuthenticated">
                     <a href="#" class="dropdown-toggle user-picture" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img src="images/user.png">{{ authUser.firstname }} {{authUser.lastname}}<span class="caret"></span>
+                        <img ng-show="!authUser.image" src="images/user.png"/> 
+                        <img ng-show="authUser.image" src="/images/profile-images/{{authUser.image}}"/> 
+                        {{ authUser.firstname }} {{authUser.lastname}}
+                        <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-rarrow">
                         <li><a href="/student-profile">Profile</a></li>
@@ -144,32 +147,3 @@
         <!--/.nav-collapse -->
     </div>
 </nav>
-<div class="mainheader">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <h1>{{title}}</h1>
-                <div class="clearfix"></div>
-                <div class="crdgroup">
-                    <div class="btn-group" role="group" aria-label="...">
-                        <button type="button" class="btn btn-default">
-                            <i class="fa fa-user-circle-o"></i>Profile
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            <i class="fa fa-question-circle"></i>Enquires
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            <i class="fa fa-tags"></i>Offer
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            <i class="fa fa-money" aria-hidden="true"></i>Packaged
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            <i class="fa fa-file-text-o" aria-hidden="true"></i>Skills
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

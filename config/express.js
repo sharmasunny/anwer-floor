@@ -57,6 +57,7 @@ module.exports = function(app, passport) {
     // request body parsing middleware should be above methodOverride
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
+    app.use(bodyParser.raw());
     app.use(methodOverride());
 
     //express session configuration

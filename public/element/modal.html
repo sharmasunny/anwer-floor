@@ -104,7 +104,6 @@
             </div>
             <div class="input-container form-group">
                 <input type="text" id="category" name="category" class="form-control" ng-model="item.category" placeholder="Category">
-               
             </div>
             <div class="input-container form-group">
                 <textarea id="address" name="address" class="form-control" ng-model="item.address" placeholder="Address"> </textarea>
@@ -142,7 +141,7 @@
                 <input type="tel" id="phone" name="phone" class="form-control" ng-model="item.phone" placeholder="Phone Number">
             </div>
             <div class="input-container form-group">
-                <input type="text" ng-click="open1()" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened" datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats" ng-model="item.dob" placeholder="Date of Birth" />
+                <input type="text" ng-click="open1()" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" ng-model="item.dob" placeholder="Date of Birth" />
             </div>
             <div class="input-container form-group">
                 <input type="text" id="category" name="category" class="form-control" ng-model="item.category" placeholder="Category">
@@ -168,8 +167,8 @@
         <h4>Are you sure you want to delete this Contact ?</h4>
     </div>
     <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="deleteContact(item)">YES</button>
-            <button class="btn btn-warning" type="button" ng-click="close()">No</button>
+        <button class="btn btn-primary" type="button" ng-click="deleteContact(item)">YES</button>
+        <button class="btn btn-warning" type="button" ng-click="close()">No</button>
     </div>
 </script>
 <script type="text/ng-template" id="importEmailContact.html">
@@ -186,7 +185,7 @@
                 <span>Gmail</span>
             </div>
             <div class="col-sm-12 impt-cl-em" ng-click="authenticate('yahoo')">
-                <img src="/images/Email-Yahoo.png" alt="yahoo"  height="100" width="100"/>
+                <img src="/images/Email-Yahoo.png" alt="yahoo" height="100" width="100" />
                 <span>Yahoo</span>
             </div>
         </div>
@@ -195,8 +194,6 @@
         <button class="btn btn-warning" type="button" ng-click="close()">Close</button>
     </div>
 </script>
-
-
 <script type="text/ng-template" id="messageModal.html">
     <div class="modal-header">
         <button type="button" class="close" ng-click="close()" aria-label="Close">
@@ -211,8 +208,6 @@
         <button class="btn btn-warning" type="button" ng-click="close()">Close</button>
     </div>
 </script>
-
-
 <script type="text/ng-template" id="imageCropModal.html">
     <div class="modal-header">
         <button type="button" class="close" ng-click="close()" aria-label="Close">
@@ -221,15 +216,19 @@
         <h4 class="modal-title" id="myModalLabel">Profile Image</h4>
     </div>
     <div class="modal-body">
-        <p>Image</p>
-        <div class="cropArea">
-          <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
-        </div>
-        <div>Cropped Image:</div>
-        <div><img ng-src="{{myCroppedImage}}"/>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="cropArea">
+                    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img ng-src="{{myCroppedImage}}" />
+            </div>
         </div>
     </div>
     <div class="modal-footer">
+        <button class="btn btn-success" ng-click="saveImage()" type="button">Save</button>
         <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
     </div>
 </script>
