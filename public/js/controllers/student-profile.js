@@ -42,6 +42,7 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
 
     $scope.getProfileDetails =function(){
         $scope.authUser = $SessionService.user();
+        console.log($scope.authUser);
         $ProfileService.get($scope.authUser.id, function(response) {
             $scope.userprofile = response.result[0];
 
@@ -82,6 +83,10 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         data.languages = JSON.stringify(user.languages);
         data.skills = JSON.stringify(user.skills);
         $ProfileService.createProfile(data, function(response) {
+<<<<<<< HEAD
+            authUser.image = $scope.image;
+=======
+>>>>>>> bfbcbc9a6af877e9410ce8828d4fb47e3142b6a9
             $state.go("user.studentProfile");
         });
     }
