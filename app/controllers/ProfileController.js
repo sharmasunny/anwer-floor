@@ -72,7 +72,7 @@ module.exports = {
 
     updateProfile: function(req, res) {
         let id = req.params.id;
-        db.Profile.update(req.body, { where: { id: id } }).then(function(resData) {
+        db.Profile.update(req.body, { where: { UserId: id } }).then(function(resData) {
             if (!resData) {
                 return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR });
             } else {

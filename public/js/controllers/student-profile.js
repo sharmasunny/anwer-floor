@@ -1,4 +1,4 @@
-angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$state', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService', '$LocalService', function($scope, $http, $state, $uibModal, $log, Global, $ProfileService, $SessionService, $LocalService) {
+angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$state', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService', '$LocalService', '$timeout', 'FlashService', function($scope, $http, $state, $uibModal, $log, Global, $ProfileService, $SessionService, $LocalService, FlashService, $timeout) {
     $scope.global = Global;
     $scope.animationsEnabled = true;
     $scope.user = {};
@@ -95,6 +95,34 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         $state.go("user.editProfile");
     }
 
+
+    $scope.Update = function(user) {
+        var data = {};
+        var authUser = $SessionService.user();
+        data.UserId = authUser.id;
+        data.info = user.info;
+        data.category = user.category;
+        data.education = user.education;
+        data.location = user.location;
+        data.rate = user.rate;
+        data.interests = JSON.stringify(user.interests);
+        data.languages = JSON.stringify(user.languages);
+        data.skills = JSON.stringify(user.skills);
+        $ProfileService.updateProfile(data, function(response) {
+            var serverMsg = { resStatus: response.resStatus, msg: response.msg };
+            if (response.resStatus == "error") {
+                $scope.serverMsg = serverMsg;
+            } else if (response.resStatus == "success") {
+                serverMsg = { resStatus: response.resStatus, msg: 'Contact Successfully Update', verifyId: response.result };
+                $scope.serverMsg = serverMsg;
+                $state.go("user.studentProfile");
+                // $timeout(function() {
+                //     $uibModalInstance.close(serverMsg);
+                // }, 1000);
+            }
+        });
+    }
+
 }]);
 
 
@@ -129,7 +157,5 @@ angular.module('mean.system').controller('ProfileModalController', ['$scope', '$
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
-
-
 
 }]);
