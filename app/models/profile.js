@@ -3,7 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
 
 	var Profile = sequelize.define('Profile', {
-		info: DataTypes.STRING,
+		info: DataTypes.TEXT,
 		category: DataTypes.STRING,
 	    education: DataTypes.STRING,
 	    languages: DataTypes.STRING,
