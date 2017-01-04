@@ -2,6 +2,10 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
     $scope.global = Global;
     $scope.animationsEnabled = true;
     $scope.user = {};
+    var authUser = $SessionService.user();
+    if (authUser.image != '' || authUser.image != undefined) {
+        $scope.image = authUser.image;
+    }
 
     $scope.UploadImage = function(event) {
 
@@ -53,7 +57,7 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         data.Languages_known = JSON.stringify(user.languages);
         data.skill = JSON.stringify(user.skills);
         $ProfileService.createProfile(data, function(response) {
-            console.log(response);
+            $state.go("user.studentProfile");
         });
     }
 
