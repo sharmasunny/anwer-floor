@@ -27,6 +27,14 @@ angular.module('mean.auth').factory("$ProfileService", ['$http', '$LocalService'
                 }, function errorCallback(response) {
                     cb(response.data);
                 });
+        },
+        updateProfile: function(data, cb) {
+            $http.post('/profile/update/'+data.UserId, data)
+                .then(function successCallback(response) {
+                    cb(response.data);
+                }, function errorCallback(response) {
+                    cb(response.data);
+                });
         }
 
     }
