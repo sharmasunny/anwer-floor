@@ -1,4 +1,4 @@
-angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$state', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService', '$LocalService', function($scope, $http, $state, $uibModal, $log, Global, $ProfileService, $SessionService, $LocalService) {
+angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$state', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService', function($scope, $http, $state, $uibModal, $log, Global, $ProfileService, $SessionService) {
     $scope.global = Global;
     $scope.animationsEnabled = true;
     $scope.user = {};
@@ -40,31 +40,30 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         myReader.readAsDataURL(file);
     }
 
-    $scope.getProfileDetails = function() {
+    $scope.getProfileDetails =function(){
         $scope.authUser = $SessionService.user();
         console.log($scope.authUser);
         $ProfileService.get($scope.authUser.id, function(response) {
-            if (response.result.length > 0) {
-                $scope.userprofile = response.result[0];
+            $scope.userprofile = response.result[0];
 
-                console.log($scope.userprofile, $scope.authUser);
-
-
-                // var languages = response.result[0].Languages_known
-                // var skills = response.result[0].skill
-                // var interests = response.result[0].interests
-                // var languages_known = JSON.parse(languages);
-                // $scope.languages_known = JSON.parse(languages);
-                // $scope.skill = JSON.parse(skills);
-                // $scope.interests = JSON.parse(interests);
-                // var str = ''
-                // for (var i = 0; i < languages_known.length; i++) {
-                //     var languages_known_string = ''
-                //     var language = languages_known[i].text;
-                //     languages_known_string = language + ' | ';
-                // }
-                // console.log('languages_known_string', languages_known_string)
+            console.log($scope.userprofile, $scope.authUser);
+           
+           
+            var languages=response.result[0].Languages_known
+            var skills=response.result[0].skill
+            var interests=response.result[0].interests
+            var languages_known=JSON.parse(languages);
+            $scope.languages_known=JSON.parse(languages);
+            $scope.skill=JSON.parse(skills);
+            $scope.interests=JSON.parse(interests);
+            var str = ''
+            for(var i = 0; i < languages_known.length; i++){
+                var languages_known_string=''
+                var language=languages_known[i].text;
+                languages_known_string = language+' | '; 
             }
+            console.log('languages_known_string',languages_known_string)
+
         });
     }
 
@@ -75,14 +74,19 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         var data = {};
         var authUser = $SessionService.user();
         data.UserId = authUser.id;
+        data.info = user.info;
         data.category = user.category;
         data.education = user.education;
         data.location = user.location;
+        data.rate = user.rate;
         data.interests = JSON.stringify(user.interests);
-        data.Languages_known = JSON.stringify(user.languages);
-        data.skill = JSON.stringify(user.skills);
+        data.languages = JSON.stringify(user.languages);
+        data.skills = JSON.stringify(user.skills);
         $ProfileService.createProfile(data, function(response) {
+<<<<<<< HEAD
             authUser.image = $scope.image;
+=======
+>>>>>>> bfbcbc9a6af877e9410ce8828d4fb47e3142b6a9
             $state.go("user.studentProfile");
         });
     }
@@ -117,6 +121,8 @@ angular.module('mean.system').controller('ProfileModalController', ['$scope', '$
         formData.append("image", image);
         formData.append("id", authUser.id);
         $ProfileService.imageUpload(formData, function(response) {
+            authUser.image = response.filename;
+            $LocalService.set('auth_user', JSON.stringify(authUser));
             $uibModalInstance.close(response.filename);
         });
 
