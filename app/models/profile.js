@@ -4,6 +4,7 @@ module.exports = function(sequelize, DataTypes) {
 
 	var Profile = sequelize.define('Profile', {
 		title: DataTypes.STRING,
+		category: DataTypes.STRING,
 	    education: DataTypes.STRING,
 	    Languages_known: DataTypes.STRING,
 	    skill: DataTypes.STRING,

@@ -2,7 +2,7 @@ angular.module('mean.auth').factory("$ProfileService", ['$http', '$LocalService'
 
     return {
         get: function(id, cb) {
-            $http.get('/profile/1')
+            $http.get('/profile/'+id)
                 .then(function successCallback(response) {
                     cb(response.data);
                 }, function errorCallback(response) {
