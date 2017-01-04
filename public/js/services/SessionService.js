@@ -8,6 +8,14 @@ angular.module('mean.auth').factory("$SessionService", ['$http','$injector', fun
                } else {
                     return {};
                }
+          },
+          getUser: function(){
+               var authUser = angular.fromJson(LocalService.get('auth_user'));
+               if (authUser && authUser != undefined) {
+                    return authUser;
+               } else {
+                    return {};
+               }
           }
      }
 

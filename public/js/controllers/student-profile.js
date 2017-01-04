@@ -1,4 +1,4 @@
-angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$state', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService', function($scope, $http, $state, $uibModal, $log, Global, $ProfileService, $SessionService) {
+angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$state', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService', '$LocalService', function($scope, $http, $state, $uibModal, $log, Global, $ProfileService, $SessionService, $LocalService) {
     $scope.global = Global;
     $scope.animationsEnabled = true;
     $scope.user = {};
@@ -51,27 +51,26 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
                 console.log($scope.userprofile, $scope.authUser);
 
 
-                var languages = response.result[0].Languages_known
-                var skills = response.result[0].skill
-                var interests = response.result[0].interests
-                var languages_known = JSON.parse(languages);
-                $scope.languages_known = JSON.parse(languages);
-                $scope.skill = JSON.parse(skills);
-                $scope.interests = JSON.parse(interests);
-                var str = ''
-                for (var i = 0; i < languages_known.length; i++) {
-                    var languages_known_string = ''
-                    var language = languages_known[i].text;
-                    languages_known_string = language + ' | ';
-                }
-                console.log('languages_known_string', languages_known_string)
+                // var languages = response.result[0].Languages_known
+                // var skills = response.result[0].skill
+                // var interests = response.result[0].interests
+                // var languages_known = JSON.parse(languages);
+                // $scope.languages_known = JSON.parse(languages);
+                // $scope.skill = JSON.parse(skills);
+                // $scope.interests = JSON.parse(interests);
+                // var str = ''
+                // for (var i = 0; i < languages_known.length; i++) {
+                //     var languages_known_string = ''
+                //     var language = languages_known[i].text;
+                //     languages_known_string = language + ' | ';
+                // }
+                // console.log('languages_known_string', languages_known_string)
             }
 
         });
     }
 
     $scope.getProfileDetails();
-
 
     $scope.Create = function(user) {
         var data = {};
@@ -86,6 +85,9 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         data.languages = JSON.stringify(user.languages);
         data.skills = JSON.stringify(user.skills);
         $ProfileService.createProfile(data, function(response) {
+            var UserDetail = $SessionService.getUser();
+            UserDetail.result.image = $scope.image;
+            $LocalService.set('auth_user', JSON.stringify(UserDetail));
             $state.go("user.studentProfile");
         });
     }
