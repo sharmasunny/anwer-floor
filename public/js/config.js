@@ -338,7 +338,7 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('user.addProfile',{
+        .state('user.editProfile',{
             url : '/edit-profile',
             views: {
                 'header': {

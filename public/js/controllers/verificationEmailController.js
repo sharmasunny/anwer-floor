@@ -11,7 +11,7 @@ angular.module('mean.system').controller('VerificationEmailController', ['$scope
                } else if(response.resStatus == "success") {
                     serverMsg = {resStatus : response.resStatus, msg: response.msg};
                     if ($SessionService.user().id) {
-                         $state.go("user.account", {message:serverMsg});
+                         $state.go("user.addProfile", {message:serverMsg});
                     } else {
                          $LocalService.set('auth_user', JSON.stringify(response));
                          $scope.$emit('UpdateSession', {message: response.result});
