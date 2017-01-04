@@ -1,4 +1,4 @@
-angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$state', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService' ,function($scope, $http, $state, $uibModal, $log, Global, $ProfileService, $SessionService) {
+angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$state', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService', '$LocalService', function($scope, $http, $state, $uibModal, $log, Global, $ProfileService, $SessionService, $LocalService) {
     $scope.global = Global;
     $scope.animationsEnabled = true;
     $scope.user = {};
@@ -71,13 +71,13 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
                     languages_known_string = language + ' | ';
                 }
                 console.log('languages_known_string', languages_known_string)
+
             }
 
         });
     }
 
     $scope.getProfileDetails();
-
 
     $scope.Create = function(user) {
         var data = {};
@@ -92,6 +92,9 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         data.languages = JSON.stringify(user.languages);
         data.skills = JSON.stringify(user.skills);
         $ProfileService.createProfile(data, function(response) {
+            var UserDetail = $SessionService.getUser();
+            UserDetail.result.image = $scope.image;
+            $LocalService.set('auth_user', JSON.stringify(UserDetail));
             $state.go("user.studentProfile");
         });
     }
