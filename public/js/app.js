@@ -47,7 +47,7 @@ angular.module('mean', ["xeditable", "ui.select", 'ngCookies', 'ngMessages', 'ng
             }
 
             if(Object.keys($SessionService.user()).length > 0 ) {
-                if($SessionService.user().image!='' || $SessionService.user().image!=undefined)
+                if($SessionService.user().image!='' && $SessionService.user().image!=undefined)
                  if(toState.name == "user.addProfile") {
                       event.preventDefault();
                       $state.go("user.studentProfile");
