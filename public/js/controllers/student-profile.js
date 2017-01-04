@@ -1,8 +1,11 @@
 angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService', function($scope, $http, $uibModal, $log, Global, $ProfileService, $SessionService) {
     $scope.global = Global;
     $scope.animationsEnabled = true;
-    $scope.tags = [];
     $scope.user = {};
+    var authUser = $SessionService.user();
+    if (authUser.image != '' || authUser.image != undefined) {
+        $scope.image = authUser.image;
+    }
 
     $scope.UploadImage = function(event) {
 
@@ -62,13 +65,17 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
 
 
     $scope.Create = function(user) {
+        var data = {};
         var authUser = $SessionService.user();
-        user.UserId = authUser.id;
-        user.interests = JSON.stringify(user.interests);
-        user.Languages_known = JSON.stringify(user.languages);
-        user.skill = JSON.stringify(user.skills);
-        $ProfileService.createProfile(user, function(response) {
-            console.log(response);
+        data.UserId = authUser.id;
+        data.category = user.category;
+        data.education = user.education;
+        data.location = user.location;
+        data.interests = JSON.stringify(user.interests);
+        data.Languages_known = JSON.stringify(user.languages);
+        data.skill = JSON.stringify(user.skills);
+        $ProfileService.createProfile(data, function(response) {
+            $state.go("user.studentProfile");
         });
     }
 
@@ -100,9 +107,9 @@ angular.module('mean.system').controller('ProfileModalController', ['$scope', '$
         formData.append("image", image);
         formData.append("id", authUser.id);
         $ProfileService.imageUpload(formData, function(response) {
-            // authUser.image = response.filename;
-            // $scope.$emit('UpdateSession', { message: authUser });
-            // $uibModalInstance.close(response.filename);
+            authUser.image = response.filename;
+            $LocalService.set('auth_user', JSON.stringify(authUser));
+            $uibModalInstance.close(response.filename);
         });
 
     };
