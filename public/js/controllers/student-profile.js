@@ -40,29 +40,31 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         myReader.readAsDataURL(file);
     }
 
-    $scope.getProfileDetails =function(){
+    $scope.getProfileDetails = function() {
         $scope.authUser = $SessionService.user();
         console.log($scope.authUser);
         $ProfileService.get($scope.authUser.id, function(response) {
-            $scope.userprofile = response.result[0];
+            if (Object.keys(response.result).length > 0) {
+                $scope.userprofile = response.result[0];
 
-            console.log($scope.userprofile, $scope.authUser);
-           
-           
-            var languages=response.result[0].Languages_known
-            var skills=response.result[0].skill
-            var interests=response.result[0].interests
-            var languages_known=JSON.parse(languages);
-            $scope.languages_known=JSON.parse(languages);
-            $scope.skill=JSON.parse(skills);
-            $scope.interests=JSON.parse(interests);
-            var str = ''
-            for(var i = 0; i < languages_known.length; i++){
-                var languages_known_string=''
-                var language=languages_known[i].text;
-                languages_known_string = language+' | '; 
+                console.log($scope.userprofile, $scope.authUser);
+
+
+                var languages = response.result[0].Languages_known
+                var skills = response.result[0].skill
+                var interests = response.result[0].interests
+                var languages_known = JSON.parse(languages);
+                $scope.languages_known = JSON.parse(languages);
+                $scope.skill = JSON.parse(skills);
+                $scope.interests = JSON.parse(interests);
+                var str = ''
+                for (var i = 0; i < languages_known.length; i++) {
+                    var languages_known_string = ''
+                    var language = languages_known[i].text;
+                    languages_known_string = language + ' | ';
+                }
+                console.log('languages_known_string', languages_known_string)
             }
-            console.log('languages_known_string',languages_known_string)
 
         });
     }
