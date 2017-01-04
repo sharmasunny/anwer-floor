@@ -16,7 +16,7 @@
                                 </a>
                                 <h3>{{ authUser.firstname }} {{authUser.lastname}} <small>100 Pts</small></h3>
                                 <h4 class="tutor-profes">{{userprofile.category}}</h4>
-                                <p class="tutor-lang">English | French</p>
+                                <p class="tutor-lang">{{language}}</p>
                                 <p class="tutor-loc" ng-show="userprofile.location"><span class="glyphicon glyphicon-map-marker"></span>{{userprofile.location}}</p>
                                 <a href="#" class="tutor-btns">Message</a>
                                 <a href="#" class="tutor-btns">View Profile</a>
@@ -84,7 +84,7 @@
                   </form>
                 </div-->
                                 <p class="about-bg-panel">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua et dolore magna aliqua consectetur adipisicing elit Ut enim ad minim veniam.
+                                    {{userprofile.info}}
                                 </p>
                                 <div class="panel-body">
                                     <div class="row">
@@ -103,8 +103,8 @@
                             <img src="images/icons/icon-skill.png"> Skill
                           </h3>
                                                 </div>
-                                                <div class="panel-body" ng-repeat="skill in skill">
-                                                    <span class="btn-yellow">{{ skill.text }}</span>
+                                                <div class="panel-body">
+                                                    <span ng-repeat="skill in userprofile.skills" class="btn-yellow">{{ skill.text }}</span>&nbsp;&nbsp;
                                                     <!--span class="btn-yellow">English</span-->
                                                 </div>
                                                 <div class="panel-heading panel-heading-gray">
@@ -113,7 +113,7 @@
                           </h3>
                                                 </div>
                                                 <div class="panel-body pt5 text-gray">
-                                                    <h4 ng-repeat="interest in interests">{{ interest.text }}</h4>
+                                                    <h4 ng-repeat="interest in userprofile.interests">{{ interest.text }}</h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -125,7 +125,7 @@
                           </h3>
                                                 </div>
                                                 <div class="panel-body pt5 text-gray">
-                                                    <h4 ng-repeat="language in languages_known">{{ language.text }}<br></h4>
+                                                    <h4 ng-repeat="language in userprofile.languages">{{ language.text }}<br></h4>
                                                 </div>
                                                 <div class="panel-heading panel-heading-gray">
                                                     <h3 class="panel-title text-left">
