@@ -46,6 +46,7 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         console.log('state',$state.current.name)
         $ProfileService.get($scope.authUser.id, function(response) {
             if (Object.keys(response.result).length > 0) {
+<<<<<<< HEAD
                 if($state.current.name == 'user.editProfile'){
                     var languages_known = response.result[0].languages
                     var languages=JSON.parse(languages_known);
@@ -53,6 +54,9 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
                 }
                 $scope.user=response.result[0]
                 console.log('$scope.user',$scope.user)
+=======
+
+>>>>>>> a632dc23bf2dbe6bb80f3dc7899038a8b1b20518
                 $scope.userprofile = response.result[0];
                 console.log($scope.userprofile, $scope.authUser);
                 var languages = response.result[0].languages
@@ -124,8 +128,6 @@ angular.module('mean.system').controller('ProfileModalController', ['$scope', '$
         formData.append("image", image);
         formData.append("id", authUser.id);
         $ProfileService.imageUpload(formData, function(response) {
-            authUser.image = response.filename;
-            $LocalService.set('auth_user', JSON.stringify(authUser));
             $uibModalInstance.close(response.filename);
         });
 
