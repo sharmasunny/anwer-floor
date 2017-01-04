@@ -1,4 +1,4 @@
-angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$state', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService', function($scope, $http, $state, $uibModal, $log, Global, $ProfileService, $SessionService) {
+angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$state', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService' ,function($scope, $http, $state, $uibModal, $log, Global, $ProfileService, $SessionService) {
     $scope.global = Global;
     $scope.animationsEnabled = true;
     $scope.user = {};
@@ -43,16 +43,22 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
     $scope.getProfileDetails = function() {
         $scope.authUser = $SessionService.user();
         console.log($scope.authUser);
+        console.log('state',$state.current.name)
         $ProfileService.get($scope.authUser.id, function(response) {
             if (Object.keys(response.result).length > 0) {
 
+                if($state.current.name == 'user.editProfile'){
+                    var languages_known = response.result[0].languages
+                    var languages=JSON.parse(languages_known);
+                    $scope.user.languages=languages;
+                }
+                $scope.user=response.result[0]
+                console.log('$scope.user',$scope.user)
+
                 $scope.userprofile = response.result[0];
-
                 console.log($scope.userprofile, $scope.authUser);
-
-
-                var languages = response.result[0].Languages_known
-                var skills = response.result[0].skill
+                var languages = response.result[0].languages
+                var skills = response.result[0].skills
                 var interests = response.result[0].interests
                 var languages_known = JSON.parse(languages);
                 $scope.languages_known = JSON.parse(languages);
