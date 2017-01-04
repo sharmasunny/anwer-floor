@@ -44,10 +44,10 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         $scope.authUser = $SessionService.user();
         $ProfileService.get($scope.authUser.id, function(response) {
             $scope.userprofile = response.result[0];
+
             console.log($scope.userprofile, $scope.authUser);
            
-            $scope.user_name = response.result[0].User.firstname
-            $scope.user_education = response.result[0].education
+           
             var languages=response.result[0].Languages_known
             var skills=response.result[0].skill
             var interests=response.result[0].interests

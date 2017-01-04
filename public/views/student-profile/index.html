@@ -15,9 +15,9 @@
                                     <img ng-show="authUser.image" class="tutor-picture" src="/images/profile-images/{{authUser.image}}" />
                                 </a>
                                 <h3>{{ authUser.firstname }} {{authUser.lastname}} <small>100 Pts</small></h3>
-                                <h4 class="tutor-profes">$scope.userprofile.category</h4>
+                                <h4 class="tutor-profes">{{userprofile.category}}</h4>
                                 <p class="tutor-lang">English | French</p>
-                                <p class="tutor-loc"><span class="glyphicon glyphicon-map-marker"></span> New York</p>
+                                <p class="tutor-loc" ng-show="userprofile.location"><span class="glyphicon glyphicon-map-marker"></span>{{userprofile.location}}</p>
                                 <a href="#" class="tutor-btns">Message</a>
                                 <a href="#" class="tutor-btns">View Profile</a>
                             </div>
@@ -96,7 +96,7 @@
                           </h3>
                                                 </div>
                                                 <div class="panel-body pt5 text-gray">
-                                                    <h4>{{ user_education }}</h4>
+                                                    <h4>{{userprofile.education}}</h4>
                                                 </div>
                                                 <div class="panel-heading panel-heading-gray">
                                                     <h3 class="panel-title text-left">
