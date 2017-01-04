@@ -42,34 +42,28 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
 
     $scope.getProfileDetails = function() {
         $scope.authUser = $SessionService.user();
-        console.log($scope.authUser);
-        console.log('state', $state.current.name)
         $ProfileService.get($scope.authUser.id, function(response) {
+            console.log(response.result);
             if (Object.keys(response.result).length > 0) {
-                $scope.user = response.result[0]
                 if ($state.current.name == 'user.editProfile') {
+                    $scope.user = response.result[0];
                     $scope.user.languages = JSON.parse($scope.user.languages);
                     $scope.user.interests = JSON.parse($scope.user.interests);
                     $scope.user.skills = JSON.parse($scope.user.skills);
-                }
-                
-                // $scope.userprofile = response.result[0];
-                // console.log($scope.userprofile, $scope.authUser);
-                // var languages = response.result[0].languages
-                // var skills = response.result[0].skills
-                // var interests = response.result[0].interests
-                // var languages_known = JSON.parse(languages);
-                // $scope.languages_known = JSON.parse(languages);
-                // $scope.skill = JSON.parse(skills);
-                // $scope.interests = JSON.parse(interests);
-                // var str = ''
-                // for (var i = 0; i < languages_known.length; i++) {
-                //     var languages_known_string = ''
-                //     var language = languages_known[i].text;
-                //     languages_known_string = language + ' | ';
-                // }
-                // console.log('languages_known_string', languages_known_string)
+                } else {
+                    $scope.userprofile = response.result[0];
+                    $scope.userprofile.languages = JSON.parse($scope.userprofile.languages);
+                    $scope.userprofile.interests = JSON.parse($scope.userprofile.interests);
+                    $scope.userprofile.skills = JSON.parse($scope.userprofile.skills);
+                    $scope.language = '';
+                    angular.forEach($scope.userprofile.languages, function(value, key) {
+                        $scope.language += value.text+' | ';
+                    });
 
+                    $scope.language.slice(0, -1);
+                    console.log($scope.language);
+
+                }
             }
 
         });
