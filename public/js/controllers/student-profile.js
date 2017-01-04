@@ -83,10 +83,6 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         data.languages = JSON.stringify(user.languages);
         data.skills = JSON.stringify(user.skills);
         $ProfileService.createProfile(data, function(response) {
-<<<<<<< HEAD
-            authUser.image = $scope.image;
-=======
->>>>>>> bfbcbc9a6af877e9410ce8828d4fb47e3142b6a9
             $state.go("user.studentProfile");
         });
     }
