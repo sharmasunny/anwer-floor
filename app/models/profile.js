@@ -3,16 +3,16 @@
 module.exports = function(sequelize, DataTypes) {
 
 	var Profile = sequelize.define('Profile', {
-		title: DataTypes.STRING,
+		info: DataTypes.STRING,
 		category: DataTypes.STRING,
 	    education: DataTypes.STRING,
-	    Languages_known: DataTypes.STRING,
-	    skill: DataTypes.STRING,
+	    languages: DataTypes.STRING,
+	    skills: DataTypes.STRING,
 	    interests: DataTypes.STRING,
 	    reviews: DataTypes.STRING,
-	    city: DataTypes.STRING,
+	    location: DataTypes.STRING,
 	    points: DataTypes.INTEGER,
-	    designition: DataTypes.STRING,
+	    rate: DataTypes.INTEGER,
 	    share: DataTypes.STRING,
 	},
 	{
