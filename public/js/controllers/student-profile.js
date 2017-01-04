@@ -45,6 +45,7 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         console.log($scope.authUser);
         $ProfileService.get($scope.authUser.id, function(response) {
             if (Object.keys(response.result).length > 0) {
+
                 $scope.userprofile = response.result[0];
 
                 console.log($scope.userprofile, $scope.authUser);
@@ -119,8 +120,6 @@ angular.module('mean.system').controller('ProfileModalController', ['$scope', '$
         formData.append("image", image);
         formData.append("id", authUser.id);
         $ProfileService.imageUpload(formData, function(response) {
-            authUser.image = response.filename;
-            $LocalService.set('auth_user', JSON.stringify(authUser));
             $uibModalInstance.close(response.filename);
         });
 
