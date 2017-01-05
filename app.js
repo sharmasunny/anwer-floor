@@ -28,7 +28,7 @@ var app = express();
 require('./config/express')(app, passport);
 
 //Start the app by listening on <port>
-app.listen(config.PORT);
+app.listen(80);
 winston.info('Express app started on port ' + config.PORT);
 
 //expose app
