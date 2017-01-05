@@ -653,16 +653,16 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('anon.enguiries',{
-            url : '/enguiries',
+        .state('anon.enquiries',{
+            url : '/enquiries',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'EnguiriesController',
-                    templateUrl: 'views/enguiries/index.html'
+                    controller:'EnquiriesController',
+                    templateUrl: 'views/enquiries/index.html'
                 },
                 'footer': {
                     controller: 'VerificationController',
@@ -672,7 +672,7 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
             data: {
                 css: 'css/default-style.css',
                 'meta': {
-                    'title': 'Enguiries',
+                    'title': 'Enquiries',
                     'description': '',
                     'author': ''
                 }
