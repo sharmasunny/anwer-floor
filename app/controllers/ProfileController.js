@@ -33,14 +33,34 @@ module.exports = {
     Description : use to create Profile
     --------------------------------------------------------------------------*/
 
-    createProfile: function(req, res) {
-        let item = req.body;
-        db.Profile.create(item)
-            .then(function(profile) {
-                return res.json({ resStatus: 'success', msg: "Profile Created", result: profile });
+    createUpdateProfile: function(req, res) {
+        let userid = req.body.UserId;
+        db.Profile.findAll({ where: { Userid: userid } })
+            .then(function(resData) {
+                if (!resData) {
+                    let item = req.body;
+                    db.Profile.create(item)
+                        .then(function(profile) {
+                            return res.json({ resStatus: 'success', msg: "Profile Created", result: profile });
+                        }).catch(function(err) {
+                            return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR, err: err });
+                        });
+                } else {
+                    db.Profile.update(req.body, { where: { UserId: userid } }).then(function(resData) {
+                        if (!resData) {
+                            return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR });
+                        } else {
+                            return res.json({ resStatus: 'success', msg: 'Update Profile', result: resData });
+                        }
+                    }).catch(function(err) {
+                        return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR, err: err });
+                    });
+                }
             }).catch(function(err) {
-                return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR ,err:err});
+                return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR, err: err });
             });
+
+
     },
 
     /**--------------------------------------------------------------------------
@@ -53,11 +73,11 @@ module.exports = {
         let id = req.body.id
         console.log('asdasdasd', id);
         let image = req.file.filename;
-        db.User.update({image:image}, { where: { id: id } }).then(function(resData) {
+        db.User.update({ image: image }, { where: { id: id } }).then(function(resData) {
             if (!resData) {
                 return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR });
             } else {
-                return res.json({ resStatus: 'success', msg: 'User Image updated', filename: image});
+                return res.json({ resStatus: 'success', msg: 'User Image updated', filename: image });
             }
         }).catch(function(err) {
             return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR, err: err });
