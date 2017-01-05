@@ -1,4 +1,4 @@
-angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$state', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService', '$LocalService', '$timeout', 'FlashService', function($scope, $http, $state, $uibModal, $log, Global, $ProfileService, $SessionService, $LocalService, FlashService, $timeout) {
+angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$state', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService', '$LocalService', function($scope, $http, $state, $uibModal, $log, Global, $ProfileService, $SessionService, $LocalService) {
     $scope.global = Global;
     $scope.animationsEnabled = true;
     $scope.user = {};
@@ -6,6 +6,8 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
     if (authUser.image != '' || authUser.image != undefined) {
         $scope.image = authUser.image;
     }
+
+
 
     $scope.UploadImage = function(event) {
 
@@ -31,6 +33,9 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
 
             modalInstance.result.then(function(image) {
                 $scope.image = image;
+                var UserDetail = $SessionService.getUser();
+                UserDetail.result.image = $scope.image;
+                $LocalService.set('auth_user', JSON.stringify(UserDetail));
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());
             });
@@ -46,27 +51,41 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
             console.log(response.result);
             $scope.profileId=response.result[0].id
             if (Object.keys(response.result).length > 0) {
-                if ($state.current.name == 'user.editProfile') {
-                    $scope.user = response.result[0];
-                    $scope.user.languages = JSON.parse($scope.user.languages);
-                    $scope.user.interests = JSON.parse($scope.user.interests);
-                    $scope.user.skills = JSON.parse($scope.user.skills);
-                } else {
-                    $scope.userprofile = response.result[0];
-                    $scope.userprofile.languages = JSON.parse($scope.userprofile.languages);
-                    $scope.userprofile.interests = JSON.parse($scope.userprofile.interests);
-                    $scope.userprofile.skills = JSON.parse($scope.userprofile.skills);
-                    $scope.language = '';
-                    angular.forEach($scope.userprofile.languages, function(value, key) {
-                        $scope.language += value.text+' | ';
-                    });
 
-                    $scope.language.slice(0, -1);
-                    console.log($scope.language);
+                $scope.userprofile = response.result[0];
+                $scope.userprofile.languages = JSON.parse($scope.userprofile.languages);
+                $scope.userprofile.interests = JSON.parse($scope.userprofile.interests);
+                $scope.userprofile.skills = JSON.parse($scope.userprofile.skills);
+                $ProfileService.getLocation(function(response) {
+                    $scope.userprofile.location = response.city;
 
-                }
+                });
             }
 
+        });
+    }
+    $scope.showTxt = true;
+
+    $scope.updateprofile = function() {
+        $scope.showTxt = ($scope.showTxt == true ? false : true);
+
+    }
+
+    $scope.saveProfile = function() {
+        var data = {};
+        var user = $scope.userprofile;
+        var authUser = $SessionService.user();
+        data.UserId = authUser.id;
+        data.info = user.info;
+        data.category = user.category;
+        data.education = user.education;
+        data.location = user.location;
+        data.rate = user.rate;
+        data.interests = JSON.stringify(user.interests);
+        data.languages = JSON.stringify(user.languages);
+        data.skills = JSON.stringify(user.skills);
+        $ProfileService.createProfile(data, function(response) {
+            $scope.showTxt = ($scope.showTxt == true ? false : true);
         });
     }
 
@@ -92,37 +111,11 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         });
     }
 
+
     $scope.editProfile = function() {
         $state.go("user.editProfile");
     }
 
-
-    $scope.Update = function(user) {
-        var data = {};
-        var authUser = $SessionService.user();
-        data.UserId = authUser.id;
-        data.info = user.info;
-        data.category = user.category;
-        data.education = user.education;
-        data.location = user.location;
-        data.rate = user.rate;
-        data.interests = JSON.stringify(user.interests);
-        data.languages = JSON.stringify(user.languages);
-        data.skills = JSON.stringify(user.skills);
-        $ProfileService.updateProfile(data, function(response) {
-            var serverMsg = { resStatus: response.resStatus, msg: response.msg };
-            if (response.resStatus == "error") {
-                $scope.serverMsg = serverMsg;
-            } else if (response.resStatus == "success") {
-                serverMsg = { resStatus: response.resStatus, msg: 'Contact Successfully Update', verifyId: response.result };
-                $scope.serverMsg = serverMsg;
-                $state.go("user.studentProfile");
-                // $timeout(function() {
-                //     $uibModalInstance.close(serverMsg);
-                // }, 1000);
-            }
-        });
-    }
 
     /***************Enquiry Modal***********/
     $scope.postRequirements = function() {
@@ -147,7 +140,6 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
             $log.info('Modal dismissed at: ' + new Date());
         });
     }
-
 
 }]);
 
@@ -183,6 +175,8 @@ angular.module('mean.system').controller('ProfileModalController', ['$scope', '$
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
+
+
 
 }]);
 

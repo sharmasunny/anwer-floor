@@ -21,7 +21,7 @@ module.exports = function(app, express) {
     // profile routes
     router.get('/:id', authorization, ProfileController.getUserProfileDetails);
     router.post('/uploadIMage', authorization, upload.single('image'), ProfileController.uploadImage);
-    router.post('/create', authorization, ProfileController.createProfile);
+    router.post('/create', authorization, ProfileController.createUpdateProfile);
     router.post('/update/:id', authorization, ProfileController.updateProfile);
 
     app.use('/profile', router);

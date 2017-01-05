@@ -1,4 +1,4 @@
-angular.module('mean', ["xeditable", "ui.select", 'ngCookies', 'ngMessages', 'ngMeta', 'ngResource', 'ui.router', 'uiRouterStyles', 'ui.bootstrap', 'ui.route', 'ngStorage', 'mean.system', 'mean.articles', 'mean.auth', 'satellizer', 'angularFblogin', 'ngLodash','ngImgCrop','ngTagsInput'])
+angular.module('mean', ["xeditable", "ui.select", 'ngCookies', 'ngMessages', 'ngMeta', 'ngResource', 'ui.router', 'uiRouterStyles', 'ui.bootstrap', 'ui.route', 'ngStorage', 'mean.system', 'mean.articles', 'mean.auth', 'satellizer', 'angularFblogin', 'ngLodash','ngImgCrop','ngTagsInput','ngGeolocation'])
     .config(function($authProvider, ngMetaProvider) {
 
 
@@ -46,13 +46,13 @@ angular.module('mean', ["xeditable", "ui.select", 'ngCookies', 'ngMessages', 'ng
                 $state.go('anon.home');
             }
 
-            if(Object.keys($SessionService.user()).length > 0 ) {
-                if($SessionService.user().image!='' && $SessionService.user().image!=undefined)
-                 if(toState.name == "user.addProfile") {
-                      event.preventDefault();
-                      $state.go("user.studentProfile");
-                 }
-            }
+            // if(Object.keys($SessionService.user()).length > 0 ) {
+            //     if($SessionService.user().image!='' && $SessionService.user().image!=undefined)
+            //      if(toState.name == "user.addProfile") {
+            //           event.preventDefault();
+            //           $state.go("user.studentProfile");
+            //      }
+            // }
         });
 
     }])

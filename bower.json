@@ -24,6 +24,8 @@
     "ng-lodash": "^0.5.0",
     "angular-bootstrap": "^2.3.1",
     "ng-img-crop": "ngImgCrop#^0.3.2",
-    "ng-tags-input": "^3.1.1"
+    "ng-tags-input": "^3.1.1",
+    "ngGeolocation": "^0.0.8",
+    "angular-trix": "^1.0.2"
   }
 }

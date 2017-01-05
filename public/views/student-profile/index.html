@@ -3,23 +3,53 @@
         <div class="col-sm-8 col-md-9">
             <div class="panel-custom">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Profile  <div class="pull-right"><input type="button" name="edit-profile" class="btn-txt-im btn btn-primary" ng-click="editProfile()" value="Edit" /></div></h3>
+                    <h3 class="panel-title">Profile  <div class="pull-right"><input type="button" ng-show="showTxt" name="edit-profile" class="btn-txt-im btn btn-primary" ng-click="updateprofile()" value="Update" />
+                    <input type="button" ng-show="!showTxt" name="edit-profile" class="btn-txt-im btn btn-primary" ng-click="saveProfile()" value="Save" />
+                    </div></h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-4 col-lg-3">
                             <div class="tutors-box">
-                                <span class="tutor-price">$ 50/hr</span>
-                                <a href="#">
-                                    <img ng-show="!authUser.image" class="tutor-picture" src="images/user.png" />
-                                    <img ng-show="authUser.image" class="tutor-picture" src="/images/profile-images/{{authUser.image}}" />
-                                </a>
+                                <span class="tutor-price">
+                                    $ 50/hr
+                                </span>
+                                <div ng-show="showTxt">
+                                    <img ng-show="!image" class="tutor-picture" src="images/user.png" />
+                                    <img ng-show="image" class="tutor-picture" src="/images/profile-images/{{image}}" />
+                                </div>
+                                <div class="pro-pic-ed" ng-show="!showTxt">
+                                    <img ng-show="!image" class="tutor-picture" src="images/user.png" />
+                                    <img ng-show="image" class="tutor-picture" src="/images/profile-images/{{image}}" />
+                                    <i class="glyphicon glyphicon-pencil edit-icon"></i>
+                                    <!-- <label for="img-file">
+                                        <img ng-show="!image" class="tutor-picture" src="images/user.png" />
+                                        <img ng-show="image" class="tutor-picture" src="/images/profile-images/{{image}}" />
+                                        <i class="glyphicon glyphicon-pencil edit-icon"></i>
+                                    </label>
+                                    <input type="file" ng-model="file_name" id="img-file" style="display:none" onchange="angular.element(this).scope().UploadImage(event)" /> -->
+                                </div>
                                 <h3>{{ authUser.firstname }} {{authUser.lastname}} <small>100 Pts</small></h3>
-                                <h4 class="tutor-profes">{{userprofile.category}}</h4>
-                                <p class="tutor-lang">{{language}}</p>
-                                <p class="tutor-loc" ng-show="userprofile.location"><span class="glyphicon glyphicon-map-marker"></span>{{userprofile.location}}</p>
+                                <h4 class="tutor-profes">
+                                    <span ng-show="showTxt">{{userprofile.category}}</span>
+                                    <span ng-show="!showTxt">
+                                        <input class="form-control" placeholder="Enter Your Category" ng-model="userprofile.category"/>
+                                    </span>
+                                </h4>
+                                <p class="tutor-lang">
+                                    <span ng-show="showTxt" ng-repeat="languages in userprofile.languages">{{languages.text}} <b ng-show="!$last"> | </b> </span>
+                                    <span ng-show="!showTxt">
+                                        <tags-input ng-model="userprofile.languages" add-on-space="true" add-on-comma="true" add-on-blur="true" add-on-enter="true"  placeholder="Enter languages"></tags-input>
+                                    </span>
+                                </p>
+                                <p class="tutor-loc" ng-show="userprofile.location">
+                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                    <span ng-show="showTxt">{{userprofile.location}}</span>
+                                    <span ng-show="!showTxt">
+                                        <input class="form-control" placeholder="Enter Your Location" ng-model="userprofile.location"/>
+                                    </span>
+                                </p>
                                 <a href="#" class="tutor-btns">Message</a>
-                                <a href="#" class="tutor-btns">View Profile</a>
                             </div>
                             <div class="panel-heading">
                                 <h3 class="panel-title font15 text-left">
@@ -50,41 +80,14 @@
                             <div class="panel panel-default borderR0">
                                 <div class="panel-heading panel-heading-gray">
                                     <h3 class="panel-title text-left">
-                    <img src="images/icons/icon-title.png"> Panel title
+                    <img src="images/icons/icon-title.png"> About Me
                   </h3>
                                 </div>
-                                <!--div ng-controller="StudentProfileController">
-                  <form data-editable-form name="uiSelectForm">
-                    <div editable-ui-select="user.state" data-e-form="uiSelectForm" data-e-name="state" name="state" theme="bootstrap" data-e-ng-model="user.state" data-e-style="min-width:600px;">
-                      {{user.title}}
-                      <editable-ui-select-match placeholder="Panel Title">
-                          {{$select.selected}}
-                      </editable-ui-select-match>
-                      <editable-ui-select-choices repeat="state in states | filter: $select.search track by $index">
-                        {{title}}
-                      </editable-ui-select-choices>
-                    </div>
-                    <br/>
-                    <div class="buttons">
-                      <!-- button to show form -->
-                                <!--button type="button" class="btn btn-default" ng-click="uiSelectForm.$show()" ng-show="!uiSelectForm.$visible">
-                        Edit
-                      </button>
-                      <!-- buttons to submit / cancel form -->
-                                <!--span ng-show="uiSelectForm.$visible">
-                        <br/>
-                        <button type="submit" class="btn btn-primary" ng-disabled="uiSelectForm.$waiting">
-                          Save
-                        </button>
-                        <button type="button" class="btn btn-default" ng-disabled="uiSelectForm.$waiting" ng-click="uiSelectForm.$cancel()">
-                          Cancel
-                        </button>
-                      </span>
-                    </div>
-                  </form>
-                </div-->
                                 <p class="about-bg-panel">
-                                    {{userprofile.info}}
+                                    <span ng-show="showTxt">{{userprofile.info}}</span>
+                                    <span ng-show="!showTxt">
+                                        <textarea class="form-control" name="info" type="text" ng-model="userprofile.info"></textarea>
+                                    </span>
                                 </p>
                                 <div class="panel-body">
                                     <div class="row">
@@ -96,7 +99,10 @@
                           </h3>
                                                 </div>
                                                 <div class="panel-body pt5 text-gray">
-                                                    <h4>{{userprofile.education}}</h4>
+                                                    <h4 ng-show="showTxt">{{userprofile.education}}</h4>
+                                                    <span ng-show="!showTxt">
+                                                        <textarea class="form-control" name="info" type="text" ng-model="userprofile.education"></textarea>
+                                                    </span>
                                                 </div>
                                                 <div class="panel-heading panel-heading-gray">
                                                     <h3 class="panel-title text-left">
@@ -104,8 +110,10 @@
                           </h3>
                                                 </div>
                                                 <div class="panel-body">
-                                                    <span ng-repeat="skill in userprofile.skills" class="btn-yellow">{{ skill.text }}</span>&nbsp;&nbsp;
-                                                    <!--span class="btn-yellow">English</span-->
+                                                    <span ng-show="showTxt" ng-repeat="skill in userprofile.skills" class="btn-yellow">{{ skill.text }}</span>&nbsp;&nbsp;
+                                                    <span ng-show="!showTxt">
+                                                        <tags-input ng-model="userprofile.skills" add-on-space="true" add-on-comma="true" add-on-blur="true" add-on-enter="true"  placeholder="Enter skill"></tags-input>
+                                                    </span>
                                                 </div>
                                                 <div class="panel-heading panel-heading-gray">
                                                     <h3 class="panel-title text-left">
@@ -113,7 +121,10 @@
                           </h3>
                                                 </div>
                                                 <div class="panel-body pt5 text-gray">
-                                                    <h4 ng-repeat="interest in userprofile.interests">{{ interest.text }}</h4>
+                                                    <h4 ng-show="showTxt" ng-repeat="interest in userprofile.interests">{{ interest.text }}</h4>
+                                                    <span ng-show="!showTxt">
+                                                        <tags-input ng-model="userprofile.interests" add-on-space="true" add-on-comma="true" add-on-blur="true" add-on-enter="true"  placeholder="Enter Interests"></tags-input>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -125,7 +136,10 @@
                           </h3>
                                                 </div>
                                                 <div class="panel-body pt5 text-gray">
-                                                    <h4 ng-repeat="language in userprofile.languages">{{ language.text }}<br></h4>
+                                                    <h4 ng-show="showTxt" ng-repeat="language in userprofile.languages">{{ language.text }}<br></h4>
+                                                    <span ng-show="!showTxt">
+                                                        <tags-input ng-model="userprofile.languages" add-on-space="true" add-on-comma="true" add-on-blur="true" add-on-enter="true"  placeholder="Enter Interests"></tags-input>
+                                                    </span>
                                                 </div>
                                                 <div class="panel-heading panel-heading-gray">
                                                     <h3 class="panel-title text-left">
@@ -133,14 +147,10 @@
                           </h3>
                                                 </div>
                                                 <div class="panel-body text-gray">
-                                                    <p>
-                                                        <strong>Economics Assignment</strong>
-                                                        <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit dolor sit amet.
-                                                    </p>
-                                                    <p>
-                                                        <strong>Design Concept</strong>
-                                                        <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit dolor sit amet.
-                                                    </p>
+                                                    <span ng-show="showTxt">{{userprofile.share}}</span>
+                                                    <span ng-show="!showTxt">
+                                                    <textarea class="form-control" name="info" type="text" ng-model="userprofile.share"></textarea>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>

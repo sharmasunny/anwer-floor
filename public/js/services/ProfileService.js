@@ -2,7 +2,7 @@ angular.module('mean.auth').factory("$ProfileService", ['$http', '$LocalService'
 
     return {
         get: function(id, cb) {
-            $http.get('/profile/'+id)
+            $http.get('/profile/' + id)
                 .then(function successCallback(response) {
                     cb(response.data);
                 }, function errorCallback(response) {
@@ -21,7 +21,7 @@ angular.module('mean.auth').factory("$ProfileService", ['$http', '$LocalService'
                 });
         },
         createProfile: function(data, cb) {
-            $http.post('/profile/create',data)
+            $http.post('/profile/create', data)
                 .then(function successCallback(response) {
                     cb(response.data);
                 }, function errorCallback(response) {
@@ -29,7 +29,15 @@ angular.module('mean.auth').factory("$ProfileService", ['$http', '$LocalService'
                 });
         },
         updateProfile: function(data, cb) {
-            $http.post('/profile/update/'+data.UserId, data)
+            $http.post('/profile/update/' + data.UserId, data)
+                .then(function successCallback(response) {
+                    cb(response.data);
+                }, function errorCallback(response) {
+                    cb(response.data);
+                });
+        },
+        getLocation: function(cb) {
+            $http.get("http://ipinfo.io",JSON)
                 .then(function successCallback(response) {
                     cb(response.data);
                 }, function errorCallback(response) {
