@@ -49,6 +49,7 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         $scope.authUser = $SessionService.user();
         $ProfileService.get($scope.authUser.id, function(response) {
             console.log(response.result);
+            $scope.profileId=response.result[0].id
             if (Object.keys(response.result).length > 0) {
 
                 $scope.userprofile = response.result[0];
@@ -110,8 +111,34 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         });
     }
 
+
     $scope.editProfile = function() {
         $state.go("user.editProfile");
+    }
+
+
+    /***************Enquiry Modal***********/
+    $scope.postRequirements = function() {
+       $scope.animationsEnabled = true;
+       var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'requirementModal.html',
+                controller: 'RequirementModalController',
+                size: 'sm',
+                resolve: {
+                    items: function() {
+                        return $scope.profileId;
+                    }
+                }
+        });
+
+        modalInstance.result.then(function(items) {
+            console.log(items)
+        }, function() {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
     }
 
 }]);
@@ -150,5 +177,30 @@ angular.module('mean.system').controller('ProfileModalController', ['$scope', '$
     };
 
 
+
+}]);
+
+angular.module('mean.system').controller('RequirementModalController', ['$scope', '$state', '$window', '$uibModalInstance', 'items', '$EnquiryService', '$SessionService', '$LocalService', function($scope, $state, $window, $uibModalInstance, items, $EnquiryService, $SessionService, $LocalService) {
+     $scope.sendRequirements = function(item) {
+        var data = {};
+        var authUser = $SessionService.user();
+        data.UserId = authUser.id;
+        data.ProfileId = items;
+        data.enquiry = item.enquiry;
+        data.language = item.language;
+        data.rate = item.rate;
+        data.description = item.description;
+        $EnquiryService.createEnquiry(data, function(response) {
+            var UserDetail = $SessionService.getUser();
+            UserDetail.result.image = $scope.image;
+            $LocalService.set('auth_user', JSON.stringify(UserDetail));
+            $uibModalInstance.close();
+            $state.go("anon.enquiries");
+        });
+    }
+
+    $scope.close = function() {
+        $uibModalInstance.dismiss('cancel');
+    };
 
 }]);

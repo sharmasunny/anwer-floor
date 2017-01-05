@@ -232,3 +232,38 @@
         <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
     </div>
 </script>
+
+<!--Modal for Post a Requirement-->
+<script type="text/ng-template" id="requirementModal.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Post Your Requirements </h4>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <!--div ng-include="'/element/flashMessage.html'"></div-->
+        <form class="form-signin" name="form" ng-submit="form.$submitted && form.$valid &&  sendRequirements(item)" novalidate>
+            <div class="input-container form-group">
+                <input type="text" id="enquiry" name="enquiry" class="form-control" ng-model="item.enquiry" placeholder="Your enquiry" required>
+            </div>
+
+            <div class="input-container form-group">
+                <input type="text" id="rate" name="rate" class="form-control" ng-model="item.rate" placeholder="Your per hour rate" required>
+            </div>
+
+            <div class="input-container form-group">
+                <input type="text" id="language" name="language" class="form-control" ng-model="item.language" placeholder="language required" required>
+            </div>
+
+            <div class="input-container form-group">
+                <textarea id="description" name="description" class="form-control" ng-model="item.description" placeholder="Enter enquiry description" required> </textarea>
+            </div>
+            <div class="btn-toolbar form-group">
+                <button class="btn btn-success" type="submit">Save</button>
+                <button class="btn btn-warning" type="button" ng-click="close()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</script>
+<!--Ends Here-->
