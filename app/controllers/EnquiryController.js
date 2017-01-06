@@ -29,6 +29,26 @@ module.exports = {
 
 
     /**--------------------------------------------------------------------------
+    Function    : getProfileId
+    Description : use to get profileId
+    --------------------------------------------------------------------------*/
+
+    getProfileId: function(req, res) {
+        let userid = req.params.id;
+        db.Profile.findAll({ where: { Userid: userid } })
+            .then(function(resData) {
+                if (!resData) {
+                    return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR });
+                } else {
+                    return res.json({ resStatus: 'success', msg: 'Profile Listing', result: resData });
+                }
+            }).catch(function(err) {
+                return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR, err: err });
+            });
+    },
+
+
+    /**--------------------------------------------------------------------------
     Function    : createEnquiry
     Description : use to create enquiry
     --------------------------------------------------------------------------*/

@@ -11,6 +11,7 @@ module.exports = function(app, express) {
     // profile routes
     router.get('/getAll', authorization, EnquiryController.getAllEnquiries);
     router.post('/create', authorization, EnquiryController.createEnquiry);
+    router.get('/getProfileId/:id', authorization, EnquiryController.getProfileId);
     //router.post('/update/:id', authorization, ProfileController.updateProfile);
 
     app.use('/enquiry', router);

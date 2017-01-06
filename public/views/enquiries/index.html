@@ -38,7 +38,7 @@
 				              <span class="fa fa-envelope"></span>
 				            </div>
 				            <div class="media-body">
-				              <h4 class="media-heading">{{ enquiry.Profile.User.firstname }} {{ enquiry.Profile.User.lastname }}<small class="pull-right mt4">10 Days ago</small></h4>
+				              <h4 class="media-heading">{{ enquiry.Profile.User.firstname }} {{ enquiry.Profile.User.lastname }}<small class="pull-right mt4">{{ enquiry.createdAt }} ago</small></h4>
 				              <h5>{{ enquiry.enquiry }}</h5>
 				              <p>
 				                {{ enquiry.description }}
@@ -288,13 +288,13 @@
       </div>
     </div>
     <div class="col-sm-4 col-md-3">
-    	<a href="#" class="btn-requirement btn-block">Post your Requirement</a>
+    	<a href="#" ng-click="postRequirements()" class="btn-requirement btn-block">Post your Requirement</a>
     	<div class="panel-custom mt10">
         <div class="panel-body">
         	<ul class="yellow-3box">
           	<li>
           		<a href="#">
-          			<i class="fa fa-file-text-o"></i><span>Enquiry<br>1548</span>
+          			<i class="fa fa-file-text-o"></i><span>Enquiry<br>{{ enquiries_length }}</span>
           		</a>
           	</li>
           	<li>
@@ -314,13 +314,13 @@
         </div>
         <div class="panel-body padding0">
         	<ul class="recent-listing">
+        		<li ng-repeat="enquiry in enquiries | orderBy : '-createdAt'"><a href="#">{{ enquiry.enquiry }}</a></li>
+        		<!--li><a href="#">Lorem ipsum is simply dummy text this is dummy text.</a></li>
         		<li><a href="#">Lorem ipsum is simply dummy text this is dummy text.</a></li>
         		<li><a href="#">Lorem ipsum is simply dummy text this is dummy text.</a></li>
         		<li><a href="#">Lorem ipsum is simply dummy text this is dummy text.</a></li>
         		<li><a href="#">Lorem ipsum is simply dummy text this is dummy text.</a></li>
-        		<li><a href="#">Lorem ipsum is simply dummy text this is dummy text.</a></li>
-        		<li><a href="#">Lorem ipsum is simply dummy text this is dummy text.</a></li>
-        		<li><a href="#">Lorem ipsum is simply dummy text this is dummy text.</a></li>
+        		<li><a href="#">Lorem ipsum is simply dummy text this is dummy text.</a></li-->
         	</ul>
         </div>
       </div>
