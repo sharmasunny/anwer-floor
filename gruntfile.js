@@ -89,7 +89,8 @@ module.exports = function(grunt) {
                     {cwd: 'bower_components/ng-img-crop/compile/minified',               src: ['*.*'], dest: 'public/lib/ng-img-crop', expand: true},
                     {cwd: 'bower_components/ng-tags-input',                              src: ['*.*'], dest: 'public/lib/ng-tags-input', expand: true},
                     {cwd: 'bower_components/ngGeolocation',                              src: ['*.js'], dest: 'public/lib/ngGeolocation', expand: true},
-                    {cwd: 'bower_components/animate.css',                                src: ['*.*'], dest: 'public/lib/animate.css', expand: true}
+                    {cwd: 'bower_components/animate.css',                                src: ['*.*'], dest: 'public/lib/animate.css', expand: true},
+                    {cwd: 'bower_components/moment',                              		 src: ['*.js'], dest: 'public/lib/moment', expand: true}
                 ]
             }
         },

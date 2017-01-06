@@ -291,13 +291,28 @@ angular.module('mean.system').controller('RequirementModalController', ['$scope'
         data.language = item.language;
         data.rate = item.rate;
         data.description = item.description;
-        $EnquiryService.createEnquiry(data, function(response) {
-            var UserDetail = $SessionService.getUser();
-            UserDetail.result.image = $scope.image;
-            $LocalService.set('auth_user', JSON.stringify(UserDetail));
-            $uibModalInstance.close();
-            $state.go("anon.enquiries");
+        if(data.ProfileId == '' || data.profileId == undefined){
+            $EnquiryService.getProfileId(data.UserId, function(response) {
+            data.ProfileId = response.result[0].id;
+            $EnquiryService.createEnquiry(data, function(response) {
+                var UserDetail = $SessionService.getUser();
+                UserDetail.result.image = $scope.image;
+                $LocalService.set('auth_user', JSON.stringify(UserDetail));
+                $uibModalInstance.close();
+                $state.go("anon.enquiries");
+            });
         });
+        }else{
+            $EnquiryService.createEnquiry(data, function(response) {
+                var UserDetail = $SessionService.getUser();
+                UserDetail.result.image = $scope.image;
+                $LocalService.set('auth_user', JSON.stringify(UserDetail));
+                $uibModalInstance.close();
+                $state.go("anon.enquiries");
+            });
+            
+        }
+        
     }
 
     $scope.close = function() {
