@@ -1891,3 +1891,15 @@ textarea.text-heigth190{
 .pro-pic-ed {
     cursor: pointer;
 }
+.img-av-model{
+	height: 100px;
+	width: 110px;
+	cursor: pointer;
+	margin: 5px;
+}
+.row.upload-file-mo {
+    margin: 34px;
+}
+.seltedAvator{
+    background-color: #767676;
+}

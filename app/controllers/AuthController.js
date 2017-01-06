@@ -113,20 +113,14 @@ module.exports = {
                 user.token = '';
                 db.User.update({ "verificationEmail": true, "status": true, "token": '' }, { where: { id: user.id } }).then(function(resData) {
                     if (resData) {
-                        db.Profile.findAll({ where: { Userid: user.id } }).then(function(resData) {
-                              if (Object.keys(resData).length <= 0) {
-                                  let item = {};
-                                  item.UserId = user.id;
-                                  db.Profile.create(item)
-                                      .then(function(profile) {
-                                           return res.json({ resStatus: 'success', msg: "Your Email Account has been successfully verified.", token: JwtService.issueToken(resData.id), result: user });
-                                      }).catch(function(err) {
-                                          return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR, err: err });
-                                      });
-                              } 
-                        }).catch(function(err) {
-                            return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR, err: err });
-                        });
+                        let item = {};
+                        item.UserId = user.id;
+                        db.Profile.create(item)
+                            .then(function(profile) {
+                                return res.json({ resStatus: 'success', msg: "Your Email Account has been successfully verified.", token: JwtService.issueToken(resData.id), result: user });
+                            }).catch(function(err) {
+                                return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR, err: err });
+                            });
                     } else {
                         return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR });
                     }
