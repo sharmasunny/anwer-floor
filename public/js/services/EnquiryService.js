@@ -9,6 +9,14 @@ angular.module('mean.auth').factory("$EnquiryService", ['$http', '$LocalService'
                     cb(response.data);
                 });
         },
+        getProfileId: function(id,cb) {
+            $http.get('/enquiry/getProfileId/' + id)
+                .then(function successCallback(response) {
+                    cb(response.data);
+                }, function errorCallback(response) {
+                    cb(response.data);
+                });
+        },
         createEnquiry: function(data, cb) {
             $http.post('/enquiry/create',data)
                 .then(function successCallback(response) {
