@@ -37,7 +37,7 @@ module.exports = {
         let userid = req.body.UserId;
         db.Profile.findAll({ where: { Userid: userid } })
             .then(function(resData) {
-                if (!resData) {
+                if (Object.keys(resData).length<=0) {
                     let item = req.body;
                     db.Profile.create(item)
                         .then(function(profile) {
@@ -45,6 +45,7 @@ module.exports = {
                         }).catch(function(err) {
                             return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR, err: err });
                         });
+                    
                 } else {
                     db.Profile.update(req.body, { where: { UserId: userid } }).then(function(resData) {
                         if (!resData) {
@@ -55,6 +56,7 @@ module.exports = {
                     }).catch(function(err) {
                         return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR, err: err });
                     });
+                    
                 }
             }).catch(function(err) {
                 return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR, err: err });

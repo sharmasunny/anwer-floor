@@ -1,4 +1,4 @@
-angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$state', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService', '$LocalService', function($scope, $http, $state, $uibModal, $log, Global, $ProfileService, $SessionService, $LocalService) {
+angular.module('mean.system').controller('StudentProfileController', ['$scope', '$http', '$state', '$uibModal', '$log', 'Global', '$ProfileService', '$SessionService', '$LocalService', '$geolocation', function($scope, $http, $state, $uibModal, $log, Global, $ProfileService, $SessionService, $LocalService, $geolocation) {
     $scope.global = Global;
     $scope.animationsEnabled = true;
     $scope.user = {};
@@ -7,6 +7,37 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         $scope.image = authUser.image;
     }
 
+    $geolocation.getCurrentPosition({
+        timeout: 600
+    }).then(function(position) {
+        $scope.myPosition = position;
+    });
+
+    $scope.IMageEditModel = function() {
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'imageCropModal.html',
+            controller: 'ProfileModalController',
+            size: 'lg',
+            resolve: {
+                items: function() {
+                    return {};
+                }
+            }
+        });
+
+        modalInstance.result.then(function(image) {
+            $scope.image = image;
+            var UserDetail = $SessionService.getUser();
+            UserDetail.result.image = $scope.image;
+            $LocalService.set('auth_user', JSON.stringify(UserDetail));
+        }, function() {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+
+    }
 
 
     $scope.UploadImage = function(event) {
@@ -48,10 +79,8 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
     $scope.getProfileDetails = function() {
         $scope.authUser = $SessionService.user();
         $ProfileService.get($scope.authUser.id, function(response) {
-            console.log(response.result);
-            $scope.profileId=response.result[0].id
             if (Object.keys(response.result).length > 0) {
-
+                $scope.profileId = response.result[0].id
                 $scope.userprofile = response.result[0];
                 $scope.userprofile.languages = JSON.parse($scope.userprofile.languages);
                 $scope.userprofile.interests = JSON.parse($scope.userprofile.interests);
@@ -64,6 +93,7 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
 
         });
     }
+
     $scope.showTxt = true;
 
     $scope.updateprofile = function() {
@@ -73,7 +103,7 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
 
     $scope.saveProfile = function() {
         var data = {};
-        var user = $scope.userprofile;
+        var user = ($scope.userprofile != undefined ? $scope.userprofile : {});
         var authUser = $SessionService.user();
         data.UserId = authUser.id;
         data.info = user.info;
@@ -119,19 +149,19 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
 
     /***************Enquiry Modal***********/
     $scope.postRequirements = function() {
-       $scope.animationsEnabled = true;
-       var modalInstance = $uibModal.open({
-                animation: $scope.animationsEnabled,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: 'requirementModal.html',
-                controller: 'RequirementModalController',
-                size: 'sm',
-                resolve: {
-                    items: function() {
-                        return $scope.profileId;
-                    }
+        $scope.animationsEnabled = true;
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'requirementModal.html',
+            controller: 'RequirementModalController',
+            size: 'sm',
+            resolve: {
+                items: function() {
+                    return $scope.profileId;
                 }
+            }
         });
 
         modalInstance.result.then(function(items) {
@@ -181,7 +211,7 @@ angular.module('mean.system').controller('ProfileModalController', ['$scope', '$
 }]);
 
 angular.module('mean.system').controller('RequirementModalController', ['$scope', '$state', '$window', '$uibModalInstance', 'items', '$EnquiryService', '$SessionService', '$LocalService', function($scope, $state, $window, $uibModalInstance, items, $EnquiryService, $SessionService, $LocalService) {
-     $scope.sendRequirements = function(item) {
+    $scope.sendRequirements = function(item) {
         var data = {};
         var authUser = $SessionService.user();
         data.UserId = authUser.id;
