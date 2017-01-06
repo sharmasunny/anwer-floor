@@ -37,13 +37,21 @@ angular.module('mean.auth').factory("$ProfileService", ['$http', '$LocalService'
                 });
         },
         getLocation: function(cb) {
-            $http.get("http://ipinfo.io",JSON)
+            $http.get("http://ipinfo.io", JSON)
                 .then(function successCallback(response) {
                     cb(response.data);
                 }, function errorCallback(response) {
                     cb(response.data);
                 });
-        }
+        },
+        updateImage: function(data, cb) {
+            $http.post('/profile/updateImage', data)
+                .then(function successCallback(response) {
+                    cb(response.data);
+                }, function errorCallback(response) {
+                    cb(response.data);
+                });
+        },
 
     }
 

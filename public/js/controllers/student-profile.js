@@ -7,19 +7,24 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         $scope.image = authUser.image;
     }
 
-    $geolocation.getCurrentPosition({
-        timeout: 600
-    }).then(function(position) {
-        $scope.myPosition = position;
-    });
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            $scope.$apply(function() {
+                $scope.position = position;
+                console.log($scope.position, ' $scope.position ');
+
+            });
+        });
+    }
+
 
     $scope.IMageEditModel = function() {
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
-            templateUrl: 'imageCropModal.html',
-            controller: 'ProfileModalController',
+            templateUrl: 'avitarHtml.html',
+            controller: 'avitarModalController',
             size: 'lg',
             resolve: {
                 items: function() {
@@ -36,45 +41,10 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
         }, function() {
             $log.info('Modal dismissed at: ' + new Date());
         });
-
     }
 
 
-    $scope.UploadImage = function(event) {
 
-        var image = new Image();
-        var file = event.target.files[0];
-        var myReader = new FileReader();
-        myReader.onloadend = function(loadEvent) {
-            image.src = loadEvent.target.result;
-
-            var modalInstance = $uibModal.open({
-                animation: $scope.animationsEnabled,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: 'imageCropModal.html',
-                controller: 'ProfileModalController',
-                size: 'lg',
-                resolve: {
-                    items: function() {
-                        return image.src;
-                    }
-                }
-            });
-
-            modalInstance.result.then(function(image) {
-                $scope.image = image;
-                var UserDetail = $SessionService.getUser();
-                UserDetail.result.image = $scope.image;
-                $LocalService.set('auth_user', JSON.stringify(UserDetail));
-            }, function() {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
-
-        };
-
-        myReader.readAsDataURL(file);
-    }
 
     $scope.getProfileDetails = function() {
         $scope.authUser = $SessionService.user();
@@ -178,6 +148,89 @@ angular.module('mean.system').controller('ProfileModalController', ['$scope', '$
     $scope.myImage = items;
     $scope.myCroppedImage = '';
 
+
+
+    $scope.cancel = function() {
+        console.log(1);
+        $uibModalInstance.dismiss('cancel');
+    };
+
+}]);
+
+
+
+
+angular.module('mean.system').controller('avitarModalController', ['$scope', '$window', '$uibModalInstance', 'items', '$ProfileService', '$SessionService', '$uibModal', '$log', 'FlashService', function($scope, $window, $uibModalInstance, items, $ProfileService, $SessionService, $uibModal, $log, FlashService) {
+    $scope.item = items;
+    $scope.myImage = '';
+    $scope.myCroppedImage = '';
+    $scope.showAvitor = true;
+
+    $scope.avitarImages = 26;
+
+    $scope.range = function(count) {
+
+        var avitar = [];
+
+        for (var i = 1; i < count; i++) {
+            avitar.push(i)
+        }
+
+        return avitar;
+    }
+
+    var fileTypes = ['jpg', 'jpeg', 'png'];
+
+    $scope.UploadImage = function(event) {
+
+        var image = new Image();
+        var file = event.target.files[0];
+        var extension = file.name.split('.').pop().toLowerCase();
+        var isSuccess = fileTypes.indexOf(extension) > -1;
+
+        if (isSuccess) {
+            var myReader = new FileReader();
+            myReader.onloadend = function(loadEvent) {
+                $scope.$apply(function() {
+                    image.src = loadEvent.target.result;
+                    $scope.myImage = image.src;
+                    $scope.showAvitor = false;
+                    $scope.AvatorIMage = null;
+                    // var modalInstance = $uibModal.open({
+                    //     animation: $scope.animationsEnabled,
+                    //     ariaLabelledBy: 'modal-title',
+                    //     ariaDescribedBy: 'modal-body',
+                    //     templateUrl: 'imageCropModal.html',
+                    //     controller: 'ProfileModalController',
+                    //     size: 'lg',
+                    //     resolve: {
+                    //         items: function() {
+                    //             return image.src;
+                    //         }
+                    //     }
+                    // });
+
+                    // modalInstance.result.then(function(image) {
+                    //     $scope.image = image;
+                    // }, function() {
+                    //     $log.info('Modal dismissed at: ' + new Date());
+                    // });
+                });
+            };
+
+            myReader.readAsDataURL(file);
+        } else {
+            alert('Select PNG, JPEG and JPG IMAGE ONLY');
+        }
+    }
+
+
+    $scope.getAviateImage = function(id) {
+        $scope.selectedAvator = id;
+        $scope.AvatorIMage = 'avitar/' + id + '.png';
+    };
+
+
     $scope.dataURItoBlob = function(dataURI) {
         var byteString = atob(dataURI.split(',')[1]);
         var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
@@ -192,23 +245,41 @@ angular.module('mean.system').controller('ProfileModalController', ['$scope', '$
 
     $scope.saveImage = function() {
         var authUser = $SessionService.user();
-        var formData = new FormData();
-        var image = $scope.dataURItoBlob($scope.myCroppedImage);
-        formData.append("image", image);
-        formData.append("id", authUser.id);
-        $ProfileService.imageUpload(formData, function(response) {
-            $uibModalInstance.close(response.filename);
-        });
+        if ($scope.AvatorIMage) {
+            var data = {};
+            data.id = authUser.id;
+            data.image = $scope.AvatorIMage;
+            $ProfileService.updateImage(data, function(response) {
+                $uibModalInstance.close(response.filename);
+            });
+        } else {
+            var formData = new FormData();
+            var image = $scope.dataURItoBlob($scope.myCroppedImage);
+            formData.append("image", image);
+            formData.append("id", authUser.id);
+            $ProfileService.imageUpload(formData, function(response) {
+                $uibModalInstance.close(response.filename);
+            });
+        }
 
     };
+
 
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
 
+    $scope.close = function() {
+        $uibModalInstance.dismiss('cancel');
+    }
+
 
 
 }]);
+
+
+
+
 
 angular.module('mean.system').controller('RequirementModalController', ['$scope', '$state', '$window', '$uibModalInstance', 'items', '$EnquiryService', '$SessionService', '$LocalService', function($scope, $state, $window, $uibModalInstance, items, $EnquiryService, $SessionService, $LocalService) {
     $scope.sendRequirements = function(item) {
