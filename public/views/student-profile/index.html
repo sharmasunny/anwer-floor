@@ -18,13 +18,12 @@
                                 </span>
                                 <span class="tutor-price-text row" ng-show="!showTxt">
                                     <span class="col-sm-2">$</span>
-                                <span class="col-sm-8"><input type="text" class="form-control rate-pr-fl" ng-pattern="/^[0-9]{1,7}$/" ng-model="userprofile.rate"/></span>
-                                <span class="col-sm-2">/hr</span>
+                                <span class="col-sm-7"><input type="text" class="form-control rate-pr-fl" ng-pattern="/^[0-9]{1,7}$/" ng-model="userprofile.rate"/></span>
+                                <span class="col-sm-3">/hr</span>
                                 </span>
                                 <div class="pro-pic-ed" ng-click="IMageEditModel()">
                                     <img ng-show="!image" class="tutor-picture" src="images/user.png" />
                                     <img ng-show="image" class="tutor-picture" src="/images/profile-images/{{image}}" />
-                                    <i class="glyphicon glyphicon-pencil edit-icon"></i>
                                     <!-- <label for="img-file">
                                         <img ng-show="!image" class="tutor-picture" src="images/user.png" />
                                         <img ng-show="image" class="tutor-picture" src="/images/profile-images/{{image}}" />

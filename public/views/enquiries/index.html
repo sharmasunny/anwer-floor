@@ -33,22 +33,23 @@
 				          <div class="media">
 				            <div class="media-left">
 				              <a href="#">
-				                <img class="media-object" src="images/profile-images/{{ enquiry.Profile.User.image }}" alt="...">
+				              	 <img ng-show="!enquiry.User.image" class="tutor-picture" src="images/user.png" />
+				                <img ng-show="enquiry.User.image" class="media-object" src="images/profile-images/{{ enquiry.User.image }}" alt="...">
 				              </a>
 				              <span class="fa fa-envelope"></span>
 				            </div>
 				            <div class="media-body">
-				              <h4 class="media-heading">{{ enquiry.Profile.User.firstname }} {{ enquiry.Profile.User.lastname }}<small class="pull-right mt4">{{ enquiry.createdAt }} ago</small></h4>
-				              <h5>{{ enquiry.enquiry }}</h5>
+				              <h4 class="media-heading">{{ enquiry.User.firstname }} {{ enquiry.User.lastname }}<small class="pull-right mt4">{{ enquiry.createdAt }} ago</small></h4>
+				              <h5>{{ enquiry.title }}</h5>
 				              <p>
-				                {{ enquiry.description }}
-				                <a href="#" class="card-readmore">Read More...</a>
+				                {{ enquiry.description | htmlToPlaintext }}
+				                <a   ui-sref="anon.singleEnquirie({singleEnquirie:enquiry.id})" class="card-readmore">Read More...</a>
 				              </p>
 				            </div>
 				          </div>
 				          <div class="wallet-right">
 				            <ul>
-			        		  	<li><i class="fa fa-map-marker"></i>{{ enquiry.Profile.location }}</li>
+			        		  	<li><i class="fa fa-map-marker"></i>{{ enquiry.User.Profile.location }}</li>
 			        		  	<li><i class="fa fa-usd"></i>{{ enquiry.rate }}/hr</li>
 			        		  </ul>
 			        		  <div class="mt20">

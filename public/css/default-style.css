@@ -269,6 +269,10 @@ a:hover{text-decoration: none;}
 	max-width: 1170px;
 }
 
+.panel-body {
+    overflow-wrap: break-word;
+}
+
 
 .mainheader{
 	background-color:#018150;
@@ -613,6 +617,9 @@ a:hover{text-decoration: none;}
   font-size: 15px;
 }
 
+trix-editor {
+    min-height: 150px !important;
+}
 
 .img-center{
 	display: block;

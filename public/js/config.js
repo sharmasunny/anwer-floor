@@ -1,7 +1,7 @@
 //Setting up route
-angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterProvider','AccessLevels', function($stateProvider,ngMetaProvider,$urlRouterProvider,AccessLevels) {
+angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterProvider', 'AccessLevels', function($stateProvider, ngMetaProvider, $urlRouterProvider, AccessLevels) {
 
-    $urlRouterProvider.otherwise(function($injector, $location){
+    $urlRouterProvider.otherwise(function($injector, $location) {
         $injector.invoke(['$state', function($state) {
             $state.go('404');
         }]);
@@ -13,14 +13,14 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
             abstract: true,
             template: '<div ui-view="admindashboard"></div>',
             data: {
-               access: AccessLevels.admin
+                access: AccessLevels.admin
             }
         })
-        .state('admin.dashboard',{
-            url : '/admin/',
+        .state('admin.dashboard', {
+            url: '/admin/',
             views: {
                 'admindashboard': {
-                    controller:'dashboardController',
+                    controller: 'dashboardController',
                     templateUrl: 'adminViews/dashboard.html'
                 }
             }
@@ -35,18 +35,18 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
             abstract: true,
             template: '<section ui-view="header"  autoscroll="true"></section> <section ui-view="content"></section> <section ui-view="footer"></section>',
             data: {
-               access: AccessLevels.user
+                access: AccessLevels.user
             }
         })
-        .state('user.account',{
-            url : '/account',
+        .state('user.account', {
+            url: '/account',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'AccountController',
+                    controller: 'AccountController',
                     templateUrl: 'views/account/index.html'
                 },
                 'footer': {
@@ -63,15 +63,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('user.addressBook',{
-            url : '/address-book',
+        .state('user.addressBook', {
+            url: '/address-book',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'AddressBookController',
+                    controller: 'AddressBookController',
                     templateUrl: 'views/address-book/index.html'
                 },
                 'footer': {
@@ -88,15 +88,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('user.businessCardCreate',{
-            url : '/businesscard-create',
+        .state('user.businessCardCreate', {
+            url: '/businesscard-create',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'BusinesscardCreateController',
+                    controller: 'BusinesscardCreateController',
                     templateUrl: 'views/business-card-create/index.html'
                 },
                 'footer': {
@@ -113,15 +113,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('user.earnings',{
-            url : '/earnings',
+        .state('user.earnings', {
+            url: '/earnings',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'EarningsController',
+                    controller: 'EarningsController',
                     templateUrl: 'views/earnings/index.html'
                 },
                 'footer': {
@@ -138,16 +138,16 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('user.messageDisplay',{
-            url : '/message-display',
+        .state('user.messageDisplay', {
+            url: '/message-display',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'MessageDisplayController',
-                    templateUrl:'views/message-display/index.html'
+                    controller: 'MessageDisplayController',
+                    templateUrl: 'views/message-display/index.html'
                 },
                 'footer': {
                     controller: 'VerificationController',
@@ -163,15 +163,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('user.multipleShortProfile',{
-            url : '/multiple-short-profile',
+        .state('user.multipleShortProfile', {
+            url: '/multiple-short-profile',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'MultipleShortProfileController',
+                    controller: 'MultipleShortProfileController',
                     templateUrl: 'views/multiple-short-profile/index.html'
                 },
                 'footer': {
@@ -188,16 +188,16 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('user.nquireInvite',{
-            url : '/nquire-invite',
+        .state('user.nquireInvite', {
+            url: '/nquire-invite',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'NquireInvitesController',
-                    templateUrl:'views/nquire-invite/index.html'
+                    controller: 'NquireInvitesController',
+                    templateUrl: 'views/nquire-invite/index.html'
                 },
                 'footer': {
                     controller: 'VerificationController',
@@ -213,15 +213,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('user.packagedCards',{
-            url : '/packaged-cards',
+        .state('user.packagedCards', {
+            url: '/packaged-cards',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'PackedCardsController',
+                    controller: 'PackedCardsController',
                     templateUrl: 'views/packaged-cards/index.html'
                 },
                 'footer': {
@@ -238,15 +238,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('user.postYourEnquiry',{
-            url : '/post-your-enquiry',
+        .state('user.postYourEnquiry', {
+            url: '/post-your-enquiry',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'PostYourEnquiryController',
+                    controller: 'PostYourEnquiryController',
                     templateUrl: 'views/post-your-enquiry/index.html'
                 },
                 'footer': {
@@ -263,15 +263,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('user.setting',{
-            url : '/setting',
+        .state('user.setting', {
+            url: '/setting',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'SettingController',
+                    controller: 'SettingController',
                     templateUrl: 'views/setting/index.html'
                 },
                 'footer': {
@@ -288,15 +288,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('user.studentProfile',{
-            url : '/profile',
+        .state('user.studentProfile', {
+            url: '/profile',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'StudentProfileController',
+                    controller: 'StudentProfileController',
                     templateUrl: 'views/student-profile/index.html'
                 },
                 'footer': {
@@ -313,15 +313,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('user.addProfile',{
-            url : '/add-profile',
+        .state('user.addProfile', {
+            url: '/add-profile',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'StudentProfileController',
+                    controller: 'StudentProfileController',
                     templateUrl: 'views/student-profile/add_profile.html'
                 },
                 'footer': {
@@ -338,15 +338,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('user.editProfile',{
-            url : '/edit-profile',
+        .state('user.editProfile', {
+            url: '/edit-profile',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'StudentProfileController',
+                    controller: 'StudentProfileController',
                     templateUrl: 'views/student-profile/edit_profile.html'
                 },
                 'footer': {
@@ -364,15 +364,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
             }
         })
 
-        .state('user.privateMessage',{
-            url : '/private-message',
+    .state('user.privateMessage', {
+            url: '/private-message',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'StudentProfileController',
+                    controller: 'StudentProfileController',
                     templateUrl: 'views/message-display/index.html'
                 },
                 'footer': {
@@ -389,15 +389,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('user.notifications',{
-            url : '/notifications',
+        .state('user.notifications', {
+            url: '/notifications',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'StudentProfileController',
+                    controller: 'StudentProfileController',
                     templateUrl: 'views/notifications/index.html'
                 },
                 'footer': {
@@ -413,7 +413,7 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                     'author': ''
                 }
             }
-        })      
+        })
 
 
 
@@ -424,18 +424,18 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
             abstract: true,
             template: '<section ui-view="header"  autoscroll="true"></section> <section ui-view="content"></section> <section ui-view="footer"></section>',
             data: {
-               access: AccessLevels.anon
+                access: AccessLevels.anon
             }
         })
-        .state('anon.home',{
-            url : '/',
+        .state('anon.home', {
+            url: '/',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/home-header/index.html'
                 },
                 'content': {
-                    controller:'IndexController',
+                    controller: 'IndexController',
                     templateUrl: 'views/index.html'
                 },
                 'footer': {
@@ -452,15 +452,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('anon.earnPoints',{
-            url : '/earn-points',
+        .state('anon.earnPoints', {
+            url: '/earn-points',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'EarnPointsController',
+                    controller: 'EarnPointsController',
                     templateUrl: 'views/earn-points/index.html'
                 },
                 'footer': {
@@ -477,15 +477,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('anon.about',{
-            url : '/about-us',
+        .state('anon.about', {
+            url: '/about-us',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'AboutController',
+                    controller: 'AboutController',
                     templateUrl: 'views/about/index.html'
                 },
                 'footer': {
@@ -502,15 +502,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('anon.api',{
-            url : '/api',
+        .state('anon.api', {
+            url: '/api',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'AboutController',
+                    controller: 'AboutController',
                     templateUrl: 'views/api/index.html'
                 },
                 'footer': {
@@ -527,15 +527,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('anon.career',{
-            url : '/career',
+        .state('anon.career', {
+            url: '/career',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'AboutController',
+                    controller: 'AboutController',
                     templateUrl: 'views/career/index.html'
                 },
                 'footer': {
@@ -552,15 +552,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('anon.terms',{
-            url : '/terms-of-use',
+        .state('anon.terms', {
+            url: '/terms-of-use',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'AboutController',
+                    controller: 'AboutController',
                     templateUrl: 'views/terms/index.html'
                 },
                 'footer': {
@@ -577,15 +577,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-         .state('anon.privacy',{
-            url : '/privacy',
+        .state('anon.privacy', {
+            url: '/privacy',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'AboutController',
+                    controller: 'AboutController',
                     templateUrl: 'views/privacy/index.html'
                 },
                 'footer': {
@@ -602,15 +602,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('anon.membership-plan',{
-            url : '/membership-plan',
+        .state('anon.membership-plan', {
+            url: '/membership-plan',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'membershipPlanController',
+                    controller: 'membershipPlanController',
                     templateUrl: 'views/membership-plan/index.html'
                 },
                 'footer': {
@@ -628,16 +628,16 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
             }
         })
 
-        .state('anon.contactUs',{
-            url : '/contact-us',
+    .state('anon.contactUs', {
+            url: '/contact-us',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'ConatctUsController',
-                    templateUrl:'views/contact-us/index.html'
+                    controller: 'ConatctUsController',
+                    templateUrl: 'views/contact-us/index.html'
                 },
                 'footer': {
                     controller: 'VerificationController',
@@ -653,15 +653,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('anon.enquiries',{
-            url : '/enquiries',
+        .state('anon.enquiries', {
+            url: '/enquiries',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'EnquiriesController',
+                    controller: 'EnquiriesController',
                     templateUrl: 'views/enquiries/index.html'
                 },
                 'footer': {
@@ -678,16 +678,42 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('anon.freeCards',{
-            url : '/free-cards',
+        .state('anon.singleEnquirie', {
+            url: '/enquirie/:singleEnquirie',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'FreeCardsController',
-                    templateUrl:'views/free-cards/index.html'
+                    controller: 'FreeCardsController',
+                    templateUrl: 'views/enquiries/SingleEnquiry.html'
+                },
+                'footer': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-footer/index.html'
+                }
+            },
+            data: {
+                css: 'css/default-style.css',
+                'meta': {
+                    'title': 'Enquirie',
+                    'description': '',
+                    'author': ''
+                }
+            }
+        })
+
+    .state('anon.freeCards', {
+            url: '/free-cards',
+            views: {
+                'header': {
+                    controller: 'VerificationController',
+                    templateUrl: 'views/default-header/index.html'
+                },
+                'content': {
+                    controller: 'FreeCardsController',
+                    templateUrl: 'views/free-cards/index.html'
                 },
                 'footer': {
                     controller: 'VerificationController',
@@ -703,15 +729,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('anon.verifyEmail',{
-            url : '/verifyEmail?token',
+        .state('anon.verifyEmail', {
+            url: '/verifyEmail?token',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'VerificationEmailController',
+                    controller: 'VerificationEmailController',
                     templateUrl: 'views/verification-email/verification.html'
                 },
                 'footer': {
@@ -728,11 +754,11 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('anon.adminLogin',{
-            url : '/admin-login',
-             views: {
+        .state('anon.adminLogin', {
+            url: '/admin-login',
+            views: {
                 'content': {
-                    controller:'VerificationController',
+                    controller: 'VerificationController',
                     templateUrl: 'views/adminLogin.html'
                 }
             },
@@ -749,15 +775,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
 
 
 
-        .state('articles',{
-            url : '/article',
+    .state('articles', {
+            url: '/article',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'ArticlesController',
+                    controller: 'ArticlesController',
                     templateUrl: 'views/articles/list.html'
                 },
                 'footer': {
@@ -774,16 +800,16 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 }
             }
         })
-        .state('createArticle',{
-            url : '/article/create',
+        .state('createArticle', {
+            url: '/article/create',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'ArticlesController',
-                    templateUrl:'views/articles/create.html'
+                    controller: 'ArticlesController',
+                    templateUrl: 'views/articles/create.html'
                 },
                 'footer': {
                     controller: 'VerificationController',
@@ -794,15 +820,15 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 css: 'css/default-style.css'
             }
         })
-        .state('editArticles',{
-            url : '/article/{articleId}/edit',
+        .state('editArticles', {
+            url: '/article/{articleId}/edit',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'ArticlesController',
+                    controller: 'ArticlesController',
                     templateUrl: 'views/articles/edit.html'
                 },
                 'footer': {
@@ -814,16 +840,16 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 css: 'css/default-style.css'
             }
         })
-        .state('viewArticle',{
-            url : '/article/{articleId}',
+        .state('viewArticle', {
+            url: '/article/{articleId}',
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'ArticlesController',
-                    templateUrl:'views/articles/view.html'
+                    controller: 'ArticlesController',
+                    templateUrl: 'views/articles/view.html'
                 },
                 'footer': {
                     controller: 'VerificationController',
@@ -834,14 +860,14 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 css: 'css/default-style.css'
             }
         })
-        .state('404',{
+        .state('404', {
             views: {
                 'header': {
                     controller: 'VerificationController',
                     templateUrl: 'views/default-header/index.html'
                 },
                 'content': {
-                    controller:'',
+                    controller: '',
                     templateUrl: 'views/404.html'
                 },
                 'footer': {
@@ -853,11 +879,10 @@ angular.module('mean').config(['$stateProvider', 'ngMetaProvider', '$urlRouterPr
                 css: 'css/default-style.css'
             }
         })
-}
-]);
+}]);
 
 //Setting HTML5 Location Mode
-angular.module('mean').config(['$locationProvider', function ($locationProvider) {
+angular.module('mean').config(['$locationProvider', function($locationProvider) {
     $locationProvider.html5Mode({
         enabled: true,
         requireBase: false
@@ -872,7 +897,14 @@ angular.module('mean').constant('AccessLevels', {
 });
 
 angular.module('mean').constant('SITE_CONSTANTS', {
-     LOCALURl : 'localhost:3000',
-     DEVURl  : '',
-     LIVEURL : ''
+    LOCALURl: 'localhost:3000',
+    DEVURl: '',
+    LIVEURL: ''
+});
+
+angular.module('mean').
+filter('htmlToPlaintext', function() {
+    return function(text) {
+        return text ? String(text).replace(/<[^>]+>/gm, '') : '';
+    };
 });

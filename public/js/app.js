@@ -1,4 +1,4 @@
-angular.module('mean', ["xeditable", "ui.select", 'ngCookies', 'ngMessages', 'ngMeta', 'ngResource', 'ui.router', 'uiRouterStyles', 'ui.bootstrap', 'ui.route', 'ngStorage', 'mean.system', 'mean.articles', 'mean.auth', 'satellizer', 'angularFblogin', 'ngLodash','ngImgCrop','ngTagsInput','ngGeolocation'])
+angular.module('mean', ["xeditable", "ui.select", 'ngCookies', 'ngMessages', 'ngMeta', 'ngResource', 'ui.router', 'uiRouterStyles', 'ui.bootstrap', 'ui.route', 'ngStorage', 'mean.system', 'mean.articles', 'mean.auth', 'satellizer', 'angularFblogin', 'ngLodash','ngImgCrop','ngTagsInput','ngGeolocation','angularTrix','ui.select'])
     .config(function($authProvider, ngMetaProvider) {
 
 

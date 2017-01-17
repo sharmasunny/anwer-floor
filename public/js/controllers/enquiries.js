@@ -7,7 +7,6 @@ angular.module('mean.system').controller('EnquiriesController', ['$scope', '$sta
             if (Object.keys(response.result).length > 0) {
                 var now = moment();
                 $scope.enquiries = response.result;
-                console.log('enquiries>>',$scope.enquiries)
                 $scope.enquiries_length = $scope.enquiries.length;
                 for (var i=0; i<$scope.enquiries.length; i++){
                 	var then = moment($scope.enquiries[i].createdAt);
@@ -44,7 +43,7 @@ angular.module('mean.system').controller('EnquiriesController', ['$scope', '$sta
             ariaDescribedBy: 'modal-body',
             templateUrl: 'requirementModal.html',
             controller: 'RequirementModalController',
-            size: 'sm',
+            size: 'lg',
             resolve: {
                 items: function() {
                     return $scope.profileId;
