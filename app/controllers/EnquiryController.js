@@ -15,7 +15,8 @@ module.exports = {
     --------------------------------------------------------------------------*/
 
     getAllEnquiries: function(req, res) {
-        db.Enquiry.findAll({ include: [{ model: db.Profile, include :[db.User] }]   })
+        // db.Enquiry.findAll({ include: [{ model: db.Profile, include :[db.User] }]   })
+         db.Enquiry.findAll({ include: [{ model: db.User , include:[db.Profile] }]   })
             .then(function(resData) {
                 if (!resData) {
                     return res.json({ resStatus: 'error', msg: AppMessages.SERVER_ERR });

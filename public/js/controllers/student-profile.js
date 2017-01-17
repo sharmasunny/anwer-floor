@@ -56,7 +56,8 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
                 $scope.userprofile.interests = JSON.parse($scope.userprofile.interests);
                 $scope.userprofile.skills = JSON.parse($scope.userprofile.skills);
                 $ProfileService.getLocation(function(response) {
-                    $scope.userprofile.location = response.city;
+
+                    $scope.userprofile.location = ($scope.userprofile.location == null || $scope.userprofile.location == undefined ? response.city : $scope.userprofile.location);
 
                 });
             }
@@ -126,7 +127,7 @@ angular.module('mean.system').controller('StudentProfileController', ['$scope', 
             ariaDescribedBy: 'modal-body',
             templateUrl: 'requirementModal.html',
             controller: 'RequirementModalController',
-            size: 'sm',
+            size: 'lg',
             resolve: {
                 items: function() {
                     return $scope.profileId;
@@ -282,41 +283,64 @@ angular.module('mean.system').controller('avitarModalController', ['$scope', '$w
 
 
 angular.module('mean.system').controller('RequirementModalController', ['$scope', '$state', '$window', '$uibModalInstance', 'items', '$EnquiryService', '$SessionService', '$LocalService', function($scope, $state, $window, $uibModalInstance, items, $EnquiryService, $SessionService, $LocalService) {
+    $scope.item = {
+        currency_type : '$',
+        display_name: 'Username',
+        medium: 'Home'
+    };
+
     $scope.sendRequirements = function(item) {
-        var data = {};
+        var data = item;
         var authUser = $SessionService.user();
         data.UserId = authUser.id;
-        data.ProfileId = items;
-        data.enquiry = item.enquiry;
-        data.language = item.language;
-        data.rate = item.rate;
-        data.description = item.description;
-        if(data.ProfileId == '' || data.profileId == undefined){
-            $EnquiryService.getProfileId(data.UserId, function(response) {
-            data.ProfileId = response.result[0].id;
-            $EnquiryService.createEnquiry(data, function(response) {
-                var UserDetail = $SessionService.getUser();
-                UserDetail.result.image = $scope.image;
-                $LocalService.set('auth_user', JSON.stringify(UserDetail));
-                $uibModalInstance.close();
-                $state.go("anon.enquiries");
-            });
+        $EnquiryService.createEnquiry(data, function(response) {
+            $uibModalInstance.close();
+            $state.go("anon.enquiries");
         });
-        }else{
-            $EnquiryService.createEnquiry(data, function(response) {
-                var UserDetail = $SessionService.getUser();
-                UserDetail.result.image = $scope.image;
-                $LocalService.set('auth_user', JSON.stringify(UserDetail));
-                $uibModalInstance.close();
-                $state.go("anon.enquiries");
-            });
-            
-        }
-        
+
+
+
+        // data.ProfileId = items;
+        // data.enquiry = item.enquiry;
+        // data.language = item.language;
+        // data.rate = item.rate;
+        // data.description = item.description;
+        // if (data.ProfileId == '' || data.profileId == undefined) {
+        //     $EnquiryService.getProfileId(data.UserId, function(response) {
+        //         data.ProfileId = response.result[0].id;
+        //         $EnquiryService.createEnquiry(data, function(response) {
+        //             var UserDetail = $SessionService.getUser();
+        //             UserDetail.result.image = $scope.image;
+        //             $LocalService.set('auth_user', JSON.stringify(UserDetail));
+        //             $uibModalInstance.close();
+        //             $state.go("anon.enquiries");
+        //         });
+        //     });
+        // } else {
+        //     $EnquiryService.createEnquiry(data, function(response) {
+        //         var UserDetail = $SessionService.getUser();
+        //         UserDetail.result.image = $scope.image;
+        //         $LocalService.set('auth_user', JSON.stringify(UserDetail));
+        //         $uibModalInstance.close();
+        //         $state.go("anon.enquiries");
+        //     });
+
+        // }
+
     }
+
+
+    // $scope.itemArray = [
+    //     {id: 1, name: 'City-1'},
+    //     {id: 2, name: 'City-2'},
+    //     {id: 3, name: 'City-3'}
+    // ];
+
+    // $scope.item.location = { value: $scope.itemArray[0] };
 
     $scope.close = function() {
         $uibModalInstance.dismiss('cancel');
     };
+ 
 
 }]);

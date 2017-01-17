@@ -3,14 +3,18 @@
 module.exports = function(sequelize, DataTypes) {
 
 	var Enquiry = sequelize.define('Enquiry', {
-		enquiry: DataTypes.STRING,
+		title:DataTypes.STRING,
 		language: DataTypes.STRING,
+		display_name: DataTypes.STRING,
 		description: DataTypes.TEXT,
-	    rate: DataTypes.INTEGER,
+	    medium:DataTypes.INTEGER,
+	    location:DataTypes.STRING,
+	    currency_type:DataTypes.STRING,
+	    rate: DataTypes.INTEGER
 	},
 	{
 			associate: function(models){
-				Enquiry.belongsTo(models.Profile);
+				Enquiry.belongsTo(models.User);
 			}
 		}
 	);

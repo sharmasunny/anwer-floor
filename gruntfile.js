@@ -90,7 +90,9 @@ module.exports = function(grunt) {
                     {cwd: 'bower_components/ng-tags-input',                              src: ['*.*'], dest: 'public/lib/ng-tags-input', expand: true},
                     {cwd: 'bower_components/ngGeolocation',                              src: ['*.js'], dest: 'public/lib/ngGeolocation', expand: true},
                     {cwd: 'bower_components/animate.css',                                src: ['*.*'], dest: 'public/lib/animate.css', expand: true},
-                    {cwd: 'bower_components/moment',                              		 src: ['*.js'], dest: 'public/lib/moment', expand: true}
+                    {cwd: 'bower_components/moment',                              		 src: ['*.js'], dest: 'public/lib/moment', expand: true},
+                    {cwd: 'bower_components/angular-trix',                               src: ['dist/*'], dest: 'public/lib/angular-trix', expand: true},
+                    {cwd: 'bower_components/angular-ui-select',                          src: ['dist/*'], dest: 'public/lib/angular-ui-select', expand: true}
                 ]
             }
         },

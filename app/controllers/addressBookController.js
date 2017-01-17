@@ -147,7 +147,7 @@ module.exports = {
                     if (err) {
                         console.log('A file failed to process');
                     } else {
-                        console.log('All files have been processed successfully');
+                        console.log('All contact have been processed successfully');
                     }
                 });
 
